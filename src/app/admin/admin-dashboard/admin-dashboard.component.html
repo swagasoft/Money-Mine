@@ -1,0 +1,57 @@
+<ngb-tabset [justify]="currentJustify" >
+    <ngb-tab>
+      <!-- tab one -->
+        <ng-template ngbTabTitle><b>manage account</b></ng-template>
+        <ng-template ngbTabContent>
+
+    <div class="list-group">
+        <li  class="list-group-item list-group-item-action active">
+          <b>Admin dashboard</b>
+        </li>
+        <li  class="list-group-item list-group-item-action bg-danger text-white">
+            <b> current market status :  good </b>
+          </li>
+        <li  class="list-group-item list-group-item-action"> initial deposit ; 100000</li>
+        <li  class="list-group-item list-group-item-action"> Accrued ammount : 120000</li>
+        <li  class="list-group-item list-group-item-action"> Investment date : 2/1/2019</li>
+        <li  class="list-group-item list-group-item-action"> Investment count : 3 month</li>
+
+      </div>
+        </ng-template>
+      </ngb-tab>
+      <!-- tab two -->
+  <ngb-tab>
+    <ng-template ngbTabTitle><b>manage users</b></ng-template>
+
+  </ngb-tab>
+  <!-- tab three -->
+  <ngb-tab>
+      <ng-template ngbTabTitle><b> settings</b></ng-template>
+      <ng-template ngbTabContent>
+          <div class="list-group">
+              <li  class="list-group-item list-group-item-action active">
+                <b>Iml enroll </b>
+              </li>
+
+              <li  class="list-group-item list-group-item-action"> email  :  <span class="bg-success text-white">  good </span>   </li>
+              <li  class="list-group-item list-group-item-action"> username : ...</li>
+              <li  class="list-group-item list-group-item-action"> Account status : Active</li>
+              <li  class="list-group-item list-group-item-action"> </li>
+              <li  class="list-group-item list-group-item-action"> </li>
+            </div>
+
+      </ng-template>
+    </ngb-tab>
+        <!-- tab four -->
+  <ngb-tab>
+      <ng-template ngbTabTitle><b>notifications</b></ng-template>
+
+    </ngb-tab>
+        <!-- tab five -->
+  <ngb-tab>
+      <ng-template ngbTabTitle><b>manage transactions</b></ng-template>
+
+    </ngb-tab>
+</ngb-tabset>
+
+

@@ -1,0 +1,55 @@
+
+
+<!--
+<div class="jumbotron jumbotron-fluid text-center alert alert-success">
+  <div class="container">
+    <h2 class="display-4">Money Mine</h2>
+    <p class="lead"></p>
+  </div>
+</div> -->
+
+
+<div class="row">
+  <div class="main_window">
+    <div class="card">
+
+<!-- ====== login form ========= -->
+  <div class="container userlogin">
+    <div class="form-wrapper" id="wrapper-login">
+        <img src='' />
+        <div class="content-wrapper" id="content-signin">
+            <h1 class="text-center">LOGIN</h1>
+            <form class="form-login">
+
+                <input type="email" name="email"
+                [(ngModel)]="emailInput"
+                 placeholder="Email" class="input-username" />
+
+                <input type="password" name="password"
+                [(ngModel)]="passwordInput"
+                 placeholder="Password" class="input-password" />
+
+                <button type="submit"  (click)="loginUser()" class="btn-login">LOGIN</button>
+
+                <!-- == error messages == -->
+                <div class="bg-danger text-white text-center {{responseMessageType}}" role="alert"
+                    *ngIf="responseMessage.length">
+                    {{responseMessage}}
+                </div>
+            </form>
+
+            <div class="text-dark">
+            <a class="text-dark" routerLink="/register"><strong> No account? </strong></a>
+            <a class="text-dark" routerLink="/passwordreset"><strong> Forget password? </strong></a>
+          </div>
+        </div>
+    </div>
+    </div>
+    <!--  -->
+  </div>
+</div>
+  </div>
+
+
+
+

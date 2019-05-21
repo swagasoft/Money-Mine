@@ -1,0 +1,78 @@
+<!-- <div class="jumbotron jumbotron-fluid text-center bg-success">
+  <div class="container">
+    <h2 class="display-4">Money Mine</h2>
+    <p class="lead"></p>
+  </div>
+</div> -->
+
+    <!-- registration form -->
+        <!-- <div id="regform" class="form-group">
+          <input type="email" class="form-control" [(ngModel)]="emailInput"
+            id="email" placeholder="Email">
+        </div>
+
+        <div class="form-group" >
+          <input type="password" class="form-control" value=""
+            [(ngModel)]="passwordInput" id="password" placeholder="Password">
+        </div>
+
+        <div class="form-group" >
+          <input type="password" class="form-control"
+          (change)="confirmInputPassword()" value=""
+             id="password_conf" placeholder="confirm password">
+        </div>
+
+        <div class="form-group" >
+            <button type="submit" id="submitBtn" class="btn btn-primary"
+            (click)="registerUser()">Register</button>
+    </div>
+            <a [routerLink]="['/passwordreset']" > forget password?</a> -->
+
+
+    <!-- ======= Registration form ========= -->
+
+    <div class="row">
+      <div class="main_window">
+        <div class="card">
+
+      <div class="container userlogin">
+        <div class="form-wrapper" id="wrapper-login">
+            <img src='' />
+            <div class="content-wrapper" id="content-signin">
+                <h1 class="text-center">SIGN UP</h1>
+
+                <form class="form-login">
+                    <input type="email" name="email"
+                    [(ngModel)]="emailInput"
+                     placeholder="Email" class="input-username" />
+
+                    <input type="password" name="password"
+                    [(ngModel)]="passwordInput" value="" id="password"
+                     placeholder="Password" class="input-password" />
+
+                     <input type="password" name="password_conf"
+                     (change)="confirmInputPassword()" value=""
+                     id="password_conf"
+                     placeholder="Confirm Password" class="input-password" />
+
+                    <button type="submit" id="submitBtn"
+                     (click)="registerUser()" class="btn-login">Continue</button>
+
+                    <!-- == error messages == -->
+                    <div class="bg-danger text-white text-center {{responseMessageType}}" role="alert"
+                        *ngIf="responseMessage.length">
+                        {{responseMessage}}
+                    </div>
+                </form>
+
+                <div class="text-dark">
+                <a class="text-dark" routerLink="[/register"><strong> Login? </strong></a>
+                <a class="text-dark" routerLink="/passwordreset"><strong> Forget password? </strong></a>
+              </div>
+            </div>
+        </div>
+        </div>
+        <!--  -->
+      </div>
+    </div>
+      </div>
