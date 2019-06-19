@@ -17,10 +17,11 @@ export class NavbarComponent {
   userDetails: any;
   responseMessage = '';
   responseMessageType = '';
-user$: any;
+  user$: any;
 
-  constructor(public authService: AuthService, private router: Router) {
-    this .user$ = authService.angularFireAuth.authState;
+  constructor(public authService: AuthService, private router: Router,private afAuth: AngularFireAuth) {
+
+    this.user$ = authService.angularFireAuth.authState;
    }
 
 
@@ -37,6 +38,7 @@ user$: any;
         }, err => {
           this.showMessage('danger', err.message);
         });
+        localStorage.clear();
     }
 
 

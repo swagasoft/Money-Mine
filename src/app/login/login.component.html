@@ -1,54 +1,57 @@
 
 
-<!--
-<div class="jumbotron jumbotron-fluid text-center alert alert-success">
-  <div class="container">
-    <h2 class="display-4">Money Mine</h2>
-    <p class="lead"></p>
-  </div>
-</div> -->
+
+  <!-- material design login -->
+  <div class="card main-login border-primary mb-3" style="padding-bottom: 50px;
+  align-content: center; margin-top: 70px;">
+      <h3 class="card-header text-center"><strong>LOGIN</strong> </h3>
+      <div class="card-body text-primary">
 
 
-<div class="row">
-  <div class="main_window">
-    <div class="card">
 
-<!-- ====== login form ========= -->
-  <div class="container userlogin">
-    <div class="form-wrapper" id="wrapper-login">
-        <img src='' />
-        <div class="content-wrapper" id="content-signin">
-            <h1 class="text-center">LOGIN</h1>
-            <form class="form-login">
+  <div class="example-container text-dark">
+      <mat-form-field >
+          <i class="fas fa-envelope prefix"></i>
+        <input matInput [(ngModel)]="emailInput" value=""  autocapitalize="none"
+        name="email" id="email" type="email" placeholder="email">
+      </mat-form-field>
 
-                <input type="email" name="email"
-                [(ngModel)]="emailInput"
-                 placeholder="Email" class="input-username" />
+      <mat-form-field>
+      <i class="fas fa-lock prefix"></i>
+       <input matInput type="password" name="password" value=""
+                [(ngModel)]="passwordInput" id="password"
+                placeholder="password" >
+      </mat-form-field>
 
-                <input type="password" name="password"
-                [(ngModel)]="passwordInput"
-                 placeholder="Password" class="input-password" />
+      <div class="example-button-row">
+          <button  mat-raised-button color="primary" type="submit"
+          (click)="loginUser()" class="text-white"
+          style="width: 100px;
+          border-radius: 7px;"
+          > <i class="material-icons md-24"></i>Sign in </button>
+        </div>
 
-                <button type="submit"  (click)="loginUser()" class="btn-login">LOGIN</button>
 
-                <!-- == error messages == -->
-                <div class="bg-danger text-white text-center {{responseMessageType}}" role="alert"
-                    *ngIf="responseMessage.length">
-                    {{responseMessage}}
-                </div>
-            </form>
 
-            <div class="text-dark">
-            <a class="text-dark" routerLink="/register"><strong> No account? </strong></a>
-            <a class="text-dark" routerLink="/passwordreset"><strong> Forget password? </strong></a>
+      <!-- error -->
+      <div class="card text-danger text-center alert alert-danger"
+       *ngIf="responseMessage.length">
+          <div class="card-body">
+            <p class="card-text">
+                *{{responseMessage}}
+            </p>
           </div>
         </div>
+
     </div>
+      </div>
+      <div class="text-center container">
+      <a routerLink="/register" > <small>Dont have account?</small></a>
+      <a routerLink="/passwordreset" style="margin-left:7px;">
+        <small>Forget password?</small></a>
     </div>
-    <!--  -->
-  </div>
-</div>
-  </div>
+
+    </div>
 
 
 

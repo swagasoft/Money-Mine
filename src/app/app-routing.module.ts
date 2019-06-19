@@ -1,4 +1,5 @@
-import { SelectAccountComponent } from './select-account/select-account.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { UserUpdateComponent } from './user-update/user-update.component';
 import { AdminMessageComponent } from './admin-message/admin-message.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
@@ -24,38 +25,40 @@ import { PaymentComponent } from './payment/payment.component';
 import { InvestorsDashboardComponent } from './investors-dashboard/investors-dashboard.component';
 import { EnrollDashbaordComponent } from './enroll-dashbaord/enroll-dashbaord.component';
 import { Enrollguard } from './services/enrollguard.service';
+import { PoliciyComponent } from './policiy/policiy.component';
+import { SuccessfulComponent } from './successful/successful.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'customers', component: CustomersComponent},
   {path: 'login', component: LoginComponent},
-  // {path: '**', component: LoginComponent},
+  {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent},
   {path: 'partners', component: PartnersComponent},
   {path: 'services', component: ServicesComponent},
+  {path: 'policy', component: PoliciyComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'passwordreset', component: PasswordresetComponent},
-
-  {path: 'user/select/account', component: SelectAccountComponent, canActivate: [AuthGuardService] },
-  {path: 'welcome', component: WelcomeComponent,  canActivate: [AuthGuardService] },
-  {path: 'user/dashboard', component: UserdashboardComponent, canActivate: [AuthGuardService]},
-  {path: 'user/inbox', component: InboxComponent, canActivate: [AuthGuardService]},
-  {path: 'user/payment', component: PaymentComponent, canActivate: [AuthGuardService]},
-  {path: 'user/imlmembrs', component: ImlMembersComponent, canActivate: [AuthGuardService]},
+  {path: 'user/update/details', component: UserUpdateComponent },
 
 
-  //moneymine enroll
+
+  {path: 'welcome', component: WelcomeComponent ,  canActivate: [AuthGuardService]},
+  {path: 'user/dashboard', component: UserdashboardComponent,  canActivate: [AuthGuardService]},
+  {path: 'user/inbox', component: InboxComponent,  canActivate: [AuthGuardService]},
+  {path: 'user/payment', component: PaymentComponent,  canActivate: [AuthGuardService]},
+  {path: 'user/imlmembrs', component: ImlMembersComponent,  canActivate: [AuthGuardService]},
   {path: 'user/imlenroll/dashboard', component: EnrollDashbaordComponent,
-   canActivate: [AuthGuardService, Enrollguard]},
+  canActivate: [AuthGuardService]},
 
-  // investors
-  {path: 'user/investors', component: InvestorsComponent, canActivate: [AuthGuardService, InvestorsGuard]},
-  {path: 'user/investors/dashboard', component: InvestorsDashboardComponent, canActivate: [AuthGuardService, InvestorsGuard]},
+  {path: 'user/investors', component: InvestorsComponent,  canActivate: [AuthGuardService]},
+  {path: 'user/investors/dashboard', component: InvestorsDashboardComponent,  canActivate: [AuthGuardService]},
 
-  {path: 'admin/dashboard', component: AdminDashboardComponent,
-   canActivate: [AuthGuardService, AdminAuthGuard] },
-  {path: 'admin/messages', component: AdminMessageComponent,
-   canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/dashboard', component: AdminDashboardComponent
+   , canActivate: [AuthGuardService]},
+  {path: 'admin/messages', component: AdminMessageComponent
+   ,  canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

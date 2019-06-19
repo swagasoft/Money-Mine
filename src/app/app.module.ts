@@ -2,13 +2,13 @@
 import { UsersService } from './services/users.service';
 import { AuthService } from './services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbModalConfig, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+// import {AngularFireModule} from 'firebase/firestore'
 
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {AngularFireModule} from 'angularfire2';
-import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { environment } from 'src/environments/environment';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 
@@ -17,8 +17,7 @@ import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 // import {RouterModule} from '@angular/router';
-import { MatTableModule, MatSelectModule, MatOptionModule, MatFormFieldModule, MatCardModule} from '@angular/material';
-import { MatInputModule} from '@angular/material';
+
 import { HttpClientModule} from '@angular/common/http';
 
 
@@ -49,8 +48,21 @@ import { PaymentComponent } from './payment/payment.component';
 import { InvestorsDashboardComponent } from './investors-dashboard/investors-dashboard.component';
 import { EnrollDashbaordComponent } from './enroll-dashbaord/enroll-dashbaord.component';
 import { Enrollguard } from './services/enrollguard.service';
-import { SelectAccountComponent } from './select-account/select-account.component';
 import { HeaderComponent } from './header/header.component';
+import { MaterialModule } from './material.module';
+import { UserUpdateComponent } from './user-update/user-update.component';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import {ToastrModule} from 'ngx-toastr';
+import { PoliciyComponent } from './policiy/policiy.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { Angular4PaystackModule } from 'angular4-paystack';
+import { MatIconModule } from '@angular/material';
+import { SuccessfulComponent } from './successful/successful.component';
+
 
 
 
@@ -79,37 +91,43 @@ import { HeaderComponent } from './header/header.component';
     PaymentComponent,
     InvestorsDashboardComponent,
     EnrollDashbaordComponent,
-    SelectAccountComponent,
     HeaderComponent,
+    UserUpdateComponent,
+    VerifyEmailComponent,
+    PoliciyComponent,
+    SuccessfulComponent,
 
 
 
   ],
   imports: [
     BrowserModule,
-    MatSelectModule,
-    MatOptionModule,
-    MatFormFieldModule,
-    MatCardModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatTableModule,
-    MatInputModule,
     FormsModule,
+    MatIconModule,
+    MatDialogModule,
+    MaterialModule,
+    MatButtonModule,
+    AngularFirestoreModule,
     HttpClientModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NgbModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase,'MONEY-MINE'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    Angular4PaystackModule,
+    AngularFirestoreModule,
     ReactiveFormsModule,
-
-
+    Angular4PaystackModule,
+    AngularFontAwesomeModule,
 
   ],
   providers: [AuthGuardService, UsersService, AdminAuthGuard,
-    Enrollguard,
+    Enrollguard,NgbModalConfig, NgbModal,
     InvestorsGuard,
      AuthService, AngularFireAuth],
   bootstrap: [AppComponent]

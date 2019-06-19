@@ -1,3 +1,149 @@
-<p>
-  payment works!
-</p>
+
+
+<article class="article  payment-header" style=" color: rgb(40, 9, 151);">
+    <h1 class="text-center">MONEY MINE PAYMENT</h1>
+</article>
+
+<article class="article text-center" style=" color: rgb(40, 9, 151);">
+  <h4 class="article__title">Credit your Account with our Simple payment Method.</h4>
+  <div class="article__content"> We accept online payment with ease.
+  </div>
+</article>
+<hr>
+
+<!-- ===== paystack  payment ==== -->
+<!-- Card -->
+<article class="article text-center">
+<div class="card mx-xl-5">
+    <div class="card">
+
+        <!-- Card body -->
+        <div class="card-body">
+
+            <!--===== Amount input ======= -->
+            <form >
+  <h4 class="article__title">PAYMENT</h4>
+                        <p>
+                            <mat-form-field appearance="outline">
+                              <mat-label>Amount in Naira</mat-label>
+                              <input matInput placeholder="Enter Amount" type="number" autocomplete="off"
+                               [(ngModel)]="amountInput" name="amount" id="amount">
+                              <mat-icon matPreffix>₦ </mat-icon>
+                              <mat-hint>Hint</mat-hint>
+                            </mat-form-field>
+                          </p>
+
+                <!-- Material input password -->
+
+                <div style="widows: 100%; display:flex;  justify-content: center;" (click)="paynow()">
+                    <div class="example-button-row">
+                    <angular4-paystack
+                    [key]="'pk_test_48d818b6e7d0046ad7910fea11857151d80eb63c'"
+                    [email]="(currentUserEmail)"
+                    [amount]="(amountInput)"
+                    [ref]="(refInput)"
+                    [channels]="['bank']"
+                    [class]="'btn btn-success'"
+                    (close)="paymentCancel()"
+                    (callback)="paymentDone($event)"
+                    >PAY NOW</angular4-paystack>
+                    </div>
+                    </div>
+            </form>
+            <!-- Material form register -->
+
+        </div>
+        <!-- Card body -->
+
+    </div>
+    <!-- Card -->
+
+
+</div>
+</article>
+<!-- Card -->
+<!-- ====== end payment ======= -->
+
+
+
+
+<!-- modal template -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title text-center" id="modal-basic-title">Confirmation</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <h1 ></h1>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-danger" (click)="c('Save click')">NO</button>
+
+    <a type="button" class="btn btn-outline-success" (click)="paymentPage()" > YES</a>
+  </div>
+</ng-template>
+<!-- end modal -->
+
+
+
+<article class="transaction text-center" style=" color: rgb(16, 61, 2);">
+  <h6 class="article__title text-center" ></h6>
+  <div class="article__content"><small>
+     If you have any issues about your transaction , please use our customer help center</small>
+  </div>
+
+
+<div class="text-center">
+  <button class="btn" (click)="refreshTable()">
+<h6> <strong>Refresh Transaction Table</strong> </h6>
+  </button>
+
+<!--Table-->
+<div class="table-responsive" >
+<table class="table table-striped w-auto">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Amount</th>
+        <th>status</th>
+        <th>message</th>
+        <th>Ref</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <!--Table head-->
+
+    <!--Table body-->
+    <tbody>
+      <tr class="table-info"  *ngFor="let details of transactionValues; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>₦ {{ details.amount | currency: 'NG' }} </td>
+        <td>{{ details.status}}</td>
+        <td>{{ details.message  }}</td>
+        <td>{{ details.tranxRef   }}</td>
+        <td>{{ details.created.toDate()  | date:'medium'}}
+          <button style=" margin-left:2px" type="button" class="btn btn-sm btn-danger" (click)="deleteTranx(details.id)">X</button> </td>
+      </tr>
+    </tbody>
+    <!--Table body-->
+  </table>
+</div>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+</div>
+</article>
+<button type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-asterisk"></span> Asterisk
+  </button>
+

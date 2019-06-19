@@ -1,22 +1,29 @@
+import { UserModel } from './../models/user-model.model';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
-import { auth } from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Injectable } from '@angular/core';
-import {Http} from '@angular/http';
-import { Observable } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import {User} from 'firebase';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { PaymentModel } from '../models/payment-model';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  implements OnInit{
 
-  user$: Observable <firebase.User>;
+  formData: UserModel;
+  user$: Observable <User>;
 
   constructor(
     public angularFireAuth: AngularFireAuth,
-    public router: Router,
-    private route: ActivatedRoute
+    private firestore: AngularFirestore,
+    private router: Router,
+    private db: AngularFireDatabase,
+    public route: ActivatedRoute
   ) {
  this.user$ = angularFireAuth.authState;
 
@@ -24,13 +31,17 @@ export class AuthService {
 
 
   async login(email: string, password: string) {
-    let returnUrl =  this.route.snapshot.queryParamMap.get('retuenUrl') || '/';
-    localStorage .setItem('returnUrl', returnUrl);
     return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
 
   }
 
-  async register(email: string,  password: string) {
+  async storeUserDetails(credentials) {
+    return this.firestore.collection('users').add(credentials);
+
+  }
+
+
+ async createNewUser(email: string, password: string){
     return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
 
   }
@@ -52,7 +63,10 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user'));
   }
 
+ngOnInit(){
 
+
+}
 
 
 

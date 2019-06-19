@@ -23,7 +23,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/styles.css"
+              "src/styles/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
 
@@ -83,7 +84,9 @@
             "karmaConfig": "src/karma.conf.js",
             "styles": [
 
-              "src/styles/styles.css"
+              "src/styles/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
+
 
             ],
             "scripts": [

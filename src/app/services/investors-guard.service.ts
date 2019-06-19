@@ -9,15 +9,15 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class InvestorsGuard implements CanActivate {
+export class InvestorsGuard  {
 
   constructor(private auth: AuthService, private userService: UsersService) {
 
   }
-  canActivate(): Observable<boolean> {
-    return this.auth.user$.pipe(switchMap(user =>
-      this.userService.get(user.uid).valueChanges()
-     )).pipe(map(AppUser => AppUser.isInvestor));
+  // canActivate(): Observable<boolean> {
+  //   return this.auth.user$.pipe(switchMap(user =>
+  //     this.userService.get(user.uid).valueChanges()
+  //    )).pipe(map(AppUser => AppUser.isInvestor));
 
-   }
+  //  }
 }

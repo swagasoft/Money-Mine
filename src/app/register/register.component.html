@@ -1,78 +1,133 @@
-<!-- <div class="jumbotron jumbotron-fluid text-center bg-success">
-  <div class="container">
-    <h2 class="display-4">Money Mine</h2>
-    <p class="lead"></p>
+
+
+
+
+
+
+        <!-- registration form -->
+          <div id="registetionForm" >
+          <form  #regform="ngForm" (submit)="formSubmit(regform)" >
+          <div class="card main-login border-primary mb-3" style="padding-bottom: 50px;
+          align-content: center; margin-top: 70px;">
+            <h3 class="card-header text-center "><strong> CREATE ACCOUNT</strong> </h3>
+            <div class="card-body text-primary">
+
+                <div class="input-group mb-3">
+                    <div class="input-group-append">
+                        <label class="input-group-text " for="inputGroupSelect">ACCOUNT</label>
+                      </div>
+                    <select (change)="selectOption()" class="custom-select" name="inputGroupSelect" id="inputGroupSelect" required>
+                      <option selected  class="member" value="member">MEMBERSHIP </option>
+                      <option class="investor" value="investor">INVESTOR</option>
+
+                    </select>
+
+                  </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <div class="">
+        <mat-form-field class="form-group-md-6">
+            <input matInput [(ngModel)]="authService.formData.email" #email="ngModel" required
+            name="email" id="email" type="email" placeholder="email"  autocapitalize="none">
+          <div *ngIf="email.invalid && email.touched;" class="validation-error">email is required</div>
+
+          </mat-form-field>
+
+          <mat-form-field  class="form-group-md-6">
+            <input matInput [(ngModel)]="authService.formData.firstname" #firstname="ngModel" required
+            name="firstname" id="firstname" type="text" placeholder="firstname">
+          <div *ngIf="firstname.invalid && firstname.touched;" class="validation-error">firstname is required</div>
+          </mat-form-field>
+
+          <mat-form-field   class="form-group-md-6">
+              <input matInput [(ngModel)]="authService.formData.lastname" #lastname="ngModel" required
+              name="lastname" id="lastname" type="text" placeholder="lastname">
+            <div *ngIf="lastname.invalid && lastname.touched;" class="validation-error">lastname is required</div>
+            </mat-form-field>
+
+          <mat-form-field *ngIf="isInvestor"   class="form-group-md-6">
+              <input matInput [(ngModel)]="authService.formData.referral" #referral="ngModel"
+              name="referral" id="referral" type="number" placeholder="Referral id">
+            </mat-form-field>
+      </div>
+
   </div>
-</div> -->
+  <div class="col-md-6">
+      <div class="form-group">
+          <mat-form-field  class="form-group-md-6">
+              <input matInput [(ngModel)]="authService.formData.mobile" #mobile="ngModel" required
+              name="mobile" id="mobile" type="number" placeholder="mobile">
+            <div *ngIf="mobile.invalid && mobile.touched;" class="validation-error">field is required</div>
+            </mat-form-field>
 
-    <!-- registration form -->
-        <!-- <div id="regform" class="form-group">
-          <input type="email" class="form-control" [(ngModel)]="emailInput"
-            id="email" placeholder="Email">
+        <mat-form-field  class="form-group-md-6">
+          <input matInput type="password" name="password"
+                    id="password"    value="" required
+                    [(ngModel)]="authService.formData.password"  #password="ngModel"
+                  placeholder="password" >
+        </mat-form-field>
+
+        <mat-form-field  class="form-group-md-6">
+            <input matInput type="password" name="password_conf" value="" id="password_conf"
+            (change)="confirmInputPassword()" required
+                    placeholder=" confirm password" #password_conf >
+          </mat-form-field>
+          <div *ngIf="password.value !== password_conf.value;"
+           class="validation-error">password not match</div>
+
         </div>
 
-        <div class="form-group" >
-          <input type="password" class="form-control" value=""
-            [(ngModel)]="passwordInput" id="password" placeholder="Password">
-        </div>
-
-        <div class="form-group" >
-          <input type="password" class="form-control"
-          (change)="confirmInputPassword()" value=""
-             id="password_conf" placeholder="confirm password">
-        </div>
-
-        <div class="form-group" >
-            <button type="submit" id="submitBtn" class="btn btn-primary"
-            (click)="registerUser()">Register</button>
-    </div>
-            <a [routerLink]="['/passwordreset']" > forget password?</a> -->
+        <div class="input-check-box">
+            <input type="checkbox" name="moneyminePolicy" [(ngModel)]="moneyminePolicy" aria-label="Checkbox for following text input">
+            <small>I agree to <strong>Money mine</strong> Terms and Condition and
+            i have read through <a [routerLink]="['/policy']"  ><strong>MoneyMine Privacy Policy.</strong></a> </small>
+          </div>
 
 
-    <!-- ======= Registration form ========= -->
-
-    <div class="row">
-      <div class="main_window">
-        <div class="card">
-
-      <div class="container userlogin">
-        <div class="form-wrapper" id="wrapper-login">
-            <img src='' />
-            <div class="content-wrapper" id="content-signin">
-                <h1 class="text-center">SIGN UP</h1>
-
-                <form class="form-login">
-                    <input type="email" name="email"
-                    [(ngModel)]="emailInput"
-                     placeholder="Email" class="input-username" />
-
-                    <input type="password" name="password"
-                    [(ngModel)]="passwordInput" value="" id="password"
-                     placeholder="Password" class="input-password" />
-
-                     <input type="password" name="password_conf"
-                     (change)="confirmInputPassword()" value=""
-                     id="password_conf"
-                     placeholder="Confirm Password" class="input-password" />
-
-                    <button type="submit" id="submitBtn"
-                     (click)="registerUser()" class="btn-login">Continue</button>
-
-                    <!-- == error messages == -->
-                    <div class="bg-danger text-white text-center {{responseMessageType}}" role="alert"
-                        *ngIf="responseMessage.length">
-                        {{responseMessage}}
-                    </div>
-                </form>
-
-                <div class="text-dark">
-                <a class="text-dark" routerLink="[/register"><strong> Login? </strong></a>
-                <a class="text-dark" routerLink="/passwordreset"><strong> Forget password? </strong></a>
-              </div>
+        <div >
+            <div class="example-button-row">
+            <button mat-raised-button color="primary" type="submit" class=""
+             [disabled]="(!regform.valid)"  id="submitBtn"
+            >Sign up</button>
             </div>
-        </div>
-        </div>
-        <!--  -->
+              </div>
       </div>
+          </div>
+
+  <div class="example-container text-dark">
+      <div class="card text-danger text-center alert alert-danger"
+       *ngIf="responseMessage.length">
+          <div class="card-body">
+            <p class="card-text">
+                *{{responseMessage}}
+            </p>
+          </div>
+        </div>
+
     </div>
       </div>
+      <a class="text-center" routerLink="/login"> <small>Already have account?</small></a>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+<ng-template #content let-c="close" id="content" let-d="dismiss">
+    <div class="modal-header " style="background-color: darkblue; color:darkgray;">
+      <h1 class="modal-title text-center" color="primary" id="modal-basic-title">Registration Completed</h1>
+      <button type="button" class="close" aria-label="Close" (click)=" modalService.dismissAll('Cross click'); navigateToHome()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body text-center" style="background-color: chartreuse; color:darkblue;">
+     <p> <strong>Thank you for choosing MONEY MINE</strong>  </p>
+
+    </div>
+    <div class="modal-footer" style="background-color: chartreuse; color:darkblue;">
+      <button type="button"  class="btn btn-outline-dark" (click)=" modalService.dismissAll(); navigateToHome()">Continue</button>
+    </div>
+  </ng-template>

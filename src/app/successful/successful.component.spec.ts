@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectAccountComponent } from './select-account.component';
+import { SuccessfulComponent } from './successful.component';
 
-describe('SelectAccountComponent', () => {
-  let component: SelectAccountComponent;
-  let fixture: ComponentFixture<SelectAccountComponent>;
+describe('SuccessfulComponent', () => {
+  let component: SuccessfulComponent;
+  let fixture: ComponentFixture<SuccessfulComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectAccountComponent ]
+      declarations: [ SuccessfulComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectAccountComponent);
+    fixture = TestBed.createComponent(SuccessfulComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

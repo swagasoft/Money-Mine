@@ -5,4 +5,10 @@ export interface AppUser {
   isImlMember: boolean;
   isInvestor: boolean;
   isEnroll: boolean;
+
+}
+
+
+export interface UserDetails{
+
 }

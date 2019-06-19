@@ -1,3 +1,4 @@
+import { ToastrModule } from 'ngx-toastr';
 import { UsersService } from './../services/users.service';
 
 import { Router } from '@angular/router';
@@ -21,15 +22,14 @@ export class LoginComponent implements OnInit {
   isForgotPassword: boolean;
   userDetails: any;
 
-  constructor(private usersService: UsersService  , private authService: AuthService, private router: Router) {
-    authService.user$.subscribe(user => {
-      if (user) {
-        usersService.save(user);
+  constructor(private usersService: UsersService  ,
+    private toastr : ToastrModule,
+    private authService: AuthService, private router: Router) {
+    // authService.user$.subscribe(user => {
+    //   if (user) {
 
-        const returnUrl = localStorage.getItem('returnUrl');
-        router.navigateByUrl(returnUrl);
-      }
-    });
+    //   }
+    // });
 
     this.selectedVal = 'login';
     this.isForgotPassword = false;
@@ -53,12 +53,14 @@ export class LoginComponent implements OnInit {
   this.responseMessage = '';
   this.authService.login(this.emailInput, this.passwordInput)
     .then(res => {
-
       this.router.navigate(['/welcome']);
       this.isUserLoggedIn();
     }, err => {
       this.showMessage('danger', err.message);
+      // this.toastr.error()
     });
+  localStorage.setItem('currentUserEmail', this.emailInput.toLocaleLowerCase());
+
 }
 
 

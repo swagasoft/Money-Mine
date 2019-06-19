@@ -12,10 +12,10 @@ export class Enrollguard {
   constructor(private auth: AuthService, private userService: UsersService) { }
 
 
-  canActivate(): Observable<boolean> {
-    return this.auth.user$.pipe(switchMap(user =>
-      this.userService.get(user.uid).valueChanges()
-     )).pipe(map(AppUser => AppUser.isEnroll));
+  // canActivate(): Observable<boolean> {
+  //   return this.auth.user$.pipe(switchMap(user =>
+  //     this.userService.get(user.uid).valueChanges()
+  //    )).pipe(map(AppUser => AppUser.isEnroll));
 
-   }
+  //  }
 }

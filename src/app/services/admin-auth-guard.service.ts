@@ -10,16 +10,16 @@ import {map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminAuthGuard implements CanActivate {
+export class AdminAuthGuard  {
 
   constructor(private auth: AuthService, private userService: UsersService) {
 
    }
 
-   canActivate(): Observable<boolean> {
-    return this.auth.user$.pipe(switchMap(user =>
-      this.userService.get(user.uid).valueChanges()
-     )).pipe(map(AppUser => AppUser.isAdmin));
+  //  canActivate(): Observable<boolean> {
+  //   return this.auth.user$.pipe(switchMap(user =>
+  //     this.userService.get(user.uid).valueChanges()
+  //    )).pipe(map(AppUser => AppUser.isAdmin));
 
-   }
+  //  }
 }
