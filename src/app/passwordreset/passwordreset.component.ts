@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-passwordreset',
   templateUrl: './passwordreset.component.html',
-  styleUrls: ['./passwordreset.component.css']
+  styleUrls: ['./passwordreset.component.scss']
 })
 export class PasswordresetComponent implements OnInit {
   emailInput: string;

@@ -15,7 +15,7 @@ import { first, map } from 'rxjs/operators';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   checkUserId: Observable<any[]>;

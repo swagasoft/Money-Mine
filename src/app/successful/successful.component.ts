@@ -6,7 +6,7 @@ import { Content } from '@angular/compiler/src/render3/r3_ast';
 @Component({
   selector: 'app-successful',
   templateUrl: './successful.component.html',
-  styleUrls: ['./successful.component.css']
+  styleUrls: ['./successful.component.scss']
 })
 export class SuccessfulComponent implements OnInit {
 
