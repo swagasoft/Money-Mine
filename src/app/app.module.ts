@@ -22,6 +22,7 @@ import { HttpClientModule} from '@angular/common/http';
 
 
 import {FormsModule} from '@angular/forms';
+import  {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -62,6 +63,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { MatIconModule } from '@angular/material';
 import { SuccessfulComponent } from './successful/successful.component';
+import { from } from 'rxjs';
 
 
 
@@ -118,6 +120,7 @@ import { SuccessfulComponent } from './successful/successful.component';
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase,'MONEY-MINE'),
     AngularFireDatabaseModule,
+    MDBBootstrapModule.forRoot(),
     AngularFireAuthModule,
     Angular4PaystackModule,
     AngularFirestoreModule,
