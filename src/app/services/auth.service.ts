@@ -5,7 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import {User} from 'firebase';
+import * as firebase  from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { PaymentModel } from '../models/payment-model';
 
@@ -16,7 +16,7 @@ import { PaymentModel } from '../models/payment-model';
 export class AuthService  implements OnInit{
 
   formData: UserModel;
-  user$: Observable <User>;
+  user$: Observable <firebase.User>;
 
   constructor(
     public angularFireAuth: AngularFireAuth,
@@ -31,7 +31,11 @@ export class AuthService  implements OnInit{
 
 
   async login(email: string, password: string) {
-    return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password);
+    return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
+      console.log('login successful');
+    }).catch(error => {
+      console.log('error in login', error);
+    });
 
   }
 
@@ -42,7 +46,14 @@ export class AuthService  implements OnInit{
 
 
  async createNewUser(email: string, password: string){
-    return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password);
+    return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password).then( value => {
+      console.log('registration successful', value);
+    this.router.navigate(['/welcome']);
+    this.sendEmailVerification();
+
+    }).catch(err => {
+      console.log('registration error', err);
+    });
 
   }
 
@@ -54,7 +65,10 @@ export class AuthService  implements OnInit{
     return await this.angularFireAuth.auth.sendPasswordResetEmail(passwordResetEmail);
   }
 
+
+
   async logout() {
+     localStorage.clear();
     return await this.angularFireAuth.auth.signOut();
   }
 

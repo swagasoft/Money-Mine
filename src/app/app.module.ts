@@ -26,7 +26,7 @@ import  {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { CustomersComponent } from './customers/customers.component';
+import { UserProfileComponent } from './customers/customers.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -64,6 +64,10 @@ import { Angular4PaystackModule } from 'angular4-paystack';
 import { MatIconModule } from '@angular/material';
 import { SuccessfulComponent } from './successful/successful.component';
 import { from } from 'rxjs';
+import { ContactComponent } from './contact/contact.component';
+import { HelpComponent } from './help/help.component';
+import { AccountTypeComponent } from './account-type/account-type.component';
+import { FaqComponent } from './faq/faq.component';
 
 
 
@@ -74,7 +78,7 @@ import { from } from 'rxjs';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    CustomersComponent,
+    UserProfileComponent,
     FavoriteComponent,
     LoginComponent,
     RegisterComponent,
@@ -98,6 +102,10 @@ import { from } from 'rxjs';
     VerifyEmailComponent,
     PoliciyComponent,
     SuccessfulComponent,
+    ContactComponent,
+    HelpComponent,
+    AccountTypeComponent,
+    FaqComponent,
 
 
 
@@ -107,6 +115,7 @@ import { from } from 'rxjs';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    NgbModule,
     MatIconModule,
     MatDialogModule,
     MaterialModule,

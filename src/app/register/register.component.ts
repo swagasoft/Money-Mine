@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
 
     };
   }
-  // investors
+  // registration form submitted
   formSubmit(form: NgForm) {
     const data = form.value;
     this.phoneNumber = data.mobile; const regEmail = data.email;
@@ -82,27 +82,30 @@ export class RegisterComponent implements OnInit {
   res.map(element => this.checkEmail = element.payload.doc.data().email);
 
 
+
   // check if user already exist else create new user
-  if (this.checkEmail === regEmail) {
-    this.showMessage('danger', ' email has been taken...');
+  if (this.checkEmail == regEmail) {
+    this.showMessage('danger', "The email has been taken or BADLY FORMATTED!");
+    console.log('if statement to check user = user already exist');
+    return;
 
   } else if (this.checkEmail !== regEmail) {
 
-    this.authService.createNewUser(regEmail, password);
+    console.log('new user');
     const userId = this.lastUserId + 1;
     data.id = userId;
-    data.password = '##############';
+    data.password = '#';
     data.payment = false; data.active = false;
     this.authService.storeUserDetails(data);
-    this.router.navigate(['/welcome']);
-    // this.authService.sendEmailVerification();
+    this.authService.createNewUser(regEmail, password);
 
+    // this.authService.sendEmailVerification();
+    return;
       } else {
         console.log('error in registrtion..');
         this.showMessage('danger', 'Error in registration , please try again.');
       }
     }).closed;
-
   }
 
     testingClick() {

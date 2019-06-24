@@ -38,7 +38,7 @@ export class NavbarComponent {
         }, err => {
           this.showMessage('danger', err.message);
         });
-        localStorage.clear();
+
     }
 
 

@@ -1,58 +1,63 @@
 
 
 
-  <!-- material design login -->
-  <div class="card main-login border-primary mb-3" style="padding-bottom: 50px;
-  align-content: center; margin-top: 70px;">
-      <h3 class="card-header text-center"><strong>LOGIN</strong> </h3>
-      <div class="card-body text-primary">
 
+<!-- ================================================ -->
+<div class="jumbotron text-center mdb-color indigo white-text mx-2 mb-5">
 
+    <!-- Title -->
+    <h2 class="card-title h2">MONEY MINE</h2>
 
-  <div class="example-container text-dark">
-      <mat-form-field >
-          <i class="fas fa-envelope prefix"></i>
-        <input matInput [(ngModel)]="emailInput" value=""  autocapitalize="none"
-        name="email" id="email" type="email" placeholder="email">
-      </mat-form-field>
+    <!-- Subtitle -->
+    <p class="my-4 h6">Join Money Mine And Start Earning</p>
 
-      <mat-form-field>
-      <i class="fas fa-lock prefix"></i>
-       <input matInput type="password" name="password" value=""
-                [(ngModel)]="passwordInput" id="password"
-                placeholder="password" >
-      </mat-form-field>
-
-      <div class="example-button-row">
-          <button  mat-raised-button color="primary" type="submit"
-          (click)="loginUser()" class="text-white"
-          style="width: 100px;
-          border-radius: 7px;"
-          > <i class="material-icons md-24"></i>Sign in </button>
-        </div>
-
-
-
-      <!-- error -->
-      <div class="card text-danger text-center alert alert-danger"
-       *ngIf="responseMessage.length">
-          <div class="card-body">
-            <p class="card-text">
-                *{{responseMessage}}
-            </p>
-          </div>
-        </div>
-
-    </div>
+    <!-- Grid row -->
+    <div class="row d-flex justify-content-center">
+      <!-- Grid column -->
+      <div class="col-xl-7 pb-2">
+        <p class="card-text">   In just minutes, you'll have the ability to trade stocks,
+           options, mutual funds, ETFs, and bonds. </p>
       </div>
-      <div class="text-center container">
-      <a routerLink="/register" > <small>Dont have account?</small></a>
-      <a routerLink="/passwordreset" style="margin-left:7px;">
-        <small>Forget password?</small></a>
-    </div>
 
-    </div>
+<!-- Default form login -->
 
 
+    <form class="text-center border border-light p-5" >
+        <p class="h4 mb-4">LOGIN</p>
+    <!-- Email -->
+    <i class="fas fa-user prefix"></i>
+    <input type="email" id="email" name="email"  [(ngModel)]="emailInput" value=""
+     class="form-control mb-4" placeholder="E-mail" autocapitalize="none">
 
+
+
+     <!-- password -->
+     <i class="fas fa-lock prefix"></i>
+    <input type="password"  [(ngModel)]="passwordInput" id="password"
+    class="form-control mb-4" placeholder="Password" name="password" value="" required>
+
+
+    <div class="card text-danger text-center bg-danger "
+    *ngIf="responseMessage.length">
+       <div class="card-body">
+         <p class="card-text text-white">
+             *{{responseMessage}}
+         </p>
+       </div>
+     </div>
+
+
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4"  (click)="loginUser()"
+     id="submitBtn" type="submit">Log me in </button>
+
+    <!-- Register -->
+    <p>
+        <a routerLink="/register" class="text-white">Create account</a>
+    </p> <br>
+    <p>  <a routerLink="/passwordreset" class="text-white">
+      <small>Forget password?</small></a></p>
+
+
+</form>
 

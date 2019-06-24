@@ -1,3 +1,6 @@
+import { FaqComponent } from './faq/faq.component';
+import { HelpComponent } from './help/help.component';
+import { ContactComponent } from './contact/contact.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 import { AdminMessageComponent } from './admin-message/admin-message.component';
@@ -8,7 +11,7 @@ import { PartnersComponent } from './partners/partners.component';
 import { AboutComponent } from './about/about.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
-import { CustomersComponent } from './customers/customers.component';
+import { UserProfileComponent } from './customers/customers.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -27,10 +30,11 @@ import { EnrollDashbaordComponent } from './enroll-dashbaord/enroll-dashbaord.co
 import { Enrollguard } from './services/enrollguard.service';
 import { PoliciyComponent } from './policiy/policiy.component';
 import { SuccessfulComponent } from './successful/successful.component';
+import { AccountTypeComponent } from './account-type/account-type.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
-  {path: 'customers', component: CustomersComponent},
+  {path: 'user/profile', component: UserProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent},
@@ -38,6 +42,10 @@ const routes: Routes = [
   {path: 'services', component: ServicesComponent},
   {path: 'policy', component: PoliciyComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'help', component: HelpComponent},
+  {path: 'faq-section', component: FaqComponent},
+  {path: 'account/type', component: AccountTypeComponent},
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'passwordreset', component: PasswordresetComponent},
   {path: 'user/update/details', component: UserUpdateComponent },

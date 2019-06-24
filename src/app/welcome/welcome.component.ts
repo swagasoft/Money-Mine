@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit {
 
+
   selectedVal: string;
   responseMessage = '';
   responseMessageType = '';
@@ -49,5 +50,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {
     console.log(this.userDetails);
   }
+
+
 
 }

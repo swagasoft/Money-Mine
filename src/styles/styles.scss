@@ -1,96 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~bootstrap/dist/css/bootstrap.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-body{
-  padding-top: 80px;
-  padding-bottom: 100px;
-  background-color: #fdfbfb;
-  position: relative;
-  min-height: 100vh;
-}
-.form-control.ng-touched.ng-invalid {
-    border: 2px solid red;
-}
+// body{
+//   padding-top: 80px;
+//   padding-bottom: 100px;
+//   background-color: #fdfbfb;
+//   position: relative;
+//   min-height: 100vh;
+// }
+// .form-control.ng-touched.ng-invalid {
+//     border: 2px solid red;
+// }
 
-/* another */
-.list {
-  list-style: none;
-  margin: 0px;
-  padding: 0px; }
+// /* another */
+// .list {
+//   list-style: none;
+//   margin: 0px;
+//   padding: 0px; }
 
-a {
-  text-decoration: none;
-  transition: all 0.3s ease-in-out; }
-  a:hover, a:focus {
-    text-decoration: none;
-    outline: none; }
+// a {
+//   text-decoration: none;
+//   transition: all 0.3s ease-in-out; }
+//   a:hover, a:focus {
+//     text-decoration: none;
+//     outline: none; }
 
-.row.m0 {
-  margin: 0px; }
+// .row.m0 {
+//   margin: 0px; }
 
-body {
-  line-height: 26px;
-  font-size: 16px;
-  font-family: "Roboto", sans-serif;
-  font-weight: normal;
-  color: #777777; }
+// body {
+//   line-height: 26px;
+//   font-size: 16px;
+//   font-family: "Roboto", sans-serif;
+//   font-weight: normal;
+//   color: #777777; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Heebo", sans-serif;
-  font-weight: 700; }
+// h1, h2, h3, h4, h5, h6 {
+//   font-family: "Heebo", sans-serif;
+//   font-weight: 700; }
 
-button:focus {
-  outline: none;
-  box-shadow: none; }
+// button:focus {
+//   outline: none;
+//   box-shadow: none; }
 
-.p_120 {
-  padding-top: 120px;
-  padding-bottom: 120px; }
+// .p_120 {
+//   padding-top: 120px;
+//   padding-bottom: 120px; }
 
-.pad_top {
-  padding-top: 120px; }
+// .pad_top {
+//   padding-top: 120px; }
 
-.mt-25 {
-  margin-top: 25px; }
+// .mt-25 {
+//   margin-top: 25px; }
 
-.p0 {
-  padding-left: 0px;
-  padding-right: 0px; }
+// .p0 {
+//   padding-left: 0px;
+//   padding-right: 0px; }
 
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1170px; } }
+// @media (min-width: 1200px) {
+//   .container {
+//     max-width: 1170px; } }
 
-@media (min-width: 1620px) {
-  .box_1620 {
-    max-width: 1650px;
-    margin: auto; } }
-/* Main Title Area css
-============================================================================================ */
-.main_title {
-  text-align: center;
-  margin-bottom: 75px; }
-  .main_title h2 {
-    font-family: "Heebo", sans-serif;
-    font-size: 36px;
-    color: #222222;
-    font-weight: 700;
-    margin-bottom: 15px;
-    text-transform: uppercase; }
-  .main_title p {
-    font-size: 16px;
-    font-family: "Roboto", sans-serif;
-    line-height: 26px;
-    color: #777777;
-    margin-bottom: 0px;
-    max-width: 690px;
-    font-weight: normal;
-    margin: auto; }
-  .main_title.white h2 {
-    color: #fff; }
-  .main_title.white p {
-    color: #fff;
-    opacity: .6; }
+// @media (min-width: 1620px) {
+//   .box_1620 {
+//     max-width: 1650px;
+//     margin: auto; } }
+// /* Main Title Area css
+// ============================================================================================ */
+// .main_title {
+//   text-align: center;
+//   margin-bottom: 75px; }
+//   .main_title h2 {
+//     font-family: "Heebo", sans-serif;
+//     font-size: 36px;
+//     color: #222222;
+//     font-weight: 700;
+//     margin-bottom: 15px;
+//     text-transform: uppercase; }
+//   .main_title p {
+//     font-size: 16px;
+//     font-family: "Roboto", sans-serif;
+//     line-height: 26px;
+//     color: #777777;
+//     margin-bottom: 0px;
+//     max-width: 690px;
+//     font-weight: normal;
+//     margin: auto; }
+//   .main_title.white h2 {
+//     color: #fff; }
+//   .main_title.white p {
+//     color: #fff;
+//     opacity: .6; }
 
