@@ -8,12 +8,13 @@ import { switchMap } from 'rxjs/operators';
 import * as firebase  from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { PaymentModel } from '../models/payment-model';
+import { ReturnStatement } from '@angular/compiler';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService  implements OnInit{
+export class AuthService  implements OnInit {
 
   formData: UserModel;
   user$: Observable <firebase.User>;
@@ -31,7 +32,10 @@ export class AuthService  implements OnInit{
 
 
   async login(email: string, password: string) {
+    let returnUrl  = this.route.snapshot.queryParamMap.get('returnUrl') || '/welcome';
+
     return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
+      this.router.navigateByUrl(returnUrl);
       console.log('login successful');
     }).catch(error => {
       console.log('error in login', error);
@@ -44,12 +48,11 @@ export class AuthService  implements OnInit{
 
   }
 
-
- async createNewUser(email: string, password: string){
+ async createNewUser(email: string, password: string) {
     return await this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password).then( value => {
       console.log('registration successful', value);
-    this.router.navigate(['/welcome']);
-    this.sendEmailVerification();
+      this.router.navigate(['/welcome']);
+      this.sendEmailVerification();
 
     }).catch(err => {
       console.log('registration error', err);
@@ -69,7 +72,10 @@ export class AuthService  implements OnInit{
 
   async logout() {
      localStorage.clear();
-    return await this.angularFireAuth.auth.signOut();
+     localStorage.removeItem('currentUserEmail');
+
+     console.log(localStorage.getItem('currentUserEmail'));
+     return await this.angularFireAuth.auth.signOut();
   }
 
 
@@ -77,7 +83,7 @@ export class AuthService  implements OnInit{
     return JSON.parse(localStorage.getItem('user'));
   }
 
-ngOnInit(){
+ngOnInit() {
 
 
 }

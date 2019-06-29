@@ -26,7 +26,6 @@ import  {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserProfileComponent } from './customers/customers.component';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -68,6 +67,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HelpComponent } from './help/help.component';
 import { AccountTypeComponent } from './account-type/account-type.component';
 import { FaqComponent } from './faq/faq.component';
+import { UserProfileComponent } from './customers/profile.component';
 
 
 
@@ -116,6 +116,7 @@ import { FaqComponent } from './faq/faq.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    FormsModule ,
     MatIconModule,
     MatDialogModule,
     MaterialModule,

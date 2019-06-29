@@ -32,6 +32,7 @@ export class NavbarComponent {
           console.log(res);
           this.userDetails = undefined;
           localStorage.removeItem('user');
+          localStorage.clear();
           console.log('you just log out');
           this.showMessage('logout', 'logout successful');
           this.router.navigate(['/login']);

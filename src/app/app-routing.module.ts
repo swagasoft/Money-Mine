@@ -11,7 +11,6 @@ import { PartnersComponent } from './partners/partners.component';
 import { AboutComponent } from './about/about.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
-import { UserProfileComponent } from './customers/customers.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -31,12 +30,12 @@ import { Enrollguard } from './services/enrollguard.service';
 import { PoliciyComponent } from './policiy/policiy.component';
 import { SuccessfulComponent } from './successful/successful.component';
 import { AccountTypeComponent } from './account-type/account-type.component';
+import { UserProfileComponent } from './customers/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'user/profile', component: UserProfileComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
   {path: 'register', component: RegisterComponent},
   {path: 'partners', component: PartnersComponent},
   {path: 'services', component: ServicesComponent},
@@ -51,7 +50,7 @@ const routes: Routes = [
   {path: 'user/update/details', component: UserUpdateComponent },
 
 
-
+  {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
   {path: 'welcome', component: WelcomeComponent ,  canActivate: [AuthGuardService]},
   {path: 'user/dashboard', component: UserdashboardComponent,  canActivate: [AuthGuardService]},
   {path: 'user/inbox', component: InboxComponent,  canActivate: [AuthGuardService]},
@@ -64,9 +63,9 @@ const routes: Routes = [
   {path: 'user/investors/dashboard', component: InvestorsDashboardComponent,  canActivate: [AuthGuardService]},
 
   {path: 'admin/dashboard', component: AdminDashboardComponent
-   , canActivate: [AuthGuardService]},
+   , canActivate: [AuthGuardService, AdminAuthGuard]},
   {path: 'admin/messages', component: AdminMessageComponent
-   ,  canActivate: [AuthGuardService] },
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
 ];
 
 @NgModule({

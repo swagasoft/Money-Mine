@@ -1,10 +1,11 @@
+import { Account } from './../models/account';
 import { Observable } from 'rxjs';
 import { AngularFirestore , AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { UsersService } from './../services/users.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import {FormGroup, FormControl, NgForm} from '@angular/forms';
 import { User } from 'firebase';
 import { NgbModal, NgbModalConfig, NgbProgressbarConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -17,29 +18,27 @@ import { first, map } from 'rxjs/operators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   checkUserId: Observable<any[]>;
   moneyminePolicy: boolean;
+  errorMessage: string; successMessage: string;
+  responseMessage = ''; responseMessageType = '';
+  emailInput: string; passwordInput: string;
+  isForgotPassword: boolean; userDetails: string;
+  passwordError: string;
+  allEmails: any [];
+
+  public isInvestor = false;     public isMember = true;
+  phoneNumber: any;   lastUserId: any;     checkEmail: any;
+
+
 
   constructor(public authService: AuthService, private db: AngularFirestore,
               public modalService: NgbModal, private router: Router,
-              private userService: UsersService, config: NgbProgressbarConfig ) {
-
+              private userService: UsersService, config: NgbProgressbarConfig )
+               {
                 this.checkUserId = db.collection('users').valueChanges();
-
                }
-
-    errorMessage: string; successMessage: string;
-    responseMessage = ''; responseMessageType = '';
-    emailInput: string; passwordInput: string;
-    isForgotPassword: boolean; userDetails: string;
-    passwordError: string;
-    allEmails: any [];
-
-    public isInvestor = false;     public isMember = true;
-      phoneNumber: any;   lastUserId: any;     checkEmail: any;
-
-
 
   ngOnInit() {
       this.resetForm();
@@ -47,6 +46,10 @@ export class RegisterComponent implements OnInit {
       reff.orderBy('created', 'desc').limit(1)).valueChanges().subscribe((val: any) => {
         val.map(response => this.lastUserId = response.id);
       });
+
+  }
+
+  ngOnDestroy(){
 
   }
     // show message*
@@ -73,7 +76,6 @@ export class RegisterComponent implements OnInit {
     const password = data.password; data.isInvestor = this.isInvestor;
     data.isMember = this.isMember;  data.created = new Date();
 
-
 // search user email in database.
 // tslint:disable-next-line: no-unused-expression
     this.db.collection('users', reff => {
@@ -81,16 +83,13 @@ export class RegisterComponent implements OnInit {
       }).snapshotChanges().subscribe((res: any) => {
   res.map(element => this.checkEmail = element.payload.doc.data().email);
 
-
-
   // check if user already exist else create new user
   if (this.checkEmail == regEmail) {
-    this.showMessage('danger', "The email has been taken or BADLY FORMATTED!");
+    this.showMessage('danger', 'The email has been taken or BADLY FORMATTED!');
     console.log('if statement to check user = user already exist');
     return;
 
   } else if (this.checkEmail !== regEmail) {
-
     console.log('new user');
     const userId = this.lastUserId + 1;
     data.id = userId;
@@ -98,6 +97,16 @@ export class RegisterComponent implements OnInit {
     data.payment = false; data.active = false;
     this.authService.storeUserDetails(data);
     this.authService.createNewUser(regEmail, password);
+
+    // create new account for new user.
+    const newAccount =  this.userService.accountBalance = {
+      amount: 0.00, email: regEmail, created:  new Date(),
+    };
+    this.userService.createAccountBalance(newAccount);
+    localStorage.setItem('currentUserEmail', regEmail.toLocaleLowerCase());
+    console.log('new user in storage ', localStorage.getItem('currentUserEmail'));
+
+
 
     // this.authService.sendEmailVerification();
     return;
@@ -107,13 +116,6 @@ export class RegisterComponent implements OnInit {
       }
     }).closed;
   }
-
-    testingClick() {
-      this.allEmails.forEach( (x) => {
-        console.log(x);
-      });
-    }
-
 
 
    // Check localStorage is having User Data
@@ -153,7 +155,7 @@ export class RegisterComponent implements OnInit {
    console.log(result.value);
   }
 
-  navigateToHome(){
+  navigateToHome() {
     this.router.navigate(['/welcome']);
   }
 

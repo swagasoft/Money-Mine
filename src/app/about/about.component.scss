@@ -54,3 +54,33 @@ color: #ffffff;
 h6 {
 line-height: 1.7;
 }
+
+// panel styling
+.title {
+  font-size: 4rem;
+ margin: 0 0 .5em;
+}
+.article {
+ background: white;
+ box-shadow: 0 0 10px rgba(black, .25);
+ padding: 20px 25px;
+
+ &:not(:first-of-type) {
+   margin-top: 20px;
+ }
+
+ &__title {
+  font-size: 27px;
+   margin: 0;
+ }
+
+
+
+ &__content {
+   padding-top: .75em;
+ font-size: 16px;
+   margin: 0;
+   font: bold;
+   line-height: 1.4;
+ }
+}

@@ -1,5 +1,6 @@
 
 
+<button class="btn btn-indogo" (click)="testingBtn()" >testing</button>
 <article class="article  payment-header" style=" color: rgb(40, 9, 151);">
     <h1 class="text-center">MONEY MINE PAYMENT</h1>
 </article>
@@ -22,18 +23,14 @@
 
             <!--===== Amount input ======= -->
             <form >
-  <h4 class="article__title">PAYMENT</h4>
-                        <p>
-                            <mat-form-field appearance="outline">
-                              <mat-label>Amount in Naira</mat-label>
-                              <input matInput placeholder="Enter Amount" type="number" autocomplete="off"
-                               [(ngModel)]="amountInput" name="amount" id="amount">
-                              <mat-icon matPreffix>₦ </mat-icon>
-                              <mat-hint>Hint</mat-hint>
-                            </mat-form-field>
-                          </p>
 
-                <!-- Material input password -->
+             <h4 class="article__title">PAYMENT</h4>
+
+            <strong> ₦ </strong>
+            <input type="number"   [(ngModel)]="amountInput" name="amount" id="amount"
+            class="paymentForm"  autocomplete="off" placeholder="Amount in Naira">
+
+
 
                 <div style="widows: 100%; display:flex;  justify-content: center;" (click)="paynow()">
                     <div class="example-button-row">
@@ -143,7 +140,11 @@
   </div>
 </div>
 </article>
-<button type="button" class="btn btn-default btn-sm">
-    <span class="glyphicon glyphicon-asterisk"></span> Asterisk
-  </button>
 
+
+<!-- getting items -->
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    {{item.amount}} <br> {{item.email}} <br> {{item.created}}
+  </li>
+</ul>

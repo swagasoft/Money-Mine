@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
   this.responseMessage = '';
   this.authService.login(this.emailInput, this.passwordInput)
     .then(res => {
-      this.router.navigate(['/welcome']);
       this.isUserLoggedIn();
     }, err => {
       this.showMessage('danger', err.message);

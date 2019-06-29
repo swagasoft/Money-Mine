@@ -1,3 +1,5 @@
 payment.componet.ts/
 environment.ts
 environment.prod.ts
+node_modules
+package.json

@@ -10,7 +10,16 @@
       <div class="card-body">
         <h5 class="card-title">Special title treatment</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a routerLink="user/dashboard" class="btn btn-info">My Dashboard</a>
+
+
+        <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+           <a routerLink="/user/dashboard"> <button type="button" class="btn btn-unique btn-lg">Dashboard</button></a>
+           <a routerLink="/user/profile"> <button type="button" class="btn btn-unique btn-lg">Profile</button></a>
+            <a routerLink="/transactions"> <button type="button" class="btn btn-unique btn-lg">Transactions</button></a>
+            <a routerLink="/user/payment"> <button type="button" class="btn btn-unique btn-lg">Payment</button></a>
+            <a routerLink="/admin/dashboard"> <button type="button" class="btn btn-danger btn-lg">Admin Panel</button></a>
+
+          </div>
       </div>
     </div>
 

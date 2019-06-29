@@ -1,4 +1,3 @@
-import { UserDetails } from './../models/app-user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';

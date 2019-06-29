@@ -2,13 +2,8 @@ export interface AppUser {
   name: string;
   email: string;
   isAdmin : boolean;
-  isImlMember: boolean;
+  isMember: boolean;
   isInvestor: boolean;
-  isEnroll: boolean;
 
-}
-
-
-export interface UserDetails{
 
 }

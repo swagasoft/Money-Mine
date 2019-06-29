@@ -1,7 +1,6 @@
 export class Account {
 
   email: string;
-  tranxId: string;
-  amount: string;
+  amount: number;
   created: any ;
 }
