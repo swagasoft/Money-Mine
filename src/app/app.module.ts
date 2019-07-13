@@ -68,6 +68,7 @@ import { HelpComponent } from './help/help.component';
 import { AccountTypeComponent } from './account-type/account-type.component';
 import { FaqComponent } from './faq/faq.component';
 import { UserProfileComponent } from './customers/profile.component';
+import { AdmintransactionComponent } from './admintransaction/admintransaction.component';
 
 
 
@@ -106,6 +107,7 @@ import { UserProfileComponent } from './customers/profile.component';
     HelpComponent,
     AccountTypeComponent,
     FaqComponent,
+    AdmintransactionComponent,
 
 
 

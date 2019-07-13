@@ -1,5 +1,5 @@
 export interface AppUser {
-  name: string;
+  firstname: string;
   email: string;
   isAdmin : boolean;
   isMember: boolean;

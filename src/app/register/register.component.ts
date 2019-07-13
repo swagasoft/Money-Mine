@@ -1,5 +1,5 @@
 import { Account } from './../models/account';
-import { Observable } from 'rxjs';
+import { Observable, Subscribable } from 'rxjs';
 import { AngularFirestore , AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { UsersService } from './../services/users.service';
@@ -35,8 +35,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(public authService: AuthService, private db: AngularFirestore,
               public modalService: NgbModal, private router: Router,
-              private userService: UsersService, config: NgbProgressbarConfig )
-               {
+              private userService: UsersService, config: NgbProgressbarConfig ) {
                 this.checkUserId = db.collection('users').valueChanges();
                }
 
@@ -49,7 +48,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
     // show message*
@@ -84,7 +83,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   res.map(element => this.checkEmail = element.payload.doc.data().email);
 
   // check if user already exist else create new user
-  if (this.checkEmail == regEmail) {
+  if (this.checkEmail === regEmail) {
     this.showMessage('danger', 'The email has been taken or BADLY FORMATTED!');
     console.log('if statement to check user = user already exist');
     return;
@@ -100,7 +99,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     // create new account for new user.
     const newAccount =  this.userService.accountBalance = {
-      amount: 0.00, email: regEmail, created:  new Date(),
+     trading: 0.00, amount: 0.00, email: regEmail, created:  new Date(),
     };
     this.userService.createAccountBalance(newAccount);
     localStorage.setItem('currentUserEmail', regEmail.toLocaleLowerCase());
@@ -144,7 +143,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
    console.log('option is selected');
    const result = document.getElementById('inputGroupSelect') as HTMLInputElement;
 
-   if (result.value == 'investor') {
+   if (result.value === 'investor') {
      this.isInvestor = true;
 
      console.log('result from investor ' + this.isInvestor);

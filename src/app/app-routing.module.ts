@@ -31,6 +31,7 @@ import { PoliciyComponent } from './policiy/policiy.component';
 import { SuccessfulComponent } from './successful/successful.component';
 import { AccountTypeComponent } from './account-type/account-type.component';
 import { UserProfileComponent } from './customers/profile.component';
+import { AdmintransactionComponent } from './admintransaction/admintransaction.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -63,8 +64,10 @@ const routes: Routes = [
   {path: 'user/investors/dashboard', component: InvestorsDashboardComponent,  canActivate: [AuthGuardService]},
 
   {path: 'admin/dashboard', component: AdminDashboardComponent
-   , canActivate: [AuthGuardService, AdminAuthGuard]},
+   , canActivate: [AuthGuardService]},
   {path: 'admin/messages', component: AdminMessageComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/transaction', component: AdmintransactionComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
 ];
 

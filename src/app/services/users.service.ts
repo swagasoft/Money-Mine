@@ -28,17 +28,13 @@ export class UsersService {
   getUser: string;
 
 
-  constructor(public authService: AuthService,  private database: AngularFirestore)
-
-              {
-
+  constructor(public authService: AuthService,  private database: AngularFirestore) {
 
     this.$user = authService.angularFireAuth.authState;
-   this.getUser = localStorage.getItem('currentUserEmail');
-    console.log('user from storage', this.getUser);
+    this.getUser = localStorage.getItem('currentUserEmail');
 
-    this.getUserAccount = database.collection('accounts', ref =>
-                  ref.where('email', '==', this.getUser) ).valueChanges();
+    this.getUserAccount = database.collection('accounts', ref => {
+             return ref.where('email', '==', this.getUser); }).valueChanges();
 
                   // get user profile
     this.profile = database.collection('users', reff =>
@@ -74,7 +70,8 @@ save(user: firebase.User) {
 }
 
 get(uid: string): AngularFirestoreDocument <AppUser> {
-  return this.database.doc('users/'+uid);
+  console.log('uid', uid);
+  return this.database.collection('users').doc(uid);
 }
 
 

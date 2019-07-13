@@ -1,42 +1,50 @@
+import { CurrentUserIde } from './auth.service';
 import { UserModel } from './../models/user-model.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, of, from, NEVER } from 'rxjs';
+import { switchMap, mergeMap, map } from 'rxjs/operators';
 import * as firebase  from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { PaymentModel } from '../models/payment-model';
 import { ReturnStatement } from '@angular/compiler';
 
+export interface CurrentUserIde { id: string; }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService  implements OnInit {
-
+  getUser: any;
   formData: UserModel;
   user$: Observable <firebase.User>;
+  userId$: CurrentUserIde;
+  collectionRef: any;
+  confirmAdmin: any;
 
-  constructor(
-    public angularFireAuth: AngularFireAuth,
-    private firestore: AngularFirestore,
-    private router: Router,
-    private db: AngularFireDatabase,
-    public route: ActivatedRoute
-  ) {
- this.user$ = angularFireAuth.authState;
+  constructor( public angularFireAuth: AngularFireAuth, private firestore: AngularFirestore,
+               private router: Router, private db: AngularFireDatabase,
+               public route: ActivatedRoute)  {
+          this.getUser = localStorage.getItem('currentUserEmail');
 
+          // read user to use for admin property
+          this.collectionRef = firestore.collection('users', reff => {
+          return  reff.where('email', '==', this.getUser);
+          }).valueChanges();
+
+          this.collectionRef.subscribe(val => this.confirmAdmin = val);
+          console.log(this.confirmAdmin);
+
+          this.user$ = angularFireAuth.authState;
   }
 
-
   async login(email: string, password: string) {
-    let returnUrl  = this.route.snapshot.queryParamMap.get('returnUrl') || '/welcome';
+    const returnUrl  = this.route.snapshot.queryParamMap.get('returnUrl') || '/welcome';
 
     return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
       this.router.navigateByUrl(returnUrl);
-      console.log('login successful');
     }).catch(error => {
       console.log('error in login', error);
     });
@@ -71,8 +79,8 @@ export class AuthService  implements OnInit {
 
 
   async logout() {
-     localStorage.clear();
-     localStorage.removeItem('currentUserEmail');
+     window.localStorage.clear();
+     window.localStorage.removeItem('currentUserEmail');
 
      console.log(localStorage.getItem('currentUserEmail'));
      return await this.angularFireAuth.auth.signOut();

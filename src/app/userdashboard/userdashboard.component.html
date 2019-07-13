@@ -5,19 +5,22 @@
       <!-- tab one -->
         <ng-template ngbTabTitle><b> ACCOUNT</b></ng-template>
         <ng-template ngbTabContent>
+  <a routerLink="/admin/transaction" class="btn btn-info">admin trans</a>
 
-    <div class="list-group" *ngFor="let item of myAccountDetails | async;">
+
+    <div class="list-group" *ngFor="let item of userAcountFiles ;">
         <li  class="list-group-item list-group-item-action active">
           <b>Iml enroll member</b>
         </li>
         <li  class="list-group-item list-group-item-action bg-warning">
             <b>market status :  good </b>
           </li>
-        <li  class="list-group-item list-group-item-action"  > <h4> Account Balance :₦ {{item.amount | number}} </h4> </li>
-        <li  class="list-group-item list-group-item-action"> <h4>Last update : {{item.created.toDate() | date:'medium'}}</h4> </li>
-        <li  class="list-group-item list-group-item-action"> <h4> Accrued amount : ------</h4> </li>
-        <li  class="list-group-item list-group-item-action"> <h4> Investment date : -----</h4> </li>
-        <li  class="list-group-item list-group-item-action"><h4> Investment count :  ----</h4> </li>
+        <li  class="list-group-item list-group-item-action"  > <h5> Trading :₦ {{item.trading | number}} </h5> </li>
+        <li  class="list-group-item list-group-item-action"  > <h5> Account Balance :₦ {{item.amount | number}} </h5> </li>
+        <li  class="list-group-item list-group-item-action"> <h5>Last update : {{item.created.toDate() | date:'medium'}}</h5> </li>
+        <li  class="list-group-item list-group-item-action"> <h5> Accrued amount :    </h5> </li>
+        <li  class="list-group-item list-group-item-action"> <h5> Investment date :   </h5> </li>
+        <li  class="list-group-item list-group-item-action"><h5> Investment count :   </h5> </li>
 
       </div>
       <a routerLink="/user/payment" class="btn btn-success">Top up account </a>
@@ -30,19 +33,19 @@
   <ngb-tab>
       <ng-template ngbTabTitle><b> PROFILE</b></ng-template>
       <ng-template ngbTabContent>
-          <div class="list-group" *ngFor="let item of $userProfile | async">
-              <li  class="list-group-item list-group-item-action active" *ngIf="item.isInvestor">
+          <div class="list-group" *ngFor="let file of $userProfile">
+              <li  class="list-group-item list-group-item-action active" *ngIf="file.isInvestor">
                 <b>Account type: Investor </b>
               </li>
-              <li  class="list-group-item list-group-item-action active" *ngIf="item.isMember">
+              <li  class="list-group-item list-group-item-action active" *ngIf="file.isMember">
                 <b>Account type: Marketer </b>
               </li>
 
-              <li  class="list-group-item list-group-item-action"> email  : {{item.email}}    </li>
-              <li  class="list-group-item list-group-item-action"> username : {{item.firstname}} </li>
-              <li  class="list-group-item list-group-item-action"> ID : {{item.id}} </li>
-              <li  class="list-group-item list-group-item-action"> NUMBER : {{item.number}} </li>
-              <li  class="list-group-item list-group-item-action"> REGISTRATION DATE : {{item.created.toDate()}} </li>
+              <li  class="list-group-item list-group-item-action"> <h5> email  : {{file.email}} </h5>   </li>
+              <li  class="list-group-item list-group-item-action"><h5> username : {{file.firstname}} </h5></li>
+              <li  class="list-group-item list-group-item-action"> <h5>ID : {{file.id}}</h5> </li>
+              <li  class="list-group-item list-group-item-action"> <h5>NUMBER : {{file.number}}</h5> </li>
+              <li  class="list-group-item list-group-item-action"> <h5>REGISTRATION DATE : {{file.created.toDate()}}</h5> </li>
              <a routerLink="/user/profile" class="btn btn-dark" > <h5> View More</h5></a>
             </div>
 
