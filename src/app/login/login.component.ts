@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   passwordInput: string;
   isForgotPassword: boolean;
   userDetails: any;
+  serverError: string;
 
   constructor(private usersService: UsersService  ,
     private toastr : ToastrModule,
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
 
     //   }
     // });
+
 
     this.selectedVal = 'login';
     this.isForgotPassword = false;
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
   this.responseMessage = msg;
   setTimeout(() => {
     this.responseMessage = '';
-  }, 8000);
+  }, 4000);
 }
  // Check localStorage is having User Data
  isUserLoggedIn() {
@@ -51,11 +53,16 @@ export class LoginComponent implements OnInit {
  // Login user with  provided Email/ Password
  loginUser() {
   this.responseMessage = '';
+  this.serverError = this.authService.loginError;
+
   this.authService.login(this.emailInput, this.passwordInput)
     .then(res => {
-      this.isUserLoggedIn();
+      // this.isUserLoggedIn();
     }, err => {
-      this.showMessage('danger', err.message);
+        // this.showMessage('danger', err.message);
+        console.log(err);
+
+
       // this.toastr.error()
     });
   localStorage.setItem('currentUserEmail', this.emailInput.toLocaleLowerCase());

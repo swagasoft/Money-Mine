@@ -69,6 +69,10 @@ import { AccountTypeComponent } from './account-type/account-type.component';
 import { FaqComponent } from './faq/faq.component';
 import { UserProfileComponent } from './customers/profile.component';
 import { AdmintransactionComponent } from './admintransaction/admintransaction.component';
+import { AdminnotificationComponent } from './adminnotification/adminnotification.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 
@@ -108,6 +112,10 @@ import { AdmintransactionComponent } from './admintransaction/admintransaction.c
     AccountTypeComponent,
     FaqComponent,
     AdmintransactionComponent,
+    AdminnotificationComponent,
+    AdminSettingsComponent,
+    AdminmanageUsersComponent,
+    SidenavComponent,
 
 
 

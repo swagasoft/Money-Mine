@@ -1,14 +1,14 @@
 
 
-<button class="btn btn-indogo" (click)="testingBtn()" >testing</button>
-<article class="article  payment-header" style=" color: rgb(40, 9, 151);">
+<article class="article primary-color-dark text-white payment-header">
     <h1 class="text-center">MONEY MINE PAYMENT</h1>
 </article>
 
-<article class="article text-center" style=" color: rgb(40, 9, 151);">
+<article class="article text-center text-white warning-color-dark " >
   <h4 class="article__title">Credit your Account with our Simple payment Method.</h4>
   <div class="article__content"> We accept online payment with ease.
   </div>
+  <img src="../../assets//paymentpic.jfif" alt="">
 </article>
 <hr>
 
@@ -19,12 +19,12 @@
     <div class="card">
 
         <!-- Card body -->
-        <div class="card-body">
-
+        <div class="card-body primary-color-dark text-white">
+          <img src="../../assets/online-payment.png" alt="">
             <!--===== Amount input ======= -->
             <form >
 
-             <h4 class="article__title">PAYMENT</h4>
+             <h6 class="article__title">Enter amount below.</h6>
 
             <strong> ₦ </strong>
             <input type="number"   [(ngModel)]="amountInput" name="amount" id="amount"
@@ -64,28 +64,8 @@
 
 
 
-<!-- modal template -->
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title text-center" id="modal-basic-title">Confirmation</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body text-center">
-    <h1 ></h1>
-  </div>
-  <div class="modal-footer">
-      <button type="button" class="btn btn-outline-danger" (click)="c('Save click')">NO</button>
 
-    <a type="button" class="btn btn-outline-success" (click)="paymentPage()" > YES</a>
-  </div>
-</ng-template>
-<!-- end modal -->
-
-
-
-<article class="transaction text-center" style=" color: rgb(16, 61, 2);">
+<article class="transaction text-center  peach-gradient " style=" color: rgb(16, 61, 2);">
   <h6 class="article__title text-center" ></h6>
   <div class="article__content"><small>
      If you have any issues about your transaction , please use our customer help center</small>

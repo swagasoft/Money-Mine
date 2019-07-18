@@ -10,7 +10,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AdmintransactionComponent implements OnInit {
   currentJustify = 'fill';
   totalAccount: number;
-  newVal: any;
+  TraddingAmount: number;
+  totalProfit: number;
   constructor( private database: AngularFirestore ) {
 
    }
@@ -19,38 +20,37 @@ export class AdmintransactionComponent implements OnInit {
   ngOnInit() {
 
     let sumAmount = 0;
-   const userDoc = this.database.collection('accounts', reff => {
-    return reff.where('amount', '>', 0); }).valueChanges().subscribe(val => {
-      val.map(res => sumAmount += res['amount']);
+    this.database.collection('accounts', reff => {
+      return reff.where('amount', '>', 0); }).valueChanges().subscribe(val => {
+        val.map(res => sumAmount += res['amount']);
+      });
+
+    let tradeAmount = 0;
+    this.database.collection('accounts', reff => {
+    return reff.where('trading', '>', 0); }).valueChanges().subscribe(val => {
+      val.map(res => tradeAmount += res['trading']);
     });
 
-    setTimeout(()=> {
-    console.log(sumAmount);
-    this.totalAccount = sumAmount;
+    let usersProfit = 0;
+    this.database.collection('accounts', reff => {
+    return reff.where('profit', '>', 0); }).valueChanges().subscribe(val => {
+      val.map(res => usersProfit += res['profit']);
+    });
 
-    }, 3000);
+    setTimeout(() => {
+      this.TraddingAmount = tradeAmount;
+      this.totalAccount = sumAmount;
+      this.totalProfit = usersProfit;
+
+      console.log('trading', this.TraddingAmount);
+      console.log('amount  ', this.totalAccount);
+    }, 2000);
   }
 
   getAccount(){
-    let sumAmount = 0;
-    const userDoc = this.database.collection('accounts', reff => {
-     return reff.where('amount', '>', 0); }).valueChanges().subscribe(val => {
-       val.map(res => sumAmount += res['amount']);
-     });
-     setTimeout(()=> {
-     this.totalAccount = sumAmount;
 
-     }, 2000)
   }
-  // refreshAccount(){
-  //   let i = 0;
-  //   while (i >= 0){
-  //     setTimeout(()=> {
-  //       console.log('fire every 3 secc')
-  //       this.getAccount();
-  //     }, 3000);
-  //   }
-  // }
+
 
 
 

@@ -1,45 +1,47 @@
+
+<div  role="group" aria-label="Basic example ">
+  <a [routerLink]="['/admin/dashboard']"  class="btn purple-gradient btn-rounded text-white">Accounts</a>
+  <a [routerLink]="['/admin/manage-users']" class="btn purple-gradient btn-rounded text-white">Manage Users</a>
+  <a [routerLink]="['/admin/settings']"  class="btn purple-gradient  btn-rounded text-white">Settings</a>
+  <a [routerLink]="['/admin/notification']"  class="btn  purple-gradient btn-rounded text-white">Notifications</a>
+  <a [routerLink]="['/admin/transaction']"  class="btn purple-gradient btn-rounded text-white">Transactions</a>
+</div>
+
 <ngb-tabset [justify]="currentJustify" >
-  <ngb-tab>
-    <!-- tab one -->
-      <ng-template ngbTabTitle><b>manage account</b></ng-template>
 
-    </ngb-tab>
-    <!-- tab two -->
 <ngb-tab>
-  <ng-template ngbTabTitle><b>manage users</b></ng-template>
-
-</ngb-tab>
-<!-- tab three -->
-<ngb-tab>
-    <ng-template ngbTabTitle><b> settings</b></ng-template>
-    <ng-template ngbTabContent>
-
-
-    </ng-template>
-  </ngb-tab>
-      <!-- tab four -->
-<ngb-tab>
-    <ng-template ngbTabTitle><b>notifications</b></ng-template>
-
-  </ngb-tab>
-      <!-- tab five -->
-<ngb-tab>
-   <ng-template ngbTabTitle><b> <a routerLink="/admin/transaction">manage transactions</a></b></ng-template>
-   <ng-template ngbTabContent>
-
-    <div class="list-group">
+   <ng-template ngbTabContent >
+     <div class="container">
+       <div class="row">
+     <div class="col-sm-6">
         <li  class="list-group-item list-group-item-action active">
-          <b>Admin dashboard</b>
-        </li>
-        <li  class="list-group-item list-group-item-action bg-danger text-white">
-            <b> current market status :  good </b> <button class="btn-info" (click)="getAccount()" >refresh</button>
+            <b>Admin Transactions</b>
           </li>
-        <li  class="list-group-item list-group-item-action"> Total deposit :N {{totalAccount}}</li>
-        <li  class="list-group-item list-group-item-action"> Trading: 120000</li>
-        <li  class="list-group-item list-group-item-action"> Investment date : 2/1/2019</li>
-        <li  class="list-group-item list-group-item-action"> Investment count : 3 month</li>
+          <li  class="list-group-item list-group-item-action bg-danger text-white">
+              <b> current market status :  good </b>
+            </li>
+          <li  class="list-group-item list-group-item-action"> <h5>Total deposit : ₦ {{totalAccount | number}}</h5></li>
+          <li  class="list-group-item list-group-item-action"><h5> Trading: ₦ {{TraddingAmount  | number}}</h5> </li>
+          <li  class="list-group-item list-group-item-action"> <h5> Profit: {{totalProfit | number}}</h5> </li>
+          <li  class="list-group-item list-group-item-action"></li><h5> Investment count : 3 month</h5>
+     </div>
+
+    <div class="list-group col-sm-6">
+        <li  class="list-group-item list-group-item-action active">
+          <b>Record</b>
+        </li>
+        <li  class="list-group-item list-group-item-action bg-warning text-white">
+            <b> current market status :  good </b>
+          </li>
+        <li  class="list-group-item list-group-item-action"> <h5> Previous Trade: 0</h5></li>
+        <li  class="list-group-item list-group-item-action"><h5> Current Trade: </h5> </li>
+        <li  class="list-group-item list-group-item-action"> <h5> last Trade-Profit: </h5> </li>
+        <li  class="list-group-item list-group-item-action"></li><h5>  Current Trade: date</h5>
+        <li  class="list-group-item list-group-item-action"></li><h5>  </h5>
 
       </div>
+    </div>
+    </div>
         </ng-template>
   </ngb-tab>
 </ngb-tabset>

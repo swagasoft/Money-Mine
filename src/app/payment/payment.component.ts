@@ -102,12 +102,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   });
 
 // get user account balance...
-  this.db.collection('accounts', reff => {
+    this.db.collection('accounts', reff => {
     return reff.where('email', '==', this.currentUserEmail);
   }).snapshotChanges().subscribe((res: any) => {
 res.map(element => this.databaseAcount = element.payload.doc.data().amount);
 
-console.log(this.databaseAcount);
 
   });
 }
@@ -116,7 +115,6 @@ console.log(this.databaseAcount);
   }
 
   testingBtn(){
-    console.log(this.databaseAcount);
   }
 
 
@@ -148,16 +146,15 @@ console.log(this.databaseAcount);
         const id = a.payload.doc.id;
         this.databaseId = id;
 
-        console.log(id)
         return { id, ...data };
       }))).subscribe((_doc: any) => {
-       console.log(_doc);
-       console.log(_doc.id)
-
         // update payment record
-       let id = _doc.id;
-       this.db.doc(`accounts/${this.databaseId}`).update({amount: _value});
-      })
+        if(_doc){
+       this.db.doc(`accounts/${this.databaseId}`).update({amount: _value, created: new Date()});
+        }else{
+          return null;
+        }
+      });
   }
 
   paymentCancel() {

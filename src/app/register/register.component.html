@@ -29,7 +29,7 @@
     <!-- Email -->
     <div *ngIf="email.invalid && email.touched;" class="validation-error bg-danger text-white">email is required</div>
     <input type="email" id="email" name="email" [(ngModel)]="authService.formData.email" #email="ngModel" required
-     class="form-control mb-4" placeholder="E-mail" autocapitalize="none">
+     class="form-control mb-4" placeholder="E-mail"  autocomplete="off">
 
     <!-- firstname -->
     <div *ngIf="firstname.invalid && firstname.touched;" class="validation-error bg-danger text-white">firstname is required</div>
@@ -85,7 +85,7 @@
 
     <!-- Sign in button -->
     <button class="btn btn-info btn-block my-4"  [disabled]="(!regform.valid)"
-     id="submitBtn" type="submit">Sign in</button>
+     id="submitBtn" type="submit">Create Account</button>
 
     <!-- Register -->
     <p>Already a Member?

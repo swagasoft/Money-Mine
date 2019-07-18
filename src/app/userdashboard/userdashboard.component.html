@@ -1,4 +1,7 @@
-
+<!-- ================= -->
+<!-- SideNav slide-out button -->
+<app-sidenav></app-sidenav>
+<!-- ================= -->
 
 <ngb-tabset [justify]="" >
     <ngb-tab>
@@ -8,19 +11,17 @@
   <a routerLink="/admin/transaction" class="btn btn-info">admin trans</a>
 
 
-    <div class="list-group" *ngFor="let item of userAcountFiles ;">
+    <div class="list-group aqua-gradient" *ngFor="let item of userAcountFiles ;">
         <li  class="list-group-item list-group-item-action active">
-          <b>Iml enroll member</b>
+          <b>User Account</b>
         </li>
-        <li  class="list-group-item list-group-item-action bg-warning">
-            <b>market status :  good </b>
-          </li>
-        <li  class="list-group-item list-group-item-action"  > <h5> Trading :₦ {{item.trading | number}} </h5> </li>
-        <li  class="list-group-item list-group-item-action"  > <h5> Account Balance :₦ {{item.amount | number}} </h5> </li>
-        <li  class="list-group-item list-group-item-action"> <h5>Last update : {{item.created.toDate() | date:'medium'}}</h5> </li>
-        <li  class="list-group-item list-group-item-action"> <h5> Accrued amount :    </h5> </li>
-        <li  class="list-group-item list-group-item-action"> <h5> Investment date :   </h5> </li>
-        <li  class="list-group-item list-group-item-action"><h5> Investment count :   </h5> </li>
+
+        <li  class="list-group-item list-group-item-action  teal accent-1"  > <h5> Trading :₦ {{item.trading | number}} </h5> </li>
+        <li  class="list-group-item list-group-item-action teal accent-1"  > <h5>  Balance :₦ {{item.amount | number}} </h5> </li>
+        <li  class="list-group-item list-group-item-action  teal accent-1"> <h5> Accrued  :₦ {{item.profit}} </h5> </li>
+        <li  class="list-group-item list-group-item-action  teal accent-1"> <h5>  Count : 0   </h5> </li>
+        <li  class="list-group-item list-group-item-action  teal accent-1"> <h5>  date :  {{item.created.toDate() | date:'medium'}} </h5> </li>
+        <li  class="list-group-item list-group-item-action  teal accent-1"><h5> ------- : -------- </h5> </li>
 
       </div>
       <a routerLink="/user/payment" class="btn btn-success">Top up account </a>
@@ -34,6 +35,10 @@
       <ng-template ngbTabTitle><b> PROFILE</b></ng-template>
       <ng-template ngbTabContent>
           <div class="list-group" *ngFor="let file of $userProfile">
+
+              <li  class="list-group-item list-group-item-action active">
+                  <b>MY profile</b>
+                </li>
               <li  class="list-group-item list-group-item-action active" *ngIf="file.isInvestor">
                 <b>Account type: Investor </b>
               </li>
@@ -41,13 +46,14 @@
                 <b>Account type: Marketer </b>
               </li>
 
-              <li  class="list-group-item list-group-item-action"> <h5> email  : {{file.email}} </h5>   </li>
-              <li  class="list-group-item list-group-item-action"><h5> username : {{file.firstname}} </h5></li>
-              <li  class="list-group-item list-group-item-action"> <h5>ID : {{file.id}}</h5> </li>
-              <li  class="list-group-item list-group-item-action"> <h5>NUMBER : {{file.number}}</h5> </li>
-              <li  class="list-group-item list-group-item-action"> <h5>REGISTRATION DATE : {{file.created.toDate()}}</h5> </li>
-             <a routerLink="/user/profile" class="btn btn-dark" > <h5> View More</h5></a>
+              <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5> email  : {{file.email}} </h5>   </li>
+              <li  class="list-group-item list-group-item-action  pink lighten-5"><h5> username : {{file.firstname}} </h5></li>
+              <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5>ID : {{file.id}}</h5> </li>
+              <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5>NUMBER : {{file.number}}</h5> </li>
+              <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5>REGISTRATION DATE : {{file.created.toDate()}}</h5> </li>
             </div>
+            <a routerLink="/user/profile" class="btn btn-dark" > View More</a>
+
 
       </ng-template>
     </ngb-tab>

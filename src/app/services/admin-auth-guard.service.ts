@@ -21,6 +21,7 @@ export class AdminAuthGuard implements CanActivate {
 
 
    canActivate() {
+
        if(!this.auth.confirmAdmin){
         console.log(this.auth.confirmAdmin);
        console.log('not admin');

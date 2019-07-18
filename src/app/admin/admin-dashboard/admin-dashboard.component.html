@@ -1,3 +1,12 @@
+
+<div  role="group" aria-label="Basic example ">
+  <a [routerLink]="['/admin/dashboard']"  class="btn purple-gradient btn-rounded text-white">Accounts</a>
+  <a [routerLink]="['/admin/manage-users']" class="btn purple-gradient btn-rounded text-white">Manage Users</a>
+  <a [routerLink]="['/admin/settings']"  class="btn purple-gradient  btn-rounded text-white">Settings</a>
+  <a [routerLink]="['/admin/notification']"  class="btn  purple-gradient btn-rounded text-white">Notifications</a>
+  <a [routerLink]="['/admin/transaction']"  class="btn purple-gradient btn-rounded text-white">Transactions</a>
+</div>
+
 <ngb-tabset [justify]="currentJustify" >
     <ngb-tab>
       <!-- tab one -->
@@ -19,29 +28,7 @@
       </div>
         </ng-template>
       </ngb-tab>
-      <!-- tab two -->
-  <ngb-tab>
-    <ng-template ngbTabTitle><b>manage users</b></ng-template>
 
-  </ngb-tab>
-  <!-- tab three -->
-  <ngb-tab>
-      <ng-template ngbTabTitle><b> settings</b></ng-template>
-      <ng-template ngbTabContent>
-
-
-      </ng-template>
-    </ngb-tab>
-        <!-- tab four -->
-  <ngb-tab>
-      <ng-template ngbTabTitle><b>notifications</b></ng-template>
-
-    </ngb-tab>
-        <!-- tab five -->
-  <ngb-tab>
-     <ng-template ngbTabTitle><b> <a routerLink="/admin/transaction">manage transactions</a></b></ng-template>
-
-    </ngb-tab>
 </ngb-tabset>
 
 

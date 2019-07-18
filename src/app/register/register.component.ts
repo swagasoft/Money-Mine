@@ -84,31 +84,28 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // check if user already exist else create new user
   if (this.checkEmail === regEmail) {
-    this.showMessage('danger', 'The email has been taken or BADLY FORMATTED!');
+    this.showMessage('danger', 'email taken or Bad format');
     console.log('if statement to check user = user already exist');
-    return;
+    return null;
 
   } else if (this.checkEmail !== regEmail) {
     console.log('new user');
     const userId = this.lastUserId + 1;
     data.id = userId;
-    data.password = '#';
+    data.password = '';
     data.payment = false; data.active = false;
     this.authService.storeUserDetails(data);
     this.authService.createNewUser(regEmail, password);
 
     // create new account for new user.
     const newAccount =  this.userService.accountBalance = {
-     trading: 0.00, amount: 0.00, email: regEmail, created:  new Date(),
+     trading: 0.00, amount: 0.00, profit: 0.00, email: regEmail, created:  new Date(),
     };
     this.userService.createAccountBalance(newAccount);
     localStorage.setItem('currentUserEmail', regEmail.toLocaleLowerCase());
     console.log('new user in storage ', localStorage.getItem('currentUserEmail'));
 
-
-
-    // this.authService.sendEmailVerification();
-    return;
+    return null;
       } else {
         console.log('error in registrtion..');
         this.showMessage('danger', 'Error in registration , please try again.');

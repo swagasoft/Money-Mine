@@ -1,3 +1,6 @@
+import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { AdminnotificationComponent } from './adminnotification/adminnotification.component';
 import { FaqComponent } from './faq/faq.component';
 import { HelpComponent } from './help/help.component';
 import { ContactComponent } from './contact/contact.component';
@@ -64,10 +67,16 @@ const routes: Routes = [
   {path: 'user/investors/dashboard', component: InvestorsDashboardComponent,  canActivate: [AuthGuardService]},
 
   {path: 'admin/dashboard', component: AdminDashboardComponent
-   , canActivate: [AuthGuardService]},
+   , canActivate: [AuthGuardService, AdminAuthGuard]},
   {path: 'admin/messages', component: AdminMessageComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
   {path: 'admin/transaction', component: AdmintransactionComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/notification', component: AdminnotificationComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/settings', component: AdminSettingsComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/manage-users', component: AdminmanageUsersComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
 ];
 

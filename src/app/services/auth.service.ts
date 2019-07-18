@@ -23,10 +23,12 @@ export class AuthService  implements OnInit {
   userId$: CurrentUserIde;
   collectionRef: any;
   confirmAdmin: any;
+  loginError: any;
 
   constructor( public angularFireAuth: AngularFireAuth, private firestore: AngularFirestore,
                private router: Router, private db: AngularFireDatabase,
                public route: ActivatedRoute)  {
+          this.user$ = angularFireAuth.authState;
           this.getUser = localStorage.getItem('currentUserEmail');
 
           // read user to use for admin property
@@ -34,10 +36,12 @@ export class AuthService  implements OnInit {
           return  reff.where('email', '==', this.getUser);
           }).valueChanges();
 
-          this.collectionRef.subscribe(val => this.confirmAdmin = val);
-          console.log(this.confirmAdmin);
+          this.collectionRef.subscribe(val => this.confirmAdmin =  val[0]['isAdmin']);
 
-          this.user$ = angularFireAuth.authState;
+          setTimeout(()=> {
+            console.log(this.confirmAdmin);
+          },3000);
+
   }
 
   async login(email: string, password: string) {
@@ -46,7 +50,8 @@ export class AuthService  implements OnInit {
     return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
       this.router.navigateByUrl(returnUrl);
     }).catch(error => {
-      console.log('error in login', error);
+      // console.log('error in login', error);
+      this.loginError = error;
     });
 
   }

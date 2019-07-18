@@ -37,13 +37,14 @@
 
 
     <div class="card text-danger text-center bg-danger "
-    *ngIf="responseMessage.length">
-       <div class="card-body">
+    *ngIf="serverError">
+       <div class="card-body" >
          <p class="card-text text-white">
-             *{{responseMessage}}
+             {{serverError}}
          </p>
        </div>
      </div>
+
 
 
     <!-- Sign in button -->
