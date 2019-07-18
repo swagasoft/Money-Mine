@@ -11,18 +11,21 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item">
-            <a class="nav-link" routerLink="/account/type"> <i class="fas fa-line-chart prefix"></i> Account Types</a>
+            <a class="nav-link"  (click)="navControl()" routerLink="/account/type">
+               <i class="fas fa-line-chart prefix"></i> Account Types</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/services"> <i class="fas fa-cog prefix"></i> Services</a>
+            <a class="nav-link"  (click)="navControl()" routerLink="/services">
+               <i class="fas fa-cog prefix"></i> Services</a>
         </li>
         <li class="nav-item">
 
-          <a class="nav-link" routerLink="/partners"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Partners</a>
+          <a class="nav-link"  (click)="navControl()" routerLink="/partners">
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>Partners</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about">   <i class="fas fa-info prefix"></i> About</a>
+          <a class="nav-link" (click)="navControl()" routerLink="/about"> <i class="fas fa-info prefix"></i> About</a>
         </li>
       </ul >
       <ng-template #anonymousUser>
@@ -30,11 +33,14 @@
             <li class="nav-item"><a class="nav-link" routerLink="/register">  <i class="fas fa-user-plus prefix"></i>Sign Up</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/login"> <i class="fas fa-angle-double-right prefix"></i> Login</a></li>
           </ul>
+
         </ng-template>
         <ul  class="navbar-item nav navbar-nav navbar-right text-white"  *ngIf="user$ | async as user; else anonymousUser ">
             <li class="nav-item"> <a class="nav-link" routerLink="/user/profile"> <i class="fas fa-user prefix"></i> {{user.email}} </a> </li>
             <li class="nav-item"> <a class="nav-link" routerLink="user/dashboard"> <i class="fa fa-tasks" aria-hidden="true"></i> Dashboard </a> </li>
-            <li class="nav-item" (click)="logoutUser()"> <a class="nav-link" > <i class="fas fa-sign-out-alt prefix"></i>Logout</a>  </li>
+
+            <li class="nav-item" (click)="logoutUser(); navControl()"> <a class="nav-link" >
+              <i class="fas fa-sign-out-alt prefix"></i>Logout</a>  </li>
           </ul>
 
 
