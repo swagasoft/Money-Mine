@@ -73,6 +73,7 @@ import { AdminnotificationComponent } from './adminnotification/adminnotificatio
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 
 
 
@@ -116,6 +117,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     AdminSettingsComponent,
     AdminmanageUsersComponent,
     SidenavComponent,
+    SidenavAdminComponent,
 
 
 

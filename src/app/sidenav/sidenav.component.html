@@ -1,17 +1,18 @@
 <div class="container" >
     <div class="row">
-        <div id="mySidenav" class="sidenav">
+        <div id="mySidenav" class="sidenav indigo" style="margin-top: 50px; ">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a [routerLink]="['/user/dashboard']" class="text-white bg-info">My Dashboard</a>
+  <a [routerLink]="['/user/profile']" class="text-white bg-info" >Profile</a>
+  <a [routerLink]="['/user/payment']" class="text-white bg-info" >Trasactions</a>
+
+  <a [routerLink]="['/admin/transaction']" class="bg-info text-white" >Admin panel</a>
 </div>
 
-<span style="font-size:30px;cursor:pointer" (click)="openNav(); closeNav()">☰ open</span>
+<span style="font-size:30px;cursor:pointer;
+ color: white" (click)="openNav()"><button class="btn btn-info">☰</button> </span>
     </div>
 </div>
-
 
 
 <!--/. Sidebar navigation -->

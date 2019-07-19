@@ -8,11 +8,10 @@
       <!-- tab one -->
         <ng-template ngbTabTitle><b> ACCOUNT</b></ng-template>
         <ng-template ngbTabContent>
-  <a routerLink="/admin/transaction" class="btn btn-info">admin trans</a>
 
 
-    <div class="list-group aqua-gradient" *ngFor="let item of userAcountFiles ;">
-        <li  class="list-group-item list-group-item-action active">
+    <div class="list-group " *ngFor="let item of userAcountFiles ;">
+        <li  class="list-group-item list-group-item-action indigo text-white">
           <b>User Account</b>
         </li>
 
@@ -36,8 +35,8 @@
       <ng-template ngbTabContent>
           <div class="list-group" *ngFor="let file of $userProfile">
 
-              <li  class="list-group-item list-group-item-action active">
-                  <b>MY profile</b>
+              <li  class="list-group-item list-group-item-action indigo text-white">
+                  <b>MY Profile</b>
                 </li>
               <li  class="list-group-item list-group-item-action active" *ngIf="file.isInvestor">
                 <b>Account type: Investor </b>
@@ -52,7 +51,7 @@
               <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5>NUMBER : {{file.number}}</h5> </li>
               <li  class="list-group-item list-group-item-action  pink lighten-5"> <h5>REGISTRATION DATE : {{file.created.toDate()}}</h5> </li>
             </div>
-            <a routerLink="/user/profile" class="btn btn-dark" > View More</a>
+            <a routerLink="/user/profile" class="btn btn-dark text-center" > View More</a>
 
 
       </ng-template>

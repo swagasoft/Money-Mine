@@ -1,0 +1,21 @@
+<div class="container" >
+    <div class="row">
+        <div id="mySidenav" class="sidenav" style="margin-top: 50px;">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+  <a [routerLink]="['/admin/dashboard']" class="text-white bg-info">Accounts</a>
+  <a [routerLink]="['/admin/transaction']" class="text-white bg-info">Transactions</a>
+  <a [routerLink]="['/admin/manage-users']" class="text-white bg-info" >Manage Users</a>
+  <a [routerLink]="['/admin/settings']" class="text-white bg-info" >Settings</a>
+  <a [routerLink]="['/admin/notification']" class="text-white bg-info" >Settings</a>
+
+</div>
+
+
+<span style="font-size:30px;cursor:pointer;
+ color: rgb(53, 9, 9)" (click)="openNav()"><button class="btn btn-info">☰</button> </span>
+    </div>
+</div>
+
+
+<!--/. Sidebar navigation -->
+

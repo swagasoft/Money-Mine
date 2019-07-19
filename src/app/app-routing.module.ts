@@ -38,7 +38,6 @@ import { AdmintransactionComponent } from './admintransaction/admintransaction.c
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
-  {path: 'user/profile', component: UserProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'partners', component: PartnersComponent},
@@ -54,6 +53,7 @@ const routes: Routes = [
   {path: 'user/update/details', component: UserUpdateComponent },
 
 
+  {path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuardService]},
   {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
   {path: 'welcome', component: WelcomeComponent ,  canActivate: [AuthGuardService]},
   {path: 'user/dashboard', component: UserdashboardComponent,  canActivate: [AuthGuardService]},

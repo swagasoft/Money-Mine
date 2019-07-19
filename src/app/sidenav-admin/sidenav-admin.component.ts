@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  selector: 'app-sidenav-admin',
+  templateUrl: './sidenav-admin.component.html',
+  styleUrls: ['./sidenav-admin.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavAdminComponent implements OnInit {
 
   constructor() { }
 
