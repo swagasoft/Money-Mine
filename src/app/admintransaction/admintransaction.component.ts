@@ -41,6 +41,7 @@ export class AdmintransactionComponent implements OnInit {
       this.TraddingAmount = tradeAmount;
       this.totalAccount = sumAmount;
       this.totalProfit = usersProfit;
+      localStorage.setItem('trade', this.TraddingAmount.toString());
 
       console.log('trading', this.TraddingAmount);
       console.log('amount  ', this.totalAccount);

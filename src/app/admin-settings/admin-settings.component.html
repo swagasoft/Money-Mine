@@ -1,27 +1,30 @@
-<div  role="group" aria-label="Basic example ">
+<!-- <div  role="group" aria-label="Basic example ">
   <a [routerLink]="['/admin/dashboard']"  class="btn purple-gradient btn-rounded text-white">Accounts</a>
   <a [routerLink]="['/admin/manage-users']" class="btn purple-gradient btn-rounded text-white">Manage Users</a>
   <a [routerLink]="['/admin/settings']"  class="btn purple-gradient  btn-rounded text-white">Settings</a>
   <a [routerLink]="['/admin/notification']"  class="btn  purple-gradient btn-rounded text-white">Notifications</a>
   <a [routerLink]="['/admin/transaction']"  class="btn purple-gradient btn-rounded text-white">Transactions</a>
-</div>
-
+</div> -->
+<app-sidenav-admin></app-sidenav-admin>
 <button (click)="pushMoneyToTrade()" > startTrade</button>
 
+<div class="container">
 
-<h3>admin settings</h3>
-<ngb-tabset [justify]="" >
-  <ngb-tab>
+  <h4> </h4>share trade profit to all users
+  <form #account_form="ngForm" (submit)="shareprofitToAll(account_form);">
+      <input type="number" id="newField" placeholder="value in percentage" name="profit" [(ngModel)]="profit" />
+      <input name="addFieldButton" type="button" value="%"  />
 
+      <input type="submit" value="PROFIT ALL">
 
-<!-- tab three -->
-<ngb-tab>
+  </form>
 
-
-  </ngb-tab>
-      <!-- tab four -->
-
-      <!-- tab five -->
+  <h2> ₦{{trade | number}} </h2>
+  <form action="#">
+      <span id="fields"></span>
+      <p></p>
+  </form>
+  </div>
 
 
 

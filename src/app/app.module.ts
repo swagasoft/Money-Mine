@@ -74,6 +74,8 @@ import { AdminSettingsComponent } from './admin-settings/admin-settings.componen
 import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
+import { CounterComponent } from './components/counter/counter.component';
+import { TestimoniesComponent } from './components/testimonies/testimonies.component';
 
 
 
@@ -118,6 +120,8 @@ import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
     AdminmanageUsersComponent,
     SidenavComponent,
     SidenavAdminComponent,
+    CounterComponent,
+    TestimoniesComponent,
 
 
 
