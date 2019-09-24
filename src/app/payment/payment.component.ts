@@ -10,7 +10,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { PaymentModel } from '../models/payment-model';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { element } from '@angular/core/src/render3';
-import { map } from 'rxjs/operators';
+import { map, first } from 'rxjs/operators';
 import { __values } from 'tslib';
 
 
@@ -174,7 +174,7 @@ res.map(element => this.databaseAcount = element.payload.doc.data().amount);
         this.databaseId = id;
 
         return { id, ...data };
-      }))).subscribe((_doc: any) => {
+      }))).pipe(first()).subscribe((_doc: any) => {
         // update payment record
         if(_doc){
        this.db.doc(`accounts/${this.databaseId}`).update({amount: _value, created: new Date()});

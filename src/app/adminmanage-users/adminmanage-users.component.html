@@ -229,7 +229,7 @@
       <ol>
         <div *ngFor="let item of  customerAccount">
             <li  class="bg-info"> ACCOUNT DETAILS
-                  <button (click)="clickEdit()" class="btn btn-outline-danger m-3" > edit</button></li>
+                  <button (click)="clickEdit()" class="btn btn-outline-danger m-3 btn-sm" > edit</button></li>
             <li>Email   :  {{item.email}} </li>
           <li>Account   :  ₦ {{item.amount | number}} </li>
             <li> Cashout : ₦ {{item.cashout | number}} </li>

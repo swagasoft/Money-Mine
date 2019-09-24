@@ -1,7 +1,8 @@
+import { SubscriptionLike } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, take, first } from 'rxjs/operators';
 
 
 
@@ -25,7 +26,13 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
 
 
 
-  constructor(private authService: AuthService, private database: AngularFirestore) { }
+  constructor(
+    private authService: AuthService,
+    private database: AngularFirestore,
+
+     ) {
+
+      }
 
   model = { email: '' };
 
@@ -63,13 +70,11 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
   async searchUser(user){
     this.loading = true;
     const searchInput = user.value.email.toLowerCase();
-    console.log(searchInput);
 
-    this.accountSub = this.database.collection('accounts', ref => {
+    this.database.collection('accounts', ref => {
      return ref.where('email', '==', searchInput);
   }).valueChanges().subscribe( (doc) => {
     this.customerAccount = doc;
-    console.log('IMPUT 1 =',searchInput);
   });
 
     await this.database.collection('users', ref => {
@@ -77,21 +82,18 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
     }).valueChanges().subscribe((doc) => {
       this.customerDetails = doc;
       this.userEmail = doc['0']['email'];
-      console.log('IMPUT 22 =',searchInput);
     });
 
     await this.database.collection('transactions', ref => {
       return ref.where('email','==', searchInput);
-    }).valueChanges().subscribe((doc) => {
+    }).valueChanges().pipe(first()).subscribe((doc) => {
       this.loading = false;
-      console.log('IMPUT 33 =',searchInput);
     });
 
     await this.database.collection('bank-details', ref => {
       return ref.where('user','==', searchInput);
-    }).valueChanges().subscribe((doc) => {
+    }).valueChanges().pipe(first()).subscribe((doc) => {
       this.bankDetails = doc;
-      console.log('IMPUT 44 =',searchInput);
     });
 
     this.setFormTNull();
@@ -103,12 +105,11 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
    }
 
   updateUser(form){
-    console.log(form.value.account);
     this.loading = true;
     const amoountUpdate = form.value.account;
-    setTimeout(()=> { this.showAcountForm = false}, 2000);
 
-    let doc = this.database.collection('accounts', ref => ref.where('email', '==', this.userEmail));
+
+    const doc = this.database.collection('accounts', ref => ref.where('email', '==', this.userEmail));
     doc.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();
@@ -116,20 +117,22 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
         this.databaseId = id;
 
         return { id, ...data };
-      }))).subscribe((_doc: any) => {
-        // update payment record
-        if(_doc){
+      }))).pipe(first()).subscribe((_doc: any) => {
+        if (_doc){
        this.database.doc(`accounts/${this.databaseId}`).update({amount: amoountUpdate, created: new Date()});
-        }else{
+        } else {
           return null;
         }
       });
     this.loading = false;
+    this.showAcountForm = false;
+
+
   }
 
   clickEdit(){
     this.showAcountForm = true ;
-    console.log('click edit...');
   }
+
 }
 
