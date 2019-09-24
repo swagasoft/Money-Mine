@@ -3,7 +3,7 @@ import { Observable, Subscribable } from 'rxjs';
 import { AngularFirestore , AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { UsersService } from './../services/users.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, HostBinding, OnDestroy } from '@angular/core';
 import {FormGroup, FormControl, NgForm} from '@angular/forms';
@@ -27,9 +27,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
   isForgotPassword: boolean; userDetails: string;
   passwordError: string;
   allEmails: any [];
-
-  public isInvestor = false;     public isMember = true;
-  phoneNumber: any;   lastUserId: any;     checkEmail: any;
+  role: string;
+  showREfId: boolean;
+  phoneNumber: any;
+   lastUserId: any;
+    checkEmail: any;
+    loading: boolean;
 
 
 
@@ -40,8 +43,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
                }
 
   ngOnInit() {
-      this.resetForm();
-      this.db.collection('users', reff =>
+    this.loading = false;
+this.alignWindow();
+
+    this.role ='marketer';
+    this.resetForm();
+    this.db.collection('users', reff =>
       reff.orderBy('created', 'desc').limit(1)).valueChanges().subscribe((val: any) => {
         val.map(response => this.lastUserId = response.id);
       });
@@ -62,18 +69,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (form != null) { form.resetForm(); }
 
     this.authService.formData = {
-      id : null, firstname: '', lastname: '', email: '', password: '',
-       mobile: null,  referral: null, isInvestor: false, isMember: false,
+      id : null, fullname: '',  email: '', password: '',
+       mobile: null,  referral: null, role:'',
        created: null, payment: false, account: false, trade: false
 
     };
   }
   // registration form submitted
   formSubmit(form: NgForm) {
+    this.loading = true;
     const data = form.value;
     this.phoneNumber = data.mobile; const regEmail = data.email;
-    const password = data.password; data.isInvestor = this.isInvestor;
-    data.isMember = this.isMember;  data.created = new Date();
+    const password = data.password; data.role = this.role;
+    data.created = new Date();
 
 // search user email in database.
 // tslint:disable-next-line: no-unused-expression
@@ -84,6 +92,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // check if user already exist else create new user
   if (this.checkEmail === regEmail) {
+    this.loading = false;
     this.showMessage('danger', 'email taken or Bad format');
     console.log('if statement to check user = user already exist');
     return null;
@@ -99,7 +108,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
     // create new account for new user.
     const newAccount =  this.userService.accountBalance = {
-     trading: 0.00, amount: 0.00, profit: 0.00, email: regEmail, created:  new Date(),
+     trading: 0.00, amount: 0.00, profit: 0.00, cashout: 0.00,
+      email: regEmail, created:  new Date(),
     };
     this.userService.createAccountBalance(newAccount);
     localStorage.setItem('currentUserEmail', regEmail.toLocaleLowerCase());
@@ -129,7 +139,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if (password1.value === password2.value) { submitButton.disabled = false;
     } else  {
       submitButton.disabled = true;
-
+      this.loading = false;
       const message = ' password not matched';
       this.passwordError = message;
 
@@ -137,28 +147,33 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   selectOption() {
-   console.log('option is selected');
    const result = document.getElementById('inputGroupSelect') as HTMLInputElement;
-
    if (result.value === 'investor') {
-     this.isInvestor = true;
-
-     console.log('result from investor ' + this.isInvestor);
+     this.role = result.value;
+    console.log(this.role);
+     this.showREfId = true;
    } else {
-     this.isMember = true;
-     this.isInvestor = false;
+     this.role = 'marketer';
+     console.log(this.role);
+     this.showREfId = false;
    }
-   console.log(result.value);
   }
 
   navigateToHome() {
     this.router.navigate(['/welcome']);
   }
 
-  regSuccessful(content) {
-    this.modalService.open(content);
+  alignWindow(){
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
 
+      window.scrollTo(0,0);
+    });
   }
+
+
 
 
 

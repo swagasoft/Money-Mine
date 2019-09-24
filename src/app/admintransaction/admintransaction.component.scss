@@ -1,5 +1,31 @@
-li{
-  font: bold;
-text-decoration: black;
-
+ol {
+  background: #130f03;
+  font-weight: bold;
+  padding: 30px;
 }
+
+// ul {
+//   background: #3399ff;
+//   padding: 20px;
+// }
+
+ol li {
+  background: #b0c4f1;
+  padding: 10px;
+  margin-left: 35px;
+}
+li{
+  font-weight: bold;
+  padding: 2px;
+border: 5px;
+}
+.router-link-active{
+  background-color: rgb(80, 65, 47);
+  color: #f3f3f3;
+}
+
+// ul li {
+//   background: #cce5ff;
+//   margin: 5px;
+// }
+

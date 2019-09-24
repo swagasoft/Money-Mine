@@ -1,7 +1,10 @@
+import { AuthService } from './../services/auth.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import {  Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UsersService } from '../services/users.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -15,8 +18,17 @@ $userProfile: any;
 getProfile: any;
 userAcountFiles: any;
 getUser: string;
+userAccountId: any;
 
-  constructor(public userService: UsersService, private database: AngularFirestore) {
+
+
+
+  constructor(
+    public userService: UsersService,
+    private database: AngularFirestore,
+    private authService: AuthService,
+    private router: Router,
+    private _flashMessagesService: FlashMessagesService) {
     this.getUser = localStorage.getItem('currentUserEmail');
 
     // get user account details in database..
@@ -30,20 +42,90 @@ getUser: string;
    }
 
   ngOnInit() {
+    this.alignWindow();
     this.myAccountDetails$.subscribe(response => {
       this.userAcountFiles = response;
     });
 
-
+    this.database.collection('accounts',  reference => {
+      return reference.where('email','==',  this.getUser)
+    }).get().toPromise().then((doc)=>  {
+      this.userAccountId = doc.docs['0'].id;
+    });
 
     this.getProfile.subscribe( response => {
       this.$userProfile = response;
     });
 
+      // load script
+    this.loadScript('../../assets/dash/vendor/bootstrap-4.1/popper.min.js');
+    this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
+    this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
+    this.loadScript('../../assets/dash/js/main.js');
+  }
+
+   async cashOut() {
+    const collectionRef =  this.database.collection('accounts');
+    await collectionRef.doc(this.userAccountId).get().toPromise().then((doc)=> {
+     console.log(doc.data());
+     const userAmount = doc.data().amount;
+     const storeDate = doc.data().created.toDate();
+     const nowDate = Date.now();
+     const days = 100568204436354;
+     console.log('STORE DATE',storeDate);
+     console.log('TODAY', nowDate);
+     const diff =  nowDate - storeDate;
+     console.log('DIFF',diff);
+
+
+     if(userAmount > 0){
+
+      if(!(diff >= days)){
+        this._flashMessagesService.show('Cashout can be only be done after seven days',
+        { cssClass: 'bg-danger text-white font-weight-bold text-center', timeout: 5000 });
+
+      }
+      else{
+        this.database.doc(`accounts/${doc.id}`).update({cashout: userAmount});
+        this.database.doc(`accounts/${doc.id}`).update({amount: 0}).then(()=> {
+        this._flashMessagesService.show('Cashout successful',
+         { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
+        });
+      }
+
+    } else {
+      this._flashMessagesService.show('Your balance is too low!',
+       { cssClass: 'text-center bg-danger text-white font-weight-bold z-index: 9999', timeout: 3000 });
+    }
+
+   });
+
 
   }
-  ngOnDestroy() {
 
+  ngOnDestroy() {
+  }
+
+
+  loadScript(url: string){
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
+  }
+  logout(){
+    this.authService.logout();
+  }
+  alignWindow(){
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 
 

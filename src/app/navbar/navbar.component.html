@@ -1,7 +1,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top indigo">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top  ">
     <a class="navbar-brand" routerLink="/"><i class="fa bar-chart" aria-hidden="true"></i> <strong>MONEY MINE</strong> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"  (click)="isCollapsed = !isCollapsed">
@@ -12,20 +12,20 @@
 
         <li class="nav-item">
             <a class="nav-link"  (click)="navControl()" routerLink="/account/type">
-               <i class="fas fa-line-chart prefix"></i> Account Types</a>
+               Account </a>
         </li>
         <li class="nav-item">
             <a class="nav-link"  (click)="navControl()" routerLink="/services">
-               <i class="fas fa-cog prefix"></i> Services</a>
+               Services</a>
         </li>
         <li class="nav-item">
 
           <a class="nav-link"  (click)="navControl()" routerLink="/partners">
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i>Partners</a>
+           Partners</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" (click)="navControl()" routerLink="/about"> <i class="fas fa-info prefix"></i> About</a>
+          <a class="nav-link" (click)="navControl()" routerLink="/about">About</a>
         </li>
       </ul >
       <ng-template #anonymousUser>
@@ -39,9 +39,9 @@
 
         </ng-template>
         <ul  class="navbar-item nav navbar-nav navbar-right text-white"  *ngIf="user$ | async as user; else anonymousUser ">
-            <li class="nav-item"> <a class="nav-link" routerLink="/user/profile"> <i class="fas fa-user prefix"></i> {{user.email}} </a> </li>
+            <li class="nav-item"> </li>
 
-            <li class="nav-item"  (click)="navControl()"> <a class="nav-link" routerLink="user/dashboard">
+            <li class="nav-item"  (click)="navControl()"> <a class="nav-link" routerLink="/user/dashboard">
               <i class="fa fa-tasks" aria-hidden="true"></i> Dashboard </a> </li>
 
             <li class="nav-item" (click)="logoutUser(); navControl()"> <a class="nav-link" >

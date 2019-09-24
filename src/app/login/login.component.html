@@ -2,62 +2,44 @@
 
 
 
-<!-- ================================================ -->
-<div class="jumbotron text-center mdb-color indigo white-text mx-2 mb-5">
 
-    <!-- Title -->
-    <h2 class="card-title h2">MONEY MINE</h2>
-
-    <!-- Subtitle -->
-    <p class="my-4 h6">Join Money Mine And Start Earning</p>
-
-    <!-- Grid row -->
-    <div class="row d-flex justify-content-center">
-      <!-- Grid column -->
-      <div class="col-xl-7 pb-2">
-        <p class="card-text">   In just minutes, you'll have the ability to trade stocks,
-           options, mutual funds, ETFs, and bonds. </p>
-      </div>
-
-<!-- Default form login -->
-
-
-    <form class="text-center border border-light p-5" >
-        <p class="h4 mb-4">LOGIN</p>
-    <!-- Email -->
-    <i class="fas fa-user prefix"></i>
+<!-- !!!!! -->
+<div class="simple-login-container jumbotron text-white">
+  <h2 class="font-weight-bold">MONEY MINE</h2>
+  <div class="row">
+      <div class="col-md-12 form-group">
+        <i class="fas fa-user prefix"></i>
     <input type="email" id="email" name="email"  [(ngModel)]="emailInput" value=""
-     class="form-control mb-4" placeholder="E-mail" autocapitalize="none">
-
-
-     <!-- password -->
+     class="form-control " placeholder="E-mail" autocapitalize="none">
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12 form-group">
+         <!-- password -->
      <i class="fas fa-lock prefix"></i>
-    <input type="password"  [(ngModel)]="passwordInput" id="password"
-    class="form-control mb-4" placeholder="Password" name="password" value="" required>
-
-
-    <div class="card text-danger text-center bg-danger "
-    *ngIf="serverError">
-       <div class="card-body" >
-         <p class="card-text text-white">
-             {{serverError}}
-         </p>
-       </div>
+     <input type="password"  [(ngModel)]="passwordInput" id="password"
+     class="form-control " placeholder="Password" name="password" value="" required>
+      </div>
+  </div>
+  <div class="row">
+      <!-- Sign in button -->
+    <button class="btn  btn-login"  (click)="loginUser()"
+    id="submitBtn" type="submit">
+     <i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="loading"></i>  Log in </button>
+     <br>
+     <div class="flash">
+       <flash-messages></flash-messages>
      </div>
+  </div>
 
+  <div class="row">
+      <div class="col-md-12">
+          <a routerLink="/register">create account</a> <br>
+          <a routerLink="/passwordreset">forget password</a>
+      </div>
+  </div>
+</div>
 
+<!-- !!!!! -->
 
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4"  (click)="loginUser()"
-     id="submitBtn" type="submit">Log me in </button>
-
-    <!-- Register -->
-    <p>
-        <a routerLink="/register" class="text-white">Create account</a>
-    </p> <br>
-    <p>  <a routerLink="/passwordreset" class="text-white">
-      <small>Forget password?</small></a></p>
-
-
-</form>
-
+<app-footer></app-footer>

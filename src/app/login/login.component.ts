@@ -1,9 +1,11 @@
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { ToastrModule } from 'ngx-toastr';
 import { UsersService } from './../services/users.service';
 
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
+
 
 
 @Component({
@@ -22,10 +24,12 @@ export class LoginComponent implements OnInit {
   isForgotPassword: boolean;
   userDetails: any;
   serverError: string;
+  loading: boolean;
 
   constructor(private usersService: UsersService  ,
-    private toastr : ToastrModule,
-    private authService: AuthService, private router: Router) {
+              private toastr : ToastrModule,
+              private _flashMessage: FlashMessagesService,
+              private authService: AuthService, private router: Router) {
     // authService.user$.subscribe(user => {
     //   if (user) {
 
@@ -37,14 +41,6 @@ export class LoginComponent implements OnInit {
     this.isForgotPassword = false;
   }
 
- // Comman Method to Show Message and Hide after 2 seconds
- showMessage(type, msg) {
-  this.responseMessageType = type;
-  this.responseMessage = msg;
-  setTimeout(() => {
-    this.responseMessage = '';
-  }, 4000);
-}
  // Check localStorage is having User Data
  isUserLoggedIn() {
   this.userDetails = this.authService.isUserLoggedIn();
@@ -52,26 +48,48 @@ export class LoginComponent implements OnInit {
 
  // Login user with  provided Email/ Password
  loginUser() {
-  this.responseMessage = '';
+   this.loading = true;
   this.serverError = this.authService.loginError;
-
-  this.authService.login(this.emailInput, this.passwordInput)
+   this.authService.login(this.emailInput, this.passwordInput)
     .then(res => {
-      // this.isUserLoggedIn();
+      console.log(this.serverError);
+      this.loading = false;
+
+      if(this.serverError  != undefined){
+    this._flashMessage.show(`invalid credentials!`,
+    { cssClass: 'text-center bg-danger text-white  font-weight-bold', timeout: 4000 });
+
+    this.serverError = null;
+    console.log('second',this.serverError);
+  }
+
     }, err => {
-        // this.showMessage('danger', err.message);
-        console.log(err);
+      this.loading = false;
+      this._flashMessage.show(`${err}`,
+{ cssClass: 'text-center bg-danger text-white font-weight-bold', timeout: 4000 });
 
+    })
+   localStorage.setItem('currentUserEmail', this.emailInput.toLocaleLowerCase());
 
-      // this.toastr.error()
-    });
-  localStorage.setItem('currentUserEmail', this.emailInput.toLocaleLowerCase());
 
 }
 
 
 
+
+
   ngOnInit() {
+    console.log(this.serverError);
+    this.loading = false;
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
+
+      window.scrollTo(0, 0);
+    });
+
+
   }
 
 }

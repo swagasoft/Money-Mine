@@ -1,19 +1,33 @@
 
           <!--================End Feature Area =================-->
 
-            <!--================Feature Area =================-->
-            <section class="feature_area">
-              <div class="container jarallax card-body primary-color-dark text-white" data-jarallax='{"speed": 0.2}'style="background-image: url('assets/profile-head.jpg'); background-repeat: no-repeat; background-size: cover; height: 30em; background-position: center center;">
+          <app-navbar></app-navbar>
+
+             <!--================Feature Area =================-->
+             <section class="feature_area">
+              <div class="container jarallax card-body primary-color-dark text-white"
+               data-jarallax='{"speed": 0.2}'style="background-image: url('assets/profile-head.jpg');
+                background-repeat: no-repeat; background-size: cover; height: 30em; background-position: center center;">
                 <div class="row wow fadeIn">
                   <!--Grid column-->
                   <div style="padding-top: 3%" class="wow fadeInUp text-center" data-wow-delay="0.1s" class="col-md-12 text-center text-white">
                     <h1 class="display-4 font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInUp">MONEY MINE</h1>
+                    <!-- <app-title></app-title>  -->
 
-                        <div style="padding-top: 17%" class="wow fadeInUp text-center" data-wow-delay="0.1s">
-                            <a routerLink="/login"  class="btn btn-purple btn-rounded"><i class="fas fa-user left"> Get Started!</i> </a>
-                            <a routerLink="/register"  class="btn btn-purple btn-rounded "><i class="fas fa-book left">Create Account</i> </a>
+                        <div *ngIf="user$ | async as user; else newUser"
+                        style="padding-top: 0%" class="wow fadeInUp text-center" data-wow-delay="0.1s" >
+
+
+
                           </div>
-                   <h2 style="font-size: 1.2em">Get 15-20% returns on our investment every month</h2>
+                        <ng-template #newUser style="padding-top: 0%" class="wow fadeInUp text-center" data-wow-delay="0.1s" >
+                            <a routerLink="/login"  class="btn   btn-rounded" style="background-color: #130f03">
+                              <i class="fas fa-user left"> Get Started!</i> </a>
+
+                            <a routerLink="/register"  class="btn  btn-rounded " style="background-color: #130f03" >
+                              <i class="fas fa-book left">Create Account</i> </a>
+                        </ng-template>
+                   <h2 style="font-size: 1.2em">Get 15% returns on investment returns</h2>
 
 
                   </div>
@@ -21,12 +35,13 @@
                 </div>
               </div>
             </section>
+
+          <!--================End Feature Area =================-->
             <section class="feature_area">
             <div class="container">
               <div class="main_title">
                 <h2>WHAT WE OFFER OUR CLIENTS</h2>
-                <p>15-20% returns on investment. Money mine is currently a promotional campaigne and as such we offer 20% to our
-                  investors till the month of october 2019.
+                <p>15% returns on investment.
                 </p>
               </div>
 
@@ -37,16 +52,7 @@
 
                     <h3>INSTANT WITHDRAWAL</h3>
                     <p>Choose the amount to withdraw and receive it instantly to your bank account.</p>
-                      <!--
-                      <div class="text-center feature_item">
-                          <p type="button"
-                           class="btn btn-success mr-2 "
-                          placement="bottom"
-                          popoverTitle="Instant payment"
-                  ngbPopover="We are constantly striving to offer you even more deposit and withdrawal .... Deposits are processed instantly in case there is no need for additional verification."
-                   >  View Details</p>
-                  </div> alert button -->
-                  <!-- end of alert button -->
+
                   </div>
 
                 </div>
@@ -65,9 +71,8 @@
                 <div class="col-lg-4">
                   <div class="">
                       <img class="card-img-top" src="../../assets/litecoin-mining.jpg" >
-                    <h3>GET STARTED</h3>
-                    <p>The mining starts immediately after confirmed payment.
-                       First payouts within 24 hours.</p>
+                    <h3>REGISTER NOW</h3>
+                    <p> Make your first deposit and allow us to do the rest.</p>
                        <!-- alert button -->
 
         <!-- end of alert button -->
@@ -155,318 +160,6 @@
   <!--============ section ============ -->
 
 <!-- Section: Magazine v.3 -->
-<section class="magazine-section my-5">
-
-  <!-- Section heading -->
-  <h2 class="h1-responsive font-weight-bold text-center my-5">Opportunities</h2>
-  <!-- Section description -->
-  <p class="text-center w-responsive mx-auto mb-5"></p>
-
-  <!-- Grid row -->
-  <div class="row">
-
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-12 mb-lg-0 mb-5">
-
-      <!-- Featured news -->
-      <div class="single-news mb-3">
-
-        <!-- Image -->
-        <div class="view overlay rounded z-depth-2 mb-4">
-          <img class="img-fluid" src="../../assets/meeting2_88558.jpg" alt="metting">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <!-- Grid row -->
-        <div class="row mb-3">
-
-          <!-- Grid column -->
-          <div class="col-12">
-
-            <!-- Badge -->
-            <a href="#!"><span class="badge pink"><i class="fas fa-camera pr-2" aria-hidden="true"></i>Meeting</span></a>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a class="font-weight-bold">Meet <strong>Money Mine</strong> team </a>
-          </div>
-          <a><i class="fas fa-meetup"></i></a>
-        </div>
-
-      </div>
-      <!-- Featured news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>Share your view.</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>join money mine team</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>contribute to development</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0">
-            <a> Recipes You Need to Try.</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-md-0 mb-5">
-
-      <!-- Featured news -->
-      <div class="single-news mb-3">
-
-        <!-- Image -->
-        <div class="view overlay rounded z-depth-2 mb-4">
-          <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/31.jpg" alt="Sample image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <!-- Grid row -->
-        <div class="row mb-3">
-
-          <!-- Grid column -->
-          <div class="col-12">
-
-            <!-- Badge -->
-            <a href="#!"><span class="badge deep-orange"><i class="fas fa-plane pr-2" aria-hidden="true"></i>Travel</span></a>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a class="font-weight-bold">Travels</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Featured news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>Trends in the blogosphere for 2019.</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>Where can you eat the best lunch in Warsaw?</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>What camera is worth taking for holidays?</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0">
-            <a>Why should you visit Lisbon?</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-0">
-
-      <!-- Featured news -->
-      <div class="single-news mb-3">
-
-        <!-- Image -->
-        <div class="view overlay rounded z-depth-2 mb-4">
-          <img class="img-fluid" src="../../assets/learning-success.png" alt="Sample image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-
-        <!-- Grid row -->
-        <div class="row mb-3">
-
-          <!-- Grid column -->
-          <div class="col-12">
-
-            <!-- Badge -->
-            <a href="#!"><span class="badge success-color"><i class="fas fa-leaf pr-2" aria-hidden="true"></i>Learn</span></a>
-
-          </div>
-          <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a class="font-weight-bold">Learn</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Featured news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>beginers level to trading.. </a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>National Parks in Poland.</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news mb-3">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0 mb-3">
-            <a>Traveling without littering the planet.</a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-      <!-- Small news -->
-      <div class="single-news">
-
-        <!-- Title -->
-        <div class="d-flex justify-content-between">
-          <div class="col-11 text-truncate pl-0">
-            <a> protect and acquire investment </a>
-          </div>
-          <a><i class="fas fa-angle-double-right"></i></a>
-        </div>
-
-      </div>
-      <!-- Small news -->
-
-    </div>
-    <!-- Grid column -->
-
-  </div>
-  <!-- Grid row -->
-
-</section>
-<!-- Section: Magazine v.3 -->
 
 
 
@@ -475,4 +168,4 @@
 
    <app-testimonies></app-testimonies>
    <!--================End Clients Logo Area =================-->
-
+  <app-footer></app-footer>

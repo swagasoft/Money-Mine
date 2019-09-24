@@ -46,6 +46,9 @@ background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4)
 .card {
 background-color: rgba(126, 123, 215, 0.2);
 }
+.jumbotron{
+  background-image: url("https://mdbootstrap.com/img/Photos/Others/gradient1.jpg");
+}
 
 .md-form label {
 color: #ffffff;
@@ -83,4 +86,8 @@ line-height: 1.7;
    font: bold;
    line-height: 1.4;
  }
+}
+.router-link-active{
+  background-color: cornflowerblue;
+
 }

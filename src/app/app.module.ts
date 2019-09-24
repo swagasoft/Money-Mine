@@ -16,6 +16,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 // import {RouterModule} from '@angular/router';
 
 import { HttpClientModule} from '@angular/common/http';
@@ -39,21 +40,15 @@ import { PartnersComponent } from './partners/partners.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
-import { InboxComponent } from './inbox/inbox.component';
 import { AdminMessageComponent } from './admin-message/admin-message.component';
 import { InvestorsComponent } from './investors/investors.component';
-import { ImlMembersComponent } from './iml-members/iml-members.component';
 import { InvestorsGuard } from './services/investors-guard.service';
 import { PaymentComponent } from './payment/payment.component';
-import { InvestorsDashboardComponent } from './investors-dashboard/investors-dashboard.component';
-import { EnrollDashbaordComponent } from './enroll-dashbaord/enroll-dashbaord.component';
 import { Enrollguard } from './services/enrollguard.service';
 import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material.module';
-import { UserUpdateComponent } from './user-update/user-update.component';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import {ToastrModule} from 'ngx-toastr';
 import { PoliciyComponent } from './policiy/policiy.component';
@@ -61,7 +56,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { MatIconModule } from '@angular/material';
-import { SuccessfulComponent } from './successful/successful.component';
 import { from } from 'rxjs';
 import { ContactComponent } from './contact/contact.component';
 import { HelpComponent } from './help/help.component';
@@ -76,6 +70,12 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavAdminComponent } from './sidenav-admin/sidenav-admin.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { TestimoniesComponent } from './components/testimonies/testimonies.component';
+import { TitleComponent } from './title/title.component';
+import { UserCashoutComponent } from './user-cashout/user-cashout.component';
+import { SidemenuComponent } from './headermenu/headermenu.component';
+import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetails.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { MessageComponent } from '../message/message.component';
 
 
 
@@ -98,18 +98,11 @@ import { TestimoniesComponent } from './components/testimonies/testimonies.compo
     ServicesComponent,
     PartnersComponent,
     UserdashboardComponent,
-    InboxComponent,
     AdminMessageComponent,
     InvestorsComponent,
-    ImlMembersComponent,
     PaymentComponent,
-    InvestorsDashboardComponent,
-    EnrollDashbaordComponent,
     HeaderComponent,
-    UserUpdateComponent,
-    VerifyEmailComponent,
     PoliciyComponent,
-    SuccessfulComponent,
     ContactComponent,
     HelpComponent,
     AccountTypeComponent,
@@ -122,6 +115,12 @@ import { TestimoniesComponent } from './components/testimonies/testimonies.compo
     SidenavAdminComponent,
     CounterComponent,
     TestimoniesComponent,
+    TitleComponent,
+    UserCashoutComponent,
+    SidemenuComponent,
+    BankdetailsComponent,
+    MessageComponent,
+
 
 
 
@@ -151,13 +150,14 @@ import { TestimoniesComponent } from './components/testimonies/testimonies.compo
     Angular4PaystackModule,
     AngularFirestoreModule,
     ReactiveFormsModule,
+    FlashMessagesModule.forRoot(),
     Angular4PaystackModule,
     AngularFontAwesomeModule,
 
   ],
   providers: [AuthGuardService, UsersService, AdminAuthGuard,
     Enrollguard,NgbModalConfig, NgbModal,
-    InvestorsGuard,
+    InvestorsGuard, {provide: LocationStrategy, useClass: HashLocationStrategy},
      AuthService, AngularFireAuth],
   bootstrap: [AppComponent]
 })

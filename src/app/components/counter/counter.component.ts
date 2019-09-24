@@ -34,10 +34,10 @@ export class CounterComponent implements OnInit {
 	};
 
 
-$('#number1').jQuerySimpleCounter({end: 6,duration: 5000});
-$('#number2').jQuerySimpleCounter({end: 12.4,duration: 5000});
-$('#number3').jQuerySimpleCounter({end: 79,duration: 5000});
-$('#number4').jQuerySimpleCounter({end: 66917,duration: 5500});
+$('#number1').jQuerySimpleCounter({end: 1,duration: 5000});
+$('#number2').jQuerySimpleCounter({end: 6.2,duration: 5000});
+$('#number3').jQuerySimpleCounter({end: 1,duration: 5000});
+$('#number4').jQuerySimpleCounter({end: 1200,duration: 15500});
 
 
   }

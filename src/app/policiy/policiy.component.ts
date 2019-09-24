@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-policiy',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciyComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.alignWindow();
   }
-
+  alignWindow(){
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
+      window.scrollTo(0,0);
+    });
+  }
 }

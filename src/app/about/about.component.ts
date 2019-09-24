@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-about',
@@ -11,6 +11,16 @@ export class AboutComponent implements OnInit {
   constructor( private router: Router) { }
 
   ngOnInit() {
+    this.alignWindow();
+  }
+
+  alignWindow(){
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
+      window.scrollTo(0,0);
+    });
   }
 
 

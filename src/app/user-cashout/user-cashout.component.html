@@ -1,0 +1,41 @@
+<div class="row border border-default">
+
+  <div class="bg-primary text-center p-2 col-md-12">
+    <h6 class="lead text-white">CASHOUT  ₦  </h6>
+  </div>
+
+
+  <div class="text-center p-2 col-md-12 text-white bg-primary border-top">
+    count
+  </div>
+  <flash-messages></flash-messages>
+
+  <!-- table  -->
+  <div class="container">
+      <div class="row col-md-6 col-md-offset-2 custyle">
+      <table class="table table-striped custab">
+      <thead>
+          <tr>
+              <th>I#</th>
+              <th>user</th>
+              <th> Amount</th>
+              <th class="text-center">Action</th>
+          </tr>
+      </thead>
+              <tr *ngFor="let item of allCashout;">
+                  <td></td>
+                  <td>{{item.email}} </td>
+                  <td>  ₦ {{item.cashout | number }} </td>
+                  <td class="text-center"> <button class="btn btn-success btn-xs"
+                    (click)="payUser(item.id, item.email, item.cashout)"> Pay</button></td>
+              </tr>
+
+      </table>
+      </div>
+  </div>
+
+
+  </div>
+
+
+

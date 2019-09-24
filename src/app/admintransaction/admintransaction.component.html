@@ -1,50 +1,268 @@
 
-<!-- <div  role="group" aria-label="Basic example ">
-  <a [routerLink]="['/admin/dashboard']"  class="btn purple-gradient btn-rounded text-white">Accounts</a>
-  <a [routerLink]="['/admin/manage-users']" class="btn purple-gradient btn-rounded text-white">Manage Users</a>
-  <a [routerLink]="['/admin/settings']"  class="btn purple-gradient  btn-rounded text-white">Settings</a>
-  <a [routerLink]="['/admin/notification']"  class="btn  purple-gradient btn-rounded text-white">Notifications</a>
-  <a [routerLink]="['/admin/transaction']"  class="btn purple-gradient btn-rounded text-white">Transactions</a>
-</div> -->
-<app-sidenav-admin></app-sidenav-admin>
-<ngb-tabset [justify]="currentJustify" >
 
-<ngb-tab>
-   <ng-template ngbTabContent >
-     <div class="container">
-       <div class="row">
-     <div class="col-sm-6">
-        <li  class="list-group-item list-group-item-action active">
-            <b>Admin Transactions</b>
-          </li>
-          <li  class="list-group-item list-group-item-action bg-danger text-white">
-              <b> current market status :  good </b>
-            </li>
-          <li  class="list-group-item list-group-item-action"> <h5>Total deposit : ₦ {{totalAccount | number}}</h5></li>
-          <li  class="list-group-item list-group-item-action"><h5> Trading: ₦ {{TraddingAmount  | number}}</h5> </li>
-          <li  class="list-group-item list-group-item-action"> <h5> Profit: {{totalProfit | number}}</h5> </li>
-          <li  class="list-group-item list-group-item-action"></li><h5> Investment count : 3 month</h5>
-     </div>
 
-    <div class="list-group col-sm-6">
-        <li  class="list-group-item list-group-item-action active">
-          <b>Record</b>
-        </li>
-        <li  class="list-group-item list-group-item-action bg-warning text-white">
-            <b> current market status :  good </b>
-          </li>
-        <li  class="list-group-item list-group-item-action"> <h5> Previous Trade: 0</h5></li>
-        <li  class="list-group-item list-group-item-action"><h5> Current Trade: </h5> </li>
-        <li  class="list-group-item list-group-item-action"> <h5> last Trade-Profit: </h5> </li>
-        <li  class="list-group-item list-group-item-action"></li><h5>  Current Trade: date</h5>
-        <li  class="list-group-item list-group-item-action"></li><h5>  </h5>
 
-      </div>
+
+
+<!-- ------------- -->
+<link href="../../assets/dash/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<!-- Main CSS-->
+<link href="../../assets/dash/css/theme.css" rel="stylesheet" media="all">
+
+<!-- --------------------------------- -->
+<div class="page-wrapper">
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar2">
+        <div class="logo">
+            <a >
+                <!-- <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" /> -->
+            </a>
+        </div>
+        <div class="menu-sidebar2__content js-scrollbar1">
+            <div class="account2">
+
+                <h4 class="name">MONEY MINE</h4>
+                <!-- <a href="#">Log out</a> -->
+            </div>
+
+            <!-- ######### side menu mobile -->
+            <nav class="navbar-sidebar2">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active has-sub">
+                        <a class="js-arrow" [routerLink]="['/admin/transaction']"
+                         routerLinkActive="router-link-active">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                             </a>
+                    </li>
+
+                    <li>
+                        <a [routerLink]="['/admin/manage-users']"  routerLinkActive="router-link-active">
+                            <i class="fas fa-chart-bar"></i>Manage user</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/transaction']" >
+                            <i class="fas fa-shopping-basket"></i>Transactions</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/notification']"  routerLinkActive="router-link-active">
+                            <i class="fas fa-shopping-basket"></i>Notifications</a>
+                    </li>
+
+                    <li class="has-sub">
+                        <a class="js-arrow" [routerLink]="['/admin/settings']"  routerLinkActive="router-link-active">
+                            <i class="fa fa-cog"></i>Settings
+                            </a>
+                    </li> <br>
+                    <li class="has-sub">
+                        <a class="js-arrow"  (click)="logout()">
+                            <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- ############ end side menu mobile -->
+        </div>
+      </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container2">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop2">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap2">
+                        <div class="logo d-block d-lg-none">
+                            <a href="#">
+                                <img src="../../assets/dash/images/icon/logo-white.png" alt="CoolAdmin" />
+                            </a>
+                        </div>
+                        <div class="header-button2">
+                            <div class="header-button-item mr-0 js-sidebar-btn">
+                                <i  class="fa fa-bars" aria-hidden="true"></i>
+                            </div>
+                            <div class="setting-menu js-right-sidebar d-none d-lg-block">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+            <!-- ########### side menu scrolll -->
+
+            <!-- ########### side menu scrolll -->
+
+            <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+                <div class="logo">
+                    <a href="#">
+                        <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
+                    </a>
+                </div>
+
+                <div class="menu-sidebar2__content js-scrollbar2">
+
+                    <nav class="navbar-sidebar2">
+                        <ul class="list-unstyled navbar__list">
+                            <li class="active has-sub">
+
+                            </li>
+                            <li>
+
+                            </li>
+                            <li class="active has-sub">
+                                <a class="js-arrow" [routerLink]="['/admin/transaction']"
+                                routerLinkActive="router-link-active" >
+                                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                                   </a>
+
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/manage-users']"  routerLinkActive="router-link-active">
+                                    <i class="fas fa-chart-bar"></i>Manage user</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/transaction']"  routerLinkActive="router-link-active">
+                                    <i class="fas fa-shopping-basket"></i>Transaction</a>
+                            </li>
+
+                            <li class="has-sub">
+                                <a class="js-arrow" [routerLink]="['/admin/settings']"
+                                routerLinkActive="router-link-active">
+                                    <i class="fa fa-cog"></i>Settings
+                                </a>
+                            </li> <br> <br>
+                            <li class="has-sub">
+                                <a class="js-arrow" (click)="logout();">
+                                    <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+                <!-- ########### end side menu scrolll -->
+
+            <!-- ########### end side menu scrolll -->
+
+        <!-- END HEADER DESKTOP-->
+
+        <!-- BREADCRUMB-->
+        <section class="au-breadcrumb m-t-75">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >user</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
+
+                                        </li>
+                                        <li class="list-inline-item">Dashboard</li>
+                                    </ul>
+                                </div>
+                                <flash-messages></flash-messages>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+
+            <!-- Feature Cards -->
+            <section class="d-flex bg-light" id="feature-cards">
+                <div class="container d-flex justify-content-center">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-12 align-self-center">
+                            <div class="row">
+                                <div class="col-12 col-lg-7 mx-auto text-center">
+                                    <p class="text-muted lead mb-2 "> ADMIN PANEL</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col mx-auto text-center">
+                                                    <i class="fa  fa-money fa-4x text-success"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 text-center">
+                                                    <p class="text-info display-5">{{numberofDeposit}} </p>
+                                                    <p class="text-secondary"> deposit(s)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col mx-auto text-center">
+                                                    <i class="fa fa-hourglass-half fa-4x text-warning"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 text-center">
+                                                    <p class="text-info font-weight-bold">{{totalTraders}} </p>
+                                                    <p class="text-secondary"> trader(s)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col mx-auto text-center">
+                                                    <i class="fa fa-envelope fa-4x text-success"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 text-center">
+                                                    <p class="text-info font-weight-bold">{{totalProfitAccount}} </p>
+                                                    <p class="text-secondary">acrued</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            </div>
+        <!-- END BREADCRUMB-->
+             <ol class="rounded-list">
+                <li><a>Total deposit : ₦ {{totalAccount | number}} </a></li>
+                <li><a> Trading : {{TraddingAmount | number}} </a></li>
+                <li><a> last accrued : {{totalProfit | number}} </a></li>
+
+            </ol>
+
+        <!-- END PAGE CONTAINER-->
+    <app-footer></app-footer>
+
     </div>
-    </div>
-        </ng-template>
-  </ngb-tab>
-</ngb-tabset>
 
+</div>
 
 

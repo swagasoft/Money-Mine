@@ -1,10 +1,7 @@
 /* Required for full background image */
 
-html,
-body,
-header,
-.view {
-height: 100%;
+.jumbotron{
+  background-image: url("https://mdbootstrap.com/img/Photos/Others/gradient1.jpg");
 }
 
 @media (max-width: 740px) {

@@ -1,7 +1,9 @@
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthGuardService } from './auth-guard.service';
 import { AppUser } from './../models/app-user';
 import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
-import { CanActivate } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { switchMap} from 'rxjs/operators';
 import { Observable, pipe } from 'rxjs';
@@ -11,27 +13,32 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
-  adminDetails: any;
+  collectionRef: any;
+ userRole: string;
 
+  constructor(
+    private authGuard: AuthGuardService ,
+    private userService: UsersService,
+    private database: AngularFirestore,
+    private router: Router
+     ) {
+      this.userRole = localStorage.getItem('userRole');
 
-  constructor(private auth: AuthService, private userService: UsersService) {
-
-    // this.adminDetails = userService.getUserAccount;
    }
+
 
 
    canActivate() {
 
-       if(!this.auth.confirmAdmin){
-        console.log(this.auth.confirmAdmin);
-       console.log('not admin');
-         return false;
-       }
-       console.log('this is admin');
-       console.log(this.auth.confirmAdmin);
-
-       return true;
+        if (this.userRole === 'admin') {
+          return true;
+         } else {
+          this.router.navigate(['/welcome']);
+          return false;
+         }
 
 
    }
+
+
 }

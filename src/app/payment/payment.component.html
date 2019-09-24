@@ -1,10 +1,141 @@
 
+<link href="../../assets/dash/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<!-- Main CSS-->
+<link href="../../assets/dash/css/theme.css" rel="stylesheet" media="all">
 
-<article class="article primary-color-dark text-white payment-header">
-    <h1 class="text-center">MONEY MINE PAYMENT</h1>
-</article>
+
+<!-- ######## -->
+<div class="page-wrapper">
+    <aside class="menu-sidebar2">
+        <div class="logo">
+            <a >
+                <!-- <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" /> -->
+            </a>
+        </div>
+        <div class="menu-sidebar2__content js-scrollbar1">
+            <div class="account2">
+
+                <h4 class="name">MONEY MINE</h4>
+                <!-- <a href="#">Log out</a> -->
+            </div>
+
+            <!-- ######### side menu mobile -->
+            <nav class="navbar-sidebar2">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active has-sub">
+                        <a class="js-arrow" [routerLink]="['/user/dashboard']">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                             </a>
+                    </li>
+
+                    <li>
+                        <a [routerLink]="['/user/profile']">
+                            <i class="fas fa-chart-bar"></i>Profile</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/user/payment']">
+                            <i class="fas fa-shopping-basket"></i>Transaction</a>
+                    </li>
+
+                    <li class="has-sub">
+                        <a class="js-arrow" [routerLink]="['/admin/transaction']">
+                            <i class="fas fa-desktop"></i>Admin Panel
+                            </a>
+                    </li> <br>
+                    <li class="has-sub">
+                        <a class="js-arrow"  (click)="logout()">
+                            <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- ############ end side menu mobile -->
+        </div>
+      </aside>
+
+
+  <!-- PAGE CONTAINER-->
+  <div class="page-container2">
+      <!-- HEADER DESKTOP-->
+      <header class="header-desktop2">
+          <div class="section__content section__content--p30">
+              <div class="container-fluid">
+                  <div class="header-wrap2">
+                      <div class="logo d-block d-lg-none">
+                          <a href="#">
+                              <img src="../../assets/dash/images/icon/logo-white.png" alt="CoolAdmin" />
+                          </a>
+                      </div>
+                      <div class="header-button2">
+                          <div class="header-button-item mr-0 js-sidebar-btn">
+                              <i  class="fa fa-bars" aria-hidden="true"></i>
+                          </div>
+                          <div class="setting-menu js-right-sidebar d-none d-lg-block">
+
+
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+          <!-- ########### side menu scrolll -->
+
+      <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+          <div class="logo">
+              <a href="#">
+                  <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
+              </a>
+          </div>
+
+          <div class="menu-sidebar2__content js-scrollbar2">
+
+              <nav class="navbar-sidebar2">
+                  <ul class="list-unstyled navbar__list">
+                      <li class="active has-sub">
+                          <a class="js-arrow" [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >
+
+                             </a>
+
+                      </li>
+                      <li>
+                          <a [routerLink]="['/user/profile']">
+                              </a>
+                      </li>
+                      <li class="active has-sub">
+                          <a class="js-arrow" [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >
+                              <i class="fas fa-tachometer-alt"></i>Dashboard
+                             </a>
+
+                      </li>
+                      <li>
+                          <a [routerLink]="['/user/profile']">
+                              <i class="fas fa-chart-bar"></i>Profile</a>
+                      </li>
+                      <li>
+                          <a [routerLink]="['/user/payment']">
+                              <i class="fas fa-shopping-basket"></i>Transaction</a>
+                      </li>
+
+                      <li class="has-sub">
+                          <a class="js-arrow" [routerLink]="['/admin/transaction']">
+                              <i class="fas fa-desktop"></i>Admin Panel
+                          </a>
+                      </li> <br> <br>
+                      <li class="has-sub">
+                          <a class="js-arrow" (click)="logout();">
+                              <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                          </a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </aside>
+
 <!-- SideNav slide-out button -->
-<app-sidenav></app-sidenav>
 <article class="article text-center text-white warning-color-dark " >
   <h4 class="article__title">Credit your Account with our Simple payment Method.</h4>
   <div class="article__content"> We accept online payment with ease.
@@ -25,7 +156,7 @@
             <!--===== Amount input ======= -->
             <form >
 
-             <h6 class="article__title">Enter amount below.</h6>
+             <h6 class="article__title text-white">Enter amount below.</h6>
 
             <strong> ₦ </strong>
             <input type="number"   [(ngModel)]="amountInput" name="amount" id="amount"
@@ -36,7 +167,7 @@
                 <div style="widows: 100%; display:flex;  justify-content: center;" (click)="paynow()">
                     <div class="example-button-row">
                     <angular4-paystack
-                    [key]="'pk_test_48d818b6e7d0046ad7910fea11857151d80eb63c'"
+                    [key]="'pk_live_bca75894ac696e19c47f7643e3d5de44b4a711e3'"
                     [email]="(currentUserEmail)"
                     [amount]="(amountInput)"
                     [ref]="(refInput)"
@@ -66,10 +197,10 @@
 
 
 
-<article class="transaction text-center  peach-gradient " style=" color: rgb(16, 61, 2);">
+<article class="transaction text-center text-white brown darken-4 " >
   <h6 class="article__title text-center" ></h6>
   <div class="article__content"><small>
-     If you have any issues about your transaction , please use our customer help center</small>
+     If you have any issues about your transaction , please use our customer service help center</small>
   </div>
 
 
@@ -129,3 +260,7 @@
     {{item.amount}} <br> {{item.email}} <br> {{item.created}}
   </li>
 </ul>
+
+</div>
+<!-- ######## -->
+<app-footer></app-footer>

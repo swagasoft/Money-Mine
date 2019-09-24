@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { async } from '@angular/core/testing';
 import { pipe, Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -65,6 +65,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   constructor(private modalService: NgbModal, config: NgbModalConfig,
               private router: Router , private userService: UsersService,
               private afAuth: AngularFireAuth,
+              private authservice: AuthService,
               private db: AngularFirestore) {
 
         this.myAccountDetails = userService.getUserAccount;
@@ -81,15 +82,29 @@ export class PaymentComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
+       // load script
+       this.loadScript('../../assets/dash/vendor/bootstrap-4.1/popper.min.js');
+       this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
+       this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
+       this.loadScript('../../assets/dash/js/main.js');
 
-    this.afAuth.authState.subscribe( x => this.$currentUser = x);
-    this.generateRef();
-    const getUser = localStorage.getItem('currentUserEmail');
-    this.currentUserEmail = getUser;
+       this.router.events.subscribe((evt) => {
+        if(!(evt instanceof NavigationEnd)){
+          return ;
+        }
+
+        window.scrollTo(0,0);
+      });
+
+
+       this.afAuth.authState.subscribe( x => this.$currentUser = x);
+       this.generateRef();
+       const getUser = localStorage.getItem('currentUserEmail');
+       this.currentUserEmail = getUser;
 
 
     // read all transaction belonging to current user.
-    this.db.collection('transactions' , reff => {
+       this.db.collection('transactions' , reff => {
     return reff.where('email', '==', getUser);
   }).snapshotChanges().subscribe((response: any) =>  {
   this.transactionValues = response.map(item => {
@@ -102,7 +117,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
   });
 
 // get user account balance...
-    this.db.collection('accounts', reff => {
+       this.db.collection('accounts', reff => {
     return reff.where('email', '==', this.currentUserEmail);
   }).snapshotChanges().subscribe((res: any) => {
 res.map(element => this.databaseAcount = element.payload.doc.data().amount);
@@ -113,8 +128,20 @@ res.map(element => this.databaseAcount = element.payload.doc.data().amount);
   ngOnDestroy() {
 
   }
+  logout(){
+    this.authservice.logout();
+  }
 
   testingBtn(){
+  }
+  loadScript(url: string){
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 
 

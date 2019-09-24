@@ -1,115 +1,85 @@
-<!-- Jumbotron -->
-<div class="jumbotron text-center  white-text  mdb-color indigo mx-2 mb-5" >
 
-    <!-- Title -->
 
-    <h2 class="card-title h2 " >MONEY MINE</h2>
+<form action="" #regform="ngForm" (submit)="formSubmit(regform)">
+  <div class="simple-login-container jumbotron  text-white">
+    <h2> Create Account</h2>
 
-    <!-- Subtitle -->
-    <p class="my-4 h6">Join Money Mine And Start Earning</p>
-
-    <!-- Grid row -->
-    <div class="row d-flex justify-content-center">
-      <!-- Grid column -->
-      <div class="col-xl-7 pb-2">
-        <p class="card-text">   In just minutes, you'll have the ability to trade stocks,
-           options, mutual funds, ETFs, and bonds. </p>
-      </div>
-
-<!-- Default form login -->
-<form class="text-center border border-light p-5"  #regform="ngForm" (submit)="formSubmit(regform)">
-
-    <p class="h4 mb-4">CREATE ACCOUNT</p>
-
+    <div class="row">
+        <div class="col-md-12 form-group">
     <select (change)="selectOption()" class="custom-select" name="inputGroupSelect" id="inputGroupSelect" required>
-        <option selected  class="member" value="member">MARKETER</option>
-        <option class="investor" value="investor">INVESTOR</option>
-      </select>
+      <option  class="member" value="member">MARKETER</option>
+      <option selected class="investor" value="investor">INVESTOR</option>
+    </select>
+        </div>
+    </div>
 
-    <!-- Email -->
-    <div *ngIf="email.invalid && email.touched;" class="validation-error bg-danger text-white">email is required</div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+    <small *ngIf="email.invalid && email.touched;" class="validation-error bg-danger text-white">email is required</small>
     <input type="email" id="email" name="email" [(ngModel)]="authService.formData.email" #email="ngModel" required
-     class="form-control mb-4" placeholder="E-mail"  autocomplete="off">
+    class="form-control mb-4" placeholder="E-mail"  autocomplete="off">
+        </div>
+    </div>
 
-    <!-- firstname -->
-    <div *ngIf="firstname.invalid && firstname.touched;" class="validation-error bg-danger text-white">firstname is required</div>
-    <input type="text" id="firstname" name="firstname" [(ngModel)]="authService.formData.firstname" #firstname="ngModel" required
-     class="form-control mb-4" placeholder="Firstname">
+    <div class="row">
+        <div class="col-md-12 form-group">
+        <div *ngIf="fullname.invalid && fullname.touched;" class="validation-error bg-danger text-white">lastname is required</div>
+        <input type="text" id="lastname" [(ngModel)]="authService.formData.fullname" #fullname="ngModel" required
+          class="form-control mb-4" placeholder="Fullname" name="fullname">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+        <div *ngIf="mobile.invalid && mobile.touched;" class="validation-error  bg-danger text-white">field is required</div>
+        <input type="number" id="number" [(ngModel)]="authService.formData.mobile" #mobile="ngModel" required
+          class="form-control mb-4" placeholder="Number" name="number">
+        </div>
+    </div>
 
-     <!-- lastname -->
-     <div *ngIf="lastname.invalid && lastname.touched;" class="validation-error bg-danger text-white">lastname is required</div>
-    <input type="text" id="lastname" [(ngModel)]="authService.formData.lastname" #lastname="ngModel" required
-     class="form-control mb-4" placeholder="Firstname" name="firstname">
-
-      <div *ngIf="isInvestor" >
-    <input type="number" id="referral" [(ngModel)]="authService.formData.referral" #referral="ngModel"
-     class="form-control mb-4" placeholder="Referral id" name="referral">
-      </div>
-
-    <!-- number -->
-    <div *ngIf="mobile.invalid && mobile.touched;" class="validation-error  bg-danger text-white">field is required</div>
-    <input type="number" id="number" [(ngModel)]="authService.formData.mobile" #mobile="ngModel" required
-     class="form-control mb-4" placeholder="Number" name="number">
-
-     <!-- password -->
+    <div class="row">
+        <div class="col-md-12 form-group">
     <input type="password" id="password" [(ngModel)]="authService.formData.password"  #password="ngModel"
     class="form-control mb-4" placeholder="Password" name="password" value="" required>
+        </div>
+    </div>
 
-    <!-- confirm password -->
-    <div *ngIf="password.value !== password_conf.value;" class="validation-error bg-danger text-white">password not match</div>
-    <input type="password" id="defaultLoginFormPassword"  name="password_conf" value="" id="password_conf"
-    class="form-control mb-4" placeholder="Confirm Password" (change)="confirmInputPassword()" #password_conf required>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            <div *ngIf="password.value !== password_conf.value;" class="validation-error bg-danger text-white">password not match</div>
+            <input type="password" id="defaultLoginFormPassword"  name="password_conf" value="" id="password_conf"
+            class="form-control mb-4" placeholder="Confirm Password" (change)="confirmInputPassword()" #password_conf required>
+        </div>
+    </div>
 
-    <div class="d-flex justify-content-around">
-        <div>
-
+    <div class="row">
+        <div class="col-md-12 form-group">
             <div class="input-check-box">
                 <input type="checkbox" name="moneyminePolicy"
                 [(ngModel)]="moneyminePolicy" aria-label="Checkbox for following text input">
                 <small>I agree to <strong>Money mine</strong>
                  <a [routerLink]="['/policy']"  ><strong>  Privacy Policy.</strong></a> </small>
               </div>
-
         </div>
-
     </div>
-    <div class="card text-danger text-center bg-danger "
-    *ngIf="responseMessage.length">
-       <div class="card-body">
-         <p class="card-text text-white">
-             *{{responseMessage}}
-         </p>
-       </div>
-     </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+    <button class="btn btn-success btn-block "  [disabled]="(!regform.valid)"
+    id="submitBtn" type="submit"> <i class="fa fa-spinner  fa-spin" *ngIf=loading ></i>
+    Create Account</button>
+        </div>
+    </div>
 
-
-    <!-- Sign in button -->
-    <button class="btn btn-info btn-block my-4"  [disabled]="(!regform.valid)"
-     id="submitBtn" type="submit">Create Account</button>
-
-    <!-- Register -->
-    <p>Already a Member?
-        <a routerLink="/login" class="text-white">Login</a>
+    <p> alredy a member ?
+      <a routerLink="/login">login</a>
     </p>
 
+    <div class="row">
+        <div class="col-md-12">
+          <a [routerLink]="['/']" >home</a>
+        </div>
+    </div>
+</div>
 
 </form>
-<!-- Default form login -->
 
-<!-- <ng-template #content let-c="close" id="content" let-d="dismiss">
-    <div class="modal-header " style="background-color: darkblue; color:darkgray;">
-      <h1 class="modal-title text-center" color="primary" id="modal-basic-title">Registration Completed</h1>
-      <button type="button" class="close" aria-label="Close" (click)=" modalService.dismissAll('Cross click'); navigateToHome()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body text-center" style="background-color: chartreuse; color:darkblue;">
-     <p> <strong>Thank you for choosing MONEY MINE</strong>  </p>
-
-    </div>
-    <div class="modal-footer" style="background-color: chartreuse; color:darkblue;">
-      <button type="button"  class="btn btn-outline-dark" (click)=" modalService.dismissAll(); navigateToHome()">Continue</button>
-    </div>
-  </ng-template> -->
-
-
+<app-footer></app-footer>

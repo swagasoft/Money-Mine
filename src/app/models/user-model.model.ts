@@ -4,11 +4,9 @@ export class UserModel {
   id: number;
   email: string;
   password: string;
-  firstname: string ;
-  lastname: string ;
+  fullname: string ;
   mobile: number;
-  isInvestor: boolean;
-  isMember: boolean;
+  role: string;
   referral: number;
   payment: boolean;
   account: boolean;

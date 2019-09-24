@@ -1,4 +1,4 @@
-<div class="container" >
+<!-- <div class="container" >
     <div class="row">
         <div id="mySidenav" class="sidenav" style="margin-top: 50px;">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
@@ -7,15 +7,73 @@
   <a [routerLink]="['/admin/manage-users']" class="text-white " >Manage Users</a>
   <a [routerLink]="['/admin/settings']" class="text-white " >Settings</a>
   <a [routerLink]="['/admin/notification']" class="text-white " >Notifications</a>
+  <a [routerLink]="['/admin/cashout-users']" class="text-white " >cashout</a>
 
-</div>
+</div> -->
+<!-- ------------- -->
+<link href="../../assets/dash/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/slick/slick.css" rel="stylesheet" media="all">
+<link href="../../assets/dash/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<!-- Main CSS-->
+<link href="../../assets/dash/css/theme.css" rel="stylesheet" media="all">
 
 
-<span style="font-size:30px;cursor:pointer;
- color: rgb(53, 9, 9)" (click)="openNav()"><button class="btn btn-info">☰</button> </span>
+
+<aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+    <div class="logo">
+        <a href="#">
+            <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
+        </a>
     </div>
-</div>
 
+    <div class="menu-sidebar2__content js-scrollbar2">
 
-<!--/. Sidebar navigation -->
+        <nav class="navbar-sidebar2">
+            <ul class="list-unstyled navbar__list">
+                <li class="active has-sub">
+                    <a class="js-arrow" [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >
+                        <i class="fas fa-tachometer-alt"></i>-----------
+                       </a>
 
+                </li>
+                <li>
+                    <a [routerLink]="['/user/profile']">
+                        <i class="fas fa-chart-bar"></i>----------</a>
+                </li>
+                <li class="active has-sub">
+                    <a class="js-arrow" [routerLink]="['admin/dashboard']" routerLinkActive="router-link-active" >
+                        <i class="fas fa-tachometer-alt"></i>Dashboard
+                       </a>
+
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/manage-users']">
+                        <i class="fas fa-chart-bar"></i>Manage users</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/transaction']">
+                        <i class="fas fa-shopping-basket"></i>Transaction</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/settings']">
+                        <i class="fas fa-shopping-basket"></i>Settings</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/admin/notification']">
+                        <i class="fas fa-shopping-basket"></i>Notification</a>
+                </li>
+
+                <li class="has-sub">
+                    <a class="js-arrow" [routerLink]="['/admin/transaction']">
+                        <i class="fas fa-desktop"></i>Admin Panel
+                    </a>
+                </li> <br> <br>
+                <li class="has-sub">
+                    <a class="js-arrow" >
+                        <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>

@@ -5,4 +5,5 @@ export class Account {
   trading: number;
   profit: number;
   created: any ;
+  cashout: number;
 }

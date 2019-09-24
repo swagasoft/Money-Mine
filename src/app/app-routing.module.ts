@@ -1,11 +1,11 @@
+import { MessageComponent } from './../message/message.component';
+import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetails.component';
 import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
 import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
 import { AdminnotificationComponent } from './adminnotification/adminnotification.component';
 import { FaqComponent } from './faq/faq.component';
 import { HelpComponent } from './help/help.component';
 import { ContactComponent } from './contact/contact.component';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
-import { UserUpdateComponent } from './user-update/user-update.component';
 import { AdminMessageComponent } from './admin-message/admin-message.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
@@ -22,19 +22,15 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ServicesComponent } from './services/services.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { InboxComponent } from './inbox/inbox.component';
-import { ImlMembersComponent } from './iml-members/iml-members.component';
 import { InvestorsComponent } from './investors/investors.component';
 import { InvestorsGuard } from './services/investors-guard.service';
 import { PaymentComponent } from './payment/payment.component';
-import { InvestorsDashboardComponent } from './investors-dashboard/investors-dashboard.component';
-import { EnrollDashbaordComponent } from './enroll-dashbaord/enroll-dashbaord.component';
 import { Enrollguard } from './services/enrollguard.service';
 import { PoliciyComponent } from './policiy/policiy.component';
-import { SuccessfulComponent } from './successful/successful.component';
 import { AccountTypeComponent } from './account-type/account-type.component';
 import { UserProfileComponent } from './customers/profile.component';
 import { AdmintransactionComponent } from './admintransaction/admintransaction.component';
+import { UserCashoutComponent } from './user-cashout/user-cashout.component';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -48,23 +44,19 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent},
   {path: 'faq-section', component: FaqComponent},
   {path: 'account/type', component: AccountTypeComponent},
-  {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'passwordreset', component: PasswordresetComponent},
-  {path: 'user/update/details', component: UserUpdateComponent },
 
 
   {path: 'user/profile', component: UserProfileComponent, canActivate: [AuthGuardService]},
-  {path: 'successful', component: SuccessfulComponent, canActivate: [AuthGuardService]},
+  {path: 'user/bank-details', component: BankdetailsComponent, canActivate: [AuthGuardService]},
   {path: 'welcome', component: WelcomeComponent ,  canActivate: [AuthGuardService]},
   {path: 'user/dashboard', component: UserdashboardComponent,  canActivate: [AuthGuardService]},
-  {path: 'user/inbox', component: InboxComponent,  canActivate: [AuthGuardService]},
   {path: 'user/payment', component: PaymentComponent,  canActivate: [AuthGuardService]},
-  {path: 'user/imlmembrs', component: ImlMembersComponent,  canActivate: [AuthGuardService]},
-  {path: 'user/imlenroll/dashboard', component: EnrollDashbaordComponent,
-  canActivate: [AuthGuardService]},
+  {path: 'user/bankdetails', component: BankdetailsComponent,  canActivate: [AuthGuardService]},
+  {path: 'user/message', component: MessageComponent,  canActivate: [AuthGuardService]},
+
 
   {path: 'user/investors', component: InvestorsComponent,  canActivate: [AuthGuardService]},
-  {path: 'user/investors/dashboard', component: InvestorsDashboardComponent,  canActivate: [AuthGuardService]},
 
   {path: 'admin/dashboard', component: AdminDashboardComponent
    , canActivate: [AuthGuardService, AdminAuthGuard]},
@@ -77,6 +69,8 @@ const routes: Routes = [
   {path: 'admin/settings', component: AdminSettingsComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
   {path: 'admin/manage-users', component: AdminmanageUsersComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/cashout-users', component: UserCashoutComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
 ];
 

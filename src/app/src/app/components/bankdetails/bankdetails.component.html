@@ -1,0 +1,206 @@
+
+
+<link href="../../../../../assets/dash/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+<link rel="stylesheet" href="../../../../../assets/dash/vendor/bootstrap-4.1/bootstrap.min.css">
+
+<link href="../../../../../assets/dash/css/theme.css" rel="stylesheet" media="all">
+
+<div class="page-wrapper">
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar2">
+        <div class="logo">
+            <a >
+                <img src="../../../../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
+            </a>
+        </div>
+        <div class="menu-sidebar2__content js-scrollbar1">
+            <div class="account2">
+
+                <h4 class="name">MONEY MINE</h4>
+                <!-- <a href="#">Log out</a> -->
+            </div>
+
+            <!-- ######### side menu mobile -->
+            <nav class="navbar-sidebar2">
+                <ul class="list-unstyled navbar__list">
+                    <li class="active has-sub">
+                        <a class="js-arrow" [routerLink]="['/user/dashboard']">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard
+                             </a>
+                    </li>
+
+                    <li>
+                        <a [routerLink]="['/user/profile']">
+                            <i class="fas fa-chart-bar"></i>Profile</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/user/payment']">
+                            <i class="fas fa-shopping-basket"></i>Transaction</a>
+                    </li>
+
+                    <li class="has-sub">
+                        <a class="js-arrow" [routerLink]="['/admin/transaction']">
+                            <i class="fas fa-desktop"></i>Admin Panel
+                            </a>
+                    </li> <br>
+                    <li class="has-sub">
+                        <a class="js-arrow"  (click)="logout()">
+                            <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- ############ end side menu mobile -->
+        </div>
+      </aside>
+    <!-- END MENU SIDEBAR-->
+
+    <!-- PAGE CONTAINER-->
+    <div class="page-container2">
+        <!-- HEADER DESKTOP-->
+        <header class="header-desktop2">
+            <div class="section__content section__content--p30">
+                <div class="container-fluid">
+                    <div class="header-wrap2">
+                        <div class="logo d-block d-lg-none">
+                            <a href="#">
+                                <img src="../../../../../assets/dash/images/icon/logo-white.png" alt="CoolAdmin" />
+                            </a>
+                        </div>
+                        <div class="header-button2">
+                            <div class="header-button-item mr-0 js-sidebar-btn">
+                                <i  class="fa fa-bars" aria-hidden="true"></i>
+                            </div>
+                            <div class="setting-menu js-right-sidebar d-none d-lg-block">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+            <!-- ########### side menu scrolll -->
+
+        <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
+            <div class="logo">
+                <a href="#">
+                    <img src="../../../../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
+                </a>
+            </div>
+
+            <div class="menu-sidebar2__content js-scrollbar2">
+
+                <nav class="navbar-sidebar2">
+                    <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+                            <a class="js-arrow" [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >
+
+                               </a>
+
+                        </li>
+                        <li>
+                            <a [routerLink]="['/user/profile']">
+                              </a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >
+                                <i class="fas fa-tachometer-alt"></i>Dashboard
+                               </a>
+
+                        </li>
+                        <li>
+                            <a [routerLink]="['/user/profile']" routerLinkActive="router-link-active">
+                                <i class="fas fa-chart-bar"></i>Profile</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/user/payment']" routerLinkActive="router-link-active">
+                                <i class="fas fa-shopping-basket"></i>Transaction</a>
+                        </li>
+
+                        <li class="has-sub">
+                            <a class="js-arrow" [routerLink]="['/admin/transaction']" routerLinkActive="router-link-active">
+                                <i class="fas fa-desktop"></i>Admin Panel
+                            </a>
+                        </li> <br> <br>
+                        <li class="has-sub">
+                            <a class="js-arrow" (click)="logout();">
+                                <i  class="fa fa-power-off" aria-hidden="true"></i>Log out
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <div class="container">
+        <br>
+        <hr>
+
+
+        <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+
+              <small class="text-center text-danger">
+              Note: input your correct payment details. payment details cannot not be updated
+              after creation. if you need help, please contact the admin.
+              </small>
+
+              <div *ngIf="!$userBank" class="loader"></div>
+
+              <div class="card  text-center bg-info"  *ngFor="let item of $userBank ">
+                  <li><h5 class="font-weight-bold text-white"> ACCOUNT NAME : {{item.accountName}}</h5> </li>
+                  <li><h5 class="font-weight-bold text-white"> BANK :  {{item.bank}}  </h5> </li>
+                  <li> <h5 class="font-weight-bold text-white"> NUMBER:  {{item.accountNumber}}</h5> </li>
+            </div>
+            <flash-messages></flash-messages>
+            <form  *ngIf="!$userBank">
+            <!-- ################ -->
+          <div class="form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+             </div>
+                <input name="account-name" class="form-control" [(ngModel)]="AccountName"
+                placeholder="Account name" type="text" name="AccountName">
+            </div> <!-- form-group// -->
+
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-university"></i> </span>
+             </div>
+                <input name="bank" class="form-control" placeholder="Bank name"
+                [(ngModel)]="bankName" type="text" name="bankName">
+            </div> <!-- form-group// -->
+
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i  class="fa fa-sort-numeric-desc"></i> </span>
+            </div>
+                <input class="form-control" placeholder="Account number"
+                [(ngModel)]="accountNumber" type="number" name="accountNumber">
+            </div> <!-- form-group// -->
+
+            <div class="form-group">
+                <button type="submit" (click)="completeDetails()" class="btn btn-primary btn-block"> Complete </button>
+            </div> <!-- form-group// -->
+        </form>
+
+
+        </article>
+        </div> <!-- card.// -->
+
+        </div>
+
+        <!--container end.//-->
+
+        <!-- END HEADER DESKTOP-->
+
+
+
+
+        <app-footer></app-footer>
+        <!-- END PAGE CONTAINER-->
+    </div>
+
+</div>
+

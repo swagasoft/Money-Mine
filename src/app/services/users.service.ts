@@ -107,8 +107,27 @@ async createAccountBalance(balance) {
 
 async updateAcountBalance(account) {
   this.database.doc('accounts/' + account).update(account).then(val => {
-    console.log('account updated succesfful', +val);
+    console.log('account updated succesful', +val);
   }).catch(error => { console.error('error in update' + error); });
+}
+
+updateBankIfNotExist(accountName, bank, number, userEmail){
+   const userBankDetails = this.database.collection('bank-details', reff => reff.where('user','==', userEmail));
+   if(userBankDetails){
+   console.log('BANK EXIST');
+ }else{
+  console.log('BANK not EXIST');
+  this.database.collection('bank-details').add({
+    account: accountName,
+    bank_name: bank,
+    bank_number: number,
+    user: userEmail
+
+  }).then((doc)=> {
+    console.log(doc, 'CREATED SUCCESSFUL');
+  });
+
+ }
 }
 
  searchUserIfExist(identity) {
@@ -124,5 +143,13 @@ deleteTranDetails(documentId) {
   console.log('delete from  service');
   return this.database.doc('transactions/' + documentId).delete();
 }
+
+async setCashoutTozero(id, user, money){
+  this.database.collection('payment').add({user,amount: money, date: new Date() });
+  return this.database.doc('accounts/'+ id).update({cashout: 0});
+
+
+}
+
 
 }
