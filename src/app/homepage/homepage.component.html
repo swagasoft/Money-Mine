@@ -4,21 +4,16 @@
           <app-navbar></app-navbar>
 
              <!--================Feature Area =================-->
-             <section class="feature_area">
+             <!-- <section class="feature_area">
               <div class="container jarallax card-body primary-color-dark text-white"
                data-jarallax='{"speed": 0.2}'style="background-image: url('assets/profile-head.jpg');
                 background-repeat: no-repeat; background-size: cover; height: 30em; background-position: center center;">
                 <div class="row wow fadeIn">
-                  <!--Grid column-->
                   <div style="padding-top: 3%" class="wow fadeInUp text-center" data-wow-delay="0.1s" class="col-md-12 text-center text-white">
                     <h1 class="display-4 font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInUp">MONEY MINE</h1>
-                    <!-- <app-title></app-title>  -->
 
                         <div *ngIf="user$ | async as user; else newUser"
                         style="padding-top: 0%" class="wow fadeInUp text-center" data-wow-delay="0.1s" >
-
-
-
                           </div>
                         <ng-template #newUser style="padding-top: 0%" class="wow fadeInUp text-center" data-wow-delay="0.1s" >
                             <a routerLink="/login"  class="btn   btn-rounded" style="background-color: #130f03">
@@ -28,15 +23,40 @@
                               <i class="fas fa-book left">Create Account</i> </a>
                         </ng-template>
                    <h2 style="font-size: 1.2em">Get 15% returns on investment returns</h2>
-
-
                   </div>
-                  <!--Grid column-->
                 </div>
               </div>
-            </section>
+            </section> -->
 
+            <app-header></app-header>
           <!--================End Feature Area =================-->
+              <!--  banner -->
+    <div class="container-fluid main-message jumbotron text-center  text-white text-white mt-0 mt-5">
+      <h3 class=" font-weight-bold">Invest in the world's most popular assets</h3>
+      <p class="font-weight-bold">With your N1,000 subscription, you keep getting multiples of fund into your account from
+          the profit we make through other businesses we do.</p>
+    </div>
+  <!-- end banner -->
+
+
+
+       <!--  banner -->
+       <div class="jumbotron  grey lighten-4 jumbotron text-white text-white mt-0">
+        <div class="row">
+          <div class="col md-6 ">
+              <h4 class="font-weight-bold mt-5"> Build a successful future with channel1000</h4>
+              <p class="font-weight-bold text-dark">With your N1,000 subscription,
+                 you keep getting multiples of fund into your account from
+                  the profit we make through other businesses we do.</p>
+          </div>
+          <div class="col md-6">
+              <img src="../../assets/app+pics/girls.png" class=" img-fluid" alt=""/>
+          </div>
+        </div>
+      </div>
+    <!-- end banner -->
+
+
             <section class="feature_area">
             <div class="container">
               <div class="main_title">

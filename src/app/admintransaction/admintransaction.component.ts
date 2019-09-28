@@ -2,6 +2,7 @@ import { AuthService } from './../services/auth.service';
 import { UsersService } from './../services/users.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-admintransaction',
@@ -16,6 +17,7 @@ export class AdmintransactionComponent implements OnInit {
   totalTraders: number;
   totalProfitAccount: number;
   constructor( private database: AngularFirestore ,
+    private router: Router,
     private authservice: AuthService) {
 
    }
@@ -26,7 +28,7 @@ export class AdmintransactionComponent implements OnInit {
     this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
     this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
     this.loadScript('../../assets/dash/js/main.js');
-
+    this.alignWindow();
 
     let sumAmount = 0;
     this.database.collection('accounts', reff => {
@@ -74,6 +76,14 @@ export class AdmintransactionComponent implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+  alignWindow(){
+    this.router.events.subscribe((evt) => {
+      if(!(evt instanceof NavigationEnd)){
+        return ;
+      }
+      window.scrollTo(0,0);
+    });
   }
 
 

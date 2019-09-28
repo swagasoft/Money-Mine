@@ -45,6 +45,7 @@ userAccountId: any;
     this.alignWindow();
     this.myAccountDetails$.subscribe(response => {
       this.userAcountFiles = response;
+      console.log(this.userAcountFiles);
     });
 
     this.database.collection('accounts',  reference => {

@@ -34,7 +34,7 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" [routerLink]="['/admin/dashboard']">
+                        <a class="js-arrow" [routerLink]="['/admin/transaction']">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                              </a>
                     </li>
@@ -53,7 +53,7 @@
                     </li>
 
                     <li class="has-sub">
-                        <a class="js-arrow" [routerLink]="['/admin/settings']">
+                        <a class="js-arrow" [routerLink]="['/admin/settings']" routerLinkActive="router-link-active" >
                             <i class="fa fa-cog"></i>Settings
                             </a>
                     </li> <br>
@@ -155,6 +155,17 @@
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
+
+                        <div class="d-flex justify-centent-center">
+                            <div class="col">
+                                <flash-messages></flash-messages>
+                                <!-- loader -->
+                                <div *ngIf="loader">
+                                    <div class="loader"></div>
+                                    </div>
+                            </div>
+                          </div>
+
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
 
@@ -166,26 +177,39 @@
             </div>
         </section>
         <!-- END BREADCRUMB-->
-        <div class="container">
-            <div *ngIf="showProgress"> please wait...
-            <div class="loader"></div>
+
+        <!-- modal -->
+
+        <!-- end modal -->
+
+
+        <div class="container d-flex justify-centent-center">
+
+
+
+          <ol class="rounded-list row d-flex justify-centent-center">
+            <div class="col">
+                <button class="btn  btn-success btn-block  mt-1 mb-1" (click)="pushMoneyToTrade()" > START TRADE</button>
+                <button class="btn  btn-danger mt-1 nb-1 btn-block" (click)="closeAllTrade()" > END TRADE</button>
+
+
+
             </div>
-            <flash-messages></flash-messages>
 
+            <div class="col ">
+              <li><h6 class="font-weight-bold mb-1 mt-1"> Trading: ₦ {{allTrade | number}} </h6></li>
+              <li><h6 class="font-weight-bold mb-1 mt-1"> Count:{{ tradeCount | number}} % </h6></li>
 
-
-
-
-          <ol class="rounded-list">
-              <button class="btn  btn-danger" (click)="pushMoneyToTrade()" > Start Trade</button>
-              <p class="text-center text-white">share trade profit to all users </p>
-              <form #account_form="ngForm" (submit)="shareprofitToAll(account_form);">
+            </div>
+            <div class="col">
+              <p class="text-center  text-white">share trade profit to all users </p>
+              <form *ngIf="allTrade" #account_form="ngForm" (submit)="shareprofitToAll(account_form);">
                   <input type="number" id="newField" placeholder="value in percentage"
                    name="profit" [(ngModel)]="profit" />
                   <input name="addFieldButton" type="button" value="%" />
-                  <input type="submit" value="SHARE PROFIT">
+                  <input type="submit" class="btn-block mt-1 mb-1" value="SHARE PROFIT">
               </form>
-              <li><h6> Trade: ₦ {{trade | number}} </h6></li>
+            </div>
 
           </ol>
 

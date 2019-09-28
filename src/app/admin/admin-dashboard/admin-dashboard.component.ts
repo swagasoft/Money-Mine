@@ -15,6 +15,7 @@ export class AdminDashboardComponent implements OnInit {
     this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
     this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
     this.loadScript('../../assets/dash/js/main.js');
+    this.alignWindow();
   }
 
   alignWindow(){
