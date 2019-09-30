@@ -183,85 +183,31 @@
 
 
 
+<table style="width:65%;height:90%;" align="center">
 
-        <form #searchForm="ngForm" (submit)="searchUser(searchForm)">
-        <div class="simple-login-container">
-          <div class="row">
-              <div class="col-md-12 form-group">
-                  <input type="text" class="form-control" name="email" required [pattern]="emailRegex"
-                   [(ngModel)]="model.email" placeholder="enter user email." #email="ngModel">
-                   <label >
-                      <div *ngIf="searchForm.submitted && email.errors" class=" text-danger fony-weight-bold text-center">
-                          <label *ngIf="email?.errors.required && email.touched" >email is required</label>
-                          <label *ngIf="email?.errors.pattern && email.touched" >email must be valid.</label>
-                        </div>
-                   </label>
-              </div>
-          </div>
+    <tr>
+    <th colspan="4" class="text-info"><h3> CASHOUT LIST</h3></th>
+    </tr>
 
-          <div class="row">
-              <div class="col-md-12 form-group">
-                  <input type="submit"  [disabled]="(!searchForm.valid)"
-                   class="btn  btn-login btn-sm btn-outline" >
-              </div>
-          </div>
-      </div>
-    </form>
+    <tr style="background-color:#32A9EE;color:white;">
+    <th> count</th>
+    <th>cashout</th>
+    <th>Date</th>
+    <th>Email</th>
+    <th>Pay </th>
+    </tr>
 
-                            <!-- loader -->
-                            <div class="container" *ngIf="loading">
-                              <div class="col d-flex justify-content-center">
-                                  <div  class="loader"></div>
-                              </div>
-                            </div>
+    <tr *ngFor="let item of allCashout; index as i">
+    <td><b>{{ i + 1 }}</b></td>
+    <td># {{item.cashout | number}} </td>
+    <td>{{item.created.toDate() | date:'medium'}} </td>
+    <td>{{item.email}} </td>
+    <td>  <button (click)="payoutUser(item.id)" ><i class="fa fa-check fa-lg text-success"></i> </button> </td>
+    </tr>
 
 
-                <!-- ### edit form -->
-                <div class="wrapper fadeInDown" *ngIf="showAcountForm">
-                    <div id="formContent">
-                      <!-- Tabs Titles -->
 
-                      <div class="fadeIn first">
-                        <h1>update account</h1>
-                      </div>
-                      <form #updateForm="ngForm" (submit)="updateUser(updateForm)">
-                        <input type="number"  class="fadeIn second" [(ngModel)]="updateAccount.account"
-                        name="account" placeholder="amount in ₦" value="" >
-
-                        <input type="submit" class="fadeIn fourth" value="update">
-                      </form>
-                    </div>
-                  </div>
-    <!-- ### end edit form ### -->
-      <!-- list user -->
-      <ol>
-        <div *ngFor="let item of  customerAccount">
-            <li  class="bg-info"> ACCOUNT DETAILS
-                  <button (click)="clickEdit()" class="btn btn-outline-danger m-3 btn-sm" > edit</button></li>
-            <li>Email   :  {{item.email}} </li>
-          <li>Account   :  ₦ {{item.amount | number}} </li>
-            <li> Cashout : ₦ {{item.cashout | number}} </li>
-            <li>Profit   :  ₦ {{item.profit | number}} </li>
-            <li>Trading  :  ₦ {{item.trading | number}} </li>
-            <li> </li>
-
-        </div>
-                 <br>
-        <div *ngFor="let item of  customerDetails">
-            <li class="bg-info"> CUSTOMER INFO </li>
-            <li>Name   :  {{item.fullname}} </li>
-            <li>Role  :  {{item.role}} </li>
-            <li>Phone  :  {{item.number}} </li>
-        </div>
-                 <br>
-        <div *ngFor="let item of  bankDetails">
-            <li class="bg-info">BANK INFO </li>
-            <li> Account-Name   :  {{item.accountName}} </li>
-            <li>bank :  {{item.bank}} </li>
-            <li>Number:  {{item.accountNumber }} </li>
-        </div>
-
-      </ol>
+    </table>
 
         <!-- END PAGE CONTAINER-->
     <app-footer></app-footer>

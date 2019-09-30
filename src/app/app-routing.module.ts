@@ -1,3 +1,4 @@
+import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
 import { MessageComponent } from './../message/message.component';
 import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetails.component';
 import { AdminmanageUsersComponent } from './adminmanage-users/adminmanage-users.component';
@@ -59,6 +60,8 @@ const routes: Routes = [
   {path: 'user/investors', component: InvestorsComponent,  canActivate: [AuthGuardService]},
 
   {path: 'admin/dashboard', component: AdminDashboardComponent
+   , canActivate: [AuthGuardService, AdminAuthGuard]},
+  {path: 'admin/cashouts', component: AdminCashoutComponent
    , canActivate: [AuthGuardService, AdminAuthGuard]},
   {path: 'admin/messages', component: AdminMessageComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },

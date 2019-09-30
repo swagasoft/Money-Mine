@@ -180,8 +180,11 @@
 <!-- Section heading -->
 <h2 class="h1-responsive font-weight-bold text-center my-5"  *ngIf="user$ | async as user;"
 > {{user.email}}</h2>
+<a mdbBtn [routerLink]="['/user/dashboard']"  type="button "
+class="btn btn-lg btn-info btn-indigo" mdbWavesEffect> continue to dashboard</a>
 <!-- Section description -->
 <p class="text-center w-responsive mx-auto mb-5">We trade your profit</p>
+
 
 <!-- Grid row -->
 <div class="row">

@@ -48,6 +48,10 @@
                             <i class="fas fa-shopping-basket"></i>Transactions</a>
                     </li>
                     <li>
+                        <a [routerLink]="['/admin/cashouts']">
+                            <i class="fas fa-shopping-basket"></i>Cashout</a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/admin/notification']">
                             <i class="fas fa-shopping-basket"></i>Notifications</a>
                     </li>
@@ -127,7 +131,11 @@
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/transaction']"  routerLinkActive="router-link-active">
-                                    <i class="fas fa-shopping-basket"></i>Transaction</a>
+                                   <i class="fas fa-shopping-basket"></i>Transaction</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/cashouts']"  routerLinkActive="router-link-active">
+                                   <i class="fas fa-shopping-basket"></i>Cashout</a>
                             </li>
 
                             <li class="has-sub">

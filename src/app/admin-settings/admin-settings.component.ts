@@ -43,23 +43,12 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
           this.tradeCount = val['0']['trade_count'];
     });
 
-
-       // load script
   this.loadScript('../../assets/dash/vendor/bootstrap-4.1/popper.min.js');
   this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
   this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
   this.loadScript('../../assets/dash/js/main.js');
   this.loader = false;
-
-  let trade = 0;
-  this.database.collection('accounts', reff => {
-    return reff.where('trading', '>', 0); }).valueChanges().subscribe((val) => {
-      val.map(res => trade  += res['trading']);
-    });
-
-  setTimeout(() => {
-      this.allTrade = trade;
-    }, 2000);
+    this.getTotalTrade();
 
   this.alignWindow();
 
@@ -72,6 +61,15 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
       }
       window.scrollTo(0, 0);
     });
+  }
+
+  getTotalTrade(){
+    let trade = 0;
+    this.database.collection('accounts', reff => {
+      return reff.where('trading', '>', 0); }).valueChanges().subscribe((val) => {
+        val.map(res => trade  += res['trading']);
+        this.allTrade = trade;
+      });
   }
 
   async pushMoneyToTrade() {
@@ -93,12 +91,15 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
         return reff.where('amount', '>', 0);
       }).get().toPromise().then(  docs => {
         docs.forEach(doc => {
-          this.database.doc(`accounts/${doc.id}`).update({amount: 0}).then(() => {
+          this.database.doc(`accounts/${doc.id}`).update({amount: 0}).finally(() => {
             console.log('all account set to zero successfully..');
+            this.loader = false;
           });
         });
       });
-    this.loader = false;
+
+      this.getTotalTrade();
+
 
       }
 
@@ -124,12 +125,13 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
       }).get().toPromise().then(  docs => {
         docs.forEach(doc => {
           this.database.doc(`accounts/${doc.id}`).update({trading: 0, profit: 0}).then(() => {
-            console.log('all account set to zero successfully..');
+            console.log('all trading set to zero successfully..');
           });
         });
       });
 
     this.setAdminCounterToZero();
+    this.getTotalTrade();
     this.loader = false;
 
       }

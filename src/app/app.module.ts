@@ -76,6 +76,7 @@ import { SidemenuComponent } from './headermenu/headermenu.component';
 import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetails.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MessageComponent } from '../message/message.component';
+import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
 
 
 
@@ -120,6 +121,7 @@ import { MessageComponent } from '../message/message.component';
     SidemenuComponent,
     BankdetailsComponent,
     MessageComponent,
+    AdminCashoutComponent,
 
 
 

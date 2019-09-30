@@ -1,171 +1,167 @@
-button:focus {
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.container-fluid.main{
+  position: relative; /* To make the navbar positions relative to this container */
+  padding: 0;
 }
 
-
-img {
-  // display: inline-block;
-  height: 100%;
-  max-width: 100%;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1300px;
-  }
-}
-
-#main-carousel {
-  margin-top: 20px;
-  text-shadow: 1px 2px 3px #0000001f;
-}
-
-#main-carousel h5 {
-  font-size: 2rem;
-  font-family: inherit;
-  color: rgb(216, 142, 5);
-  font-weight: 300;
-  -webkit-animation: leftToRight 1s ease-in-out .5s;
-          animation: leftToRight 1s ease-in-out .5s;
-}
-
-#main-carousel h2 {
-  font-size: 3.6rem;
-  font-weight: 900;
-  font-family: inherit;
-  letter-spacing: 2px;
-  -webkit-animation: topToBottom 1s linear .3s;
-          animation: topToBottom 1s linear .3s;
-}
-
-
-#main-carousel .carousel-caption {
-  right: 15%;
-  bottom: unset;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  text-align: left;
-}
-
-#main-carousel .carousel-control-next,
-#main-carousel .carousel-control-prev {
-  top: 50%;
-  bottom: unset;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  width: 4%;
-  font-size: 3.5rem;
-  background-color: rgba(255, 255, 255, 0.2);
-  padding: 5px;
-  -webkit-transition: 5s all;
-  transition: 5s all;
-}
-
-#main-carousel .carousel-control-next {
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-}
-
-#main-carousel .carousel-control-prev {
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-}
-
-#main-carousel .btn-info {
-  background: transparent;
-  text-transform: uppercase;
+.navbar-default {
+  background-image: none;
+  background-color: transparent; /* Make the menu become transparent */
+  border-radius: 0px;
   border: 0;
-  font-family: "helveticaregular";
-  font-size: 1.8rem;
-  position: relative;
-  padding: 20px 0 0;
-  margin: 20px 0 0;
-}
-
-#main-carousel .btn-info::before {
-  content: '';
-  position: absolute;
+  box-shadow: none;
+  padding: 10px;
+  position: absolute; /* Make the menu out of the document flow so it can placed anywhere without disturbing other widgets */
   top: 0;
   left: 0;
-  width: 63px;
-  height: 5px;
-  background-color: #fff;
+  right: 0;
+  z-index: 10; /* If you delete this line, your menu link won't be clicked because it is behind the background. Applying this code bring the menu in front of the background */
 }
 
+.navbar-default .navbar-brand {
+  font-family: Verdana;
+  color: #ffffff;
+  font-size: 20px;
+}
 
-@-webkit-keyframes leftToRight {
-  0% {
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+
+.navbar-default .navbar-toggle:hover {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle:focus {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.carousel .background {
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 700px;
+}
+
+@media (max-width:991px) {
+  .carousel .background {
+    background-size: cover; /* To make the background image looks good */
+  }
+}
+
+.carousel .background.a {
+  background-image: url("../../assets/new_pics/pics6.jpg");
+}
+
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  transition: opacity 0.5s; /* The 0.5s describes the duration to make the opacity from 0 to 1 */
+}
+
+// .carousel-fade .carousel-inner .active {
+//   opacity: 1;
+// }
+
+/* CSS Hack to trigger GPU for smooth transition */
+@media all and (transform-3d),
+(-webkit-transform-3d) {
+  .carousel-fade .carousel-inner > .item.next,
+  .carousel-fade .carousel-inner > .item.active.right {
     opacity: 0;
-    -webkit-transform: translateX(-80px);
-            transform: translateX(-80px);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
-  80% {
-    -webkit-transform: translateX(20px);
-            transform: translateX(20px);
-    opacity: .7;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes leftToRight {
-  0% {
+  .carousel-fade .carousel-inner > .item.prev,
+  .carousel-fade .carousel-inner > .item.active.left {
     opacity: 0;
-    -webkit-transform: translateX(-80px);
-            transform: translateX(-80px);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
-  80% {
-    -webkit-transform: translateX(20px);
-            transform: translateX(20px);
-    opacity: .7;
-  }
-  100% {
+  .carousel-fade .carousel-inner > .item.next.left,
+  .carousel-fade .carousel-inner > .item.prev.right,
+  .carousel-fade .carousel-inner > .item.active {
     opacity: 1;
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
 }
+/* CSS Hack to trigger GPU for smooth transition */
 
-@-webkit-keyframes topToBottom {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-50px);
-            transform: translateY(-50px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-            transform: translateY(10px);
-    opacity: .7;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
+.covertext {
+  position: absolute; /* To make the div to be place anywhere. It is out of the document flow */
+  top: 200px; /* The distance between the div with the top of document */
+  left: 0px; /* Make the div full width */
+  right: 0px; /* Make the div full width */
 }
 
-@keyframes topToBottom {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-50px);
-            transform: translateY(-50px);
-  }
-  80% {
-    -webkit-transform: translateY(10px);
-            transform: translateY(10px);
-    opacity: .7;
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
+.title {
+  font-family: Verdana;
+  font-weight: 600;
+  font-size: 60px;
+  color: #ffffff;
+  text-align: center;
 }
 
+.subtitle {
+  font-family: Verdana;
+  font-size: 23px;
+  color: #ffffff;
+  text-align: center;
+}
 
+.explore {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.explore .btn-lg,
+.explore .btn-lg:hover {
+  border-radius: 30px;
+  padding: 15px 25px;
+  font-size: 22px;
+  background-image: none;
+  background-color: #FF4000;
+  border-color: #FF4000;
+  color: #ffffff;
+}
+
+.btn,
+.btn:hover {
+  border-radius: 0px;
+  background-image: none;
+  background-color: #FF4000;
+  border-color: #FF4000;
+  color: #ffffff;
+  margin-bottom: 20px;
+  box-shadow: none;
+  outline: none;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  color: #ffffff;
+  outline: none;
+}
