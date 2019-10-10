@@ -2,9 +2,10 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ToastrModule } from 'ngx-toastr';
 import { UsersService } from './../services/users.service';
 
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -27,15 +28,10 @@ export class LoginComponent implements OnInit {
   loading: boolean;
 
   constructor(private usersService: UsersService  ,
-              private toastr : ToastrModule,
+              private route: ActivatedRoute,
+              private angularFireAuth: AngularFireAuth,
               private _flashMessage: FlashMessagesService,
               private authService: AuthService, private router: Router) {
-    // authService.user$.subscribe(user => {
-    //   if (user) {
-
-    //   }
-    // });
-
 
     this.selectedVal = 'login';
     this.isForgotPassword = false;
@@ -46,37 +42,28 @@ export class LoginComponent implements OnInit {
   this.userDetails = this.authService.isUserLoggedIn();
 }
 
- // Login user with  provided Email/ Password
- loginUser() {
-   this.loading = true;
-  this.serverError = this.authService.loginError;
-   this.authService.login(this.emailInput, this.passwordInput)
-    .then(res => {
-      console.log(this.serverError);
-      this.loading = false;
+async loginUser() {
+  this.loading = true;
+ let email = this.emailInput.toLowerCase();
+  let password = this.passwordInput;
+  console.log(email, password);
+  const returnUrl  = this.route.snapshot.queryParamMap.get('returnUrl') || '/welcome';
 
-      if(this.serverError  != undefined){
-    this._flashMessage.show(`invalid credentials!`,
+  return await this.angularFireAuth.auth.signInWithEmailAndPassword( email, password).then(value => {
+    this.loading = false;
+    this.router.navigateByUrl(returnUrl);
+    localStorage.setItem('currentUserEmail', email);
+  }).catch(error => {
+    this.loading = false;
+    window.localStorage.clear();
+    window.localStorage.removeItem('currentUserEmail');
+    this._flashMessage.show(`${error.code}`,
     { cssClass: 'text-center bg-danger text-white  font-weight-bold', timeout: 4000 });
 
-    this.serverError = null;
-    console.log('second',this.serverError);
-  }
 
-    }, err => {
-      this.loading = false;
-      this._flashMessage.show(`${err}`,
-{ cssClass: 'text-center bg-danger text-white font-weight-bold', timeout: 4000 });
-
-    })
-   localStorage.setItem('currentUserEmail', this.emailInput.toLocaleLowerCase());
-
+  });
 
 }
-
-
-
-
 
   ngOnInit() {
     console.log(this.serverError);

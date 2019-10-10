@@ -106,7 +106,7 @@
             <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none">
                 <div class="logo">
                     <a href="#">
-                        <img src="../../assets/dash/images/icon/logo-white.png" alt="logo" />
+                        <img src="../../assets/dash/images/icon/logo-white.png" alt="Cool Admin" />
                     </a>
                 </div>
 
@@ -115,32 +115,38 @@
                     <nav class="navbar-sidebar2">
                         <ul class="list-unstyled navbar__list">
                             <li class="active has-sub">
+
                             </li>
                             <li>
 
                             </li>
                             <li class="active has-sub">
-                                <a class="js-arrow" [routerLink]="['/admin/transaction']" routerLinkActive="router-link-active" >
+                                <a class="js-arrow" [routerLink]="['/admin/transaction']"
+                                routerLinkActive="router-link-active" >
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                    </a>
 
                             </li>
                             <li>
-                                <a [routerLink]="['/admin/manage-users']"  routerLinkActive="router-link-active">
+                                <a [routerLink]="['/admin/manage-users']" routerLinkActive="router-link-active">
                                     <i class="fa fa-user"></i>Manage user</a>
                             </li>
                             <li>
-                                <a [routerLink]="['/admin/transaction']"  routerLinkActive="router-link-active">
-                                   <i class="fas fa-shopping-basket"></i>Transaction</a>
+                                <a [routerLink]="['/admin/transaction']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-tint"></i>Transaction</a>
                             </li>
                             <li>
-                                <a [routerLink]="['/admin/cashouts']"  routerLinkActive="router-link-active">
-                                   <i class="fas fa-shopping-basket"></i>Cashout</a>
+                                <a [routerLink]="['/admin/cashouts']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-money"></i>Cashouts</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/notification']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-bell"></i>Notification</a>
                             </li>
 
                             <li class="has-sub">
-                                <a class="js-arrow" [routerLink]="['/admin/settings']"  routerLinkActive="router-link-active">
-                                    <i class="fa fa-cog"></i>Settings
+                                <a class="js-arrow" [routerLink]="['/admin/settings']" routerLinkActive="router-link-active">
+                                    <i class="fas fa-cog"></i>Settings
                                 </a>
                             </li> <br> <br>
                             <li class="has-sub">

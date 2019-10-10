@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <!--Section: Contact v.2-->
 <section class="mb-4">
 
@@ -11,25 +13,32 @@
 
       <!--Grid column-->
       <div class="col-md-9 mb-md-0 mb-5">
-          <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+          <form  name="contact-form" #contactForm="ngForm" (submit)="contactUs(contactForm)">
 
               <!--Grid row-->
               <div class="row">
 
-                  <!--Grid column-->
-                  <div class="col-md-6">
-                      <div class="md-form mb-0">
-                          <input type="text" id="name" name="name" class="form-control">
-                          <label for="name" class="">Your name</label>
-                      </div>
-                  </div>
-                  <!--Grid column-->
+
 
                   <!--Grid column-->
                   <div class="col-md-6">
                       <div class="md-form mb-0">
-                          <input type="text" id="email" name="email" class="form-control">
-                          <label for="email" class="">Your email</label>
+                          <label for="message">Your name</label> <br>
+                          <input type="text"  name="name" #name="ngModel"
+                           [(ngModel)]="model.name" class="form-control" required>
+                           <small *ngIf="name.invalid && name.touched;"
+                           class="validation-error bg-danger text-white">name is required</small>
+                      </div>
+                  </div>
+                  <!--Grid column-->
+                  <!--Grid column-->
+                  <div class="col-md-6">
+                      <div class="md-form mb-0">
+                          <label for="message">Your Email</label> <br>
+                          <input type="email"  name="email" #email="ngModel"
+                           [(ngModel)]="model.email" class="form-control" required>
+                           <small *ngIf="email.invalid && email.touched;"
+                           class="validation-error bg-danger text-white">email is required</small>
                       </div>
                   </div>
                   <!--Grid column-->
@@ -41,8 +50,11 @@
               <div class="row">
                   <div class="col-md-12">
                       <div class="md-form mb-0">
-                          <input type="text" id="subject" name="subject" class="form-control">
-                          <label for="subject" class="">Subject</label>
+                          <label for="message">Subject</label> <br>
+                          <input type="text" #subject="ngModel" [(ngModel)]="model.subject"
+                          name="subject" class="form-control" required>
+                          <small *ngIf="subject.invalid && subject.touched;"
+                           class="validation-error bg-danger text-white">subject is required</small>
                       </div>
                   </div>
               </div>
@@ -55,20 +67,26 @@
                   <div class="col-md-12">
 
                       <div class="md-form">
-                          <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
                           <label for="message">Your message</label>
+                          <br>
+                          <textarea type="text" #message="ngModel" [(ngModel)]="model.message" name="message"
+                           rows="2" class="form-control md-textarea" required></textarea>
+                           <small *ngIf="message.invalid && message.touched;"
+                           class="validation-error bg-danger text-white">message cannot be empty</small>
                       </div>
 
                   </div>
               </div>
               <!--Grid row-->
+              <div class="text-center text-md-left">
+                <button class="btn btn-primary" [disabled]="!contactForm.valid"
+                 type="submit"><i class="fa fa-spinner  fa-spin" *ngIf=loading ></i> Send</button>
+            </div>
+            <div class="status"> <flash-messages></flash-messages> </div>
 
           </form>
 
-          <div class="text-center text-md-left">
-              <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
-          </div>
-          <div class="status"></div>
+
       </div>
       <!--Grid column-->
 
@@ -93,4 +111,6 @@
   </div>
 
 </section>
+
+<app-footer></app-footer>
 <!--Section: Contact v.2-->

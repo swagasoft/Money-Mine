@@ -31,20 +31,6 @@ export class AuthService  implements OnInit {
                )  {
           this.user$ = angularFireAuth.authState;
 
-
-  }
-
-  async login(email: string, password: string) {
-    const returnUrl  = this.route.snapshot.queryParamMap.get('returnUrl') || '/welcome';
-
-    return await this.angularFireAuth.auth.signInWithEmailAndPassword(email, password).then(value => {
-      this.router.navigateByUrl(returnUrl);
-    }).catch(error => {
-      console.log(error);
-      this.loginError = error;
-
-    });
-
   }
 
   async storeUserDetails(credentials) {
@@ -65,6 +51,7 @@ export class AuthService  implements OnInit {
   async sendEmailVerification() {
     return await this.angularFireAuth.auth.currentUser.sendEmailVerification();
   }
+
 
   async sendPasswordResetEmail(passwordResetEmail: string) {
     return await this.angularFireAuth.auth.sendPasswordResetEmail(passwordResetEmail);

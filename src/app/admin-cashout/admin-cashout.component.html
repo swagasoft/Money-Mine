@@ -202,7 +202,8 @@
     <td># {{item.cashout | number}} </td>
     <td>{{item.created.toDate() | date:'medium'}} </td>
     <td>{{item.email}} </td>
-    <td>  <button (click)="payoutUser(item.id)" ><i class="fa fa-check fa-lg text-success"></i> </button> </td>
+    <td class="bg-success">  <button (click)="payoutUser(item.id, item.email, item.cashout)"><i
+       class="fa fa-check fa-lg text-white"></i> </button> </td>
     </tr>
 
 

@@ -108,6 +108,23 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 // end desc
 
 
-// information style
+// bannner 3 styling...
+/* Required for full background image */
 
-//end  information  style
+
+.jarallax {
+  height: 100%;
+  background-image: url("../../assets/new_pics/background-cement.jpg");
+  height: 100vh;
+}
+
+@media (max-width: 740px) {
+
+
+}
+
+
+h5 {
+  letter-spacing: 3px;
+}
+//end bannner 3 styling...

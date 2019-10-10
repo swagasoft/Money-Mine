@@ -1,83 +1,84 @@
 <app-navbar></app-navbar>
-<header class="main-header">
 
-    <!-- Full Page Intro -->
-    <div class=" jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('assets/profile-head.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
-      <!-- Mask & flexbox options-->
-      <div class="mask rgba-purple-slight d-flex justify-content-center align-items-center">
-        <!-- Content -->
-        <div class="container">
-          <!--Grid row-->
-          <div class="row wow fadeIn">
-            <!--Grid column-->
-            <div class="col-md-12 text-center text-white">
-              <h1 class="display-4 font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInUp">MONEY MINE</h1>
-              <h5 class="pt-md-5 pt-sm-2 pt-5 pb-md-5 pb-sm-3 pb-5 wow fadeInUp" data-wow-delay="0.2s">
-                  FAQ </h5>
-
-            </div>
-            <!--Grid column-->
-          </div>
-          <!--Grid row-->
-        </div>
-        <!-- Content -->
-      </div>
-      <!-- Mask & flexbox options-->
+<!-- header -->
+<div class="jumbotron card card-image mb-5" style="background-image: url(../../assets/new_pics/background-cement.jpg);">
+  <div class="text-white text-center py-5 px-4">
+    <div>
+      <h2 class="card-title text-dark h1-responsive pt-3 mr-5 mb-5 font-weight-bold">
+        <i class="fa fa-question fa-lg text-success m-2"></i>FAQ</h2>
+      <p class="mx-5 mb-5 text-dark font-weight-bold">
+      </p>
+      <a [routerLink]="['/']" class="btn btn-outline-dark btn-md"><i class="fas fa-home left"></i> HOME</a>
     </div>
+  </div>
+</div>
+<!-- end header -->
 
-  </header>
-  <!-- Main navigation -->
+<!-- questioning... -->
 
-<div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Frequently ask questions</h5>
-      <p class="card-text"></p>
-      <a routerLink="/" class="btn btn-primary">Home page</a>
-    </div>
-    <div class="card-footer text-muted">
+<div class="body">
+  <div class='centerplease'>
+    MONEY MINE Frequently Asked Questions
+  </div>
+  <br>
+
+  <div class="content">
+  <div>
+    <input type="checkbox" id="question1" name="q"  class="questions">
+    <div class="plus">+</div>
+    <label for="question1" class="question">
+      How do I earn from Money mine?
+    </label>
+    <div class="answers">
+      You can earn from money mine as an investor.
 
     </div>
   </div>
-  <div class="text-center ">
-  <h6 class="card-title"><strong>How do I earn from Money mine?  </strong></h6>
-      <p class="card-text">
-          You can earn from money as a member or as an investor.
-          As a member you earn a percentage quote of every investor you bring.
-      </p>
 
-  <h6 class="card-title"><strong>How do I become an Investor?   </strong></h6>
-      <p class="card-text">
-          You become an investor by an invitation from an agent with a unique ref number.
-      </p>
-  <h6 class="card-title"><strong>What is the minimum capital requirement?    </strong></h6>
-      <p class="card-text">
-          the minimum requirement for an investor to invest is fifty thousand
-      </p>
+  <div>
+    <input type="checkbox" id="question2" name="q" class="questions">
+    <div class="plus">+</div>
+    <label for="question2" class="question">
+      How do I become an Investor?
+    </label>
+    <div class="answers">
+      You become an investor by an creating <a [routerLink]="['/register']" > account</a> with money mine.
+    </div>
+  </div>
 
-  <h6 class="card-title"><strong>How do I withdraw my earnings? </strong></h6>
-      <p class="card-text">
-          Earnings at money mine are sent directly to the account details provided on the platform.
-      </p>
+  <div>
+    <input type="checkbox" id="question3" name="q" class="questions">
+    <div class="plus">+</div>
+    <label for="question3" class="question">
+      What is the minimum capital requirement?
+    </label>
+    <div class="answers">
+      The minimum requirement for an investor to invest is hundred thousand
     </div>
 
+  </div>
+    <div>
+    <input type="checkbox" id="question4" name="q" class="questions">
+    <div class="plus">+</div>
+    <label for="question4" class="question">
+      How do I withdraw my earnings?
+    </label>
+    <div class="answers">
+      Earnings at money mine are sent directly to the account details provided on the platform.
+    </div>
+  </div>
+  </div>
+  </div> <!-- end of body !-->
 
-  <div class="card">
-      <div class="card-body">
-        How can i open account?
-      </div>
-    </div>
-  <div class="card">
-      <div class="card-body">
-        How do i check the status of my application?
-      </div>
-    </div>
-  <div class="card">
-      <div class="card-body">
-        How do i found my account?
-      </div>
-    </div>
+  <div class="footer">
+    <ul class="contact">
+
+      <!-- <li> <a  href="mailto:swagasoft@gmail.com?Subject= money mine contact us" target="_top">E-mail Us</a> </li> -->
+
+    </ul>
+
+<!-- end questioning... -->
+
+
 
     <app-footer></app-footer>

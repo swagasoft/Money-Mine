@@ -19,6 +19,7 @@ getProfile: any;
 userAcountFiles: any;
 getUser: string;
 userAccountId: any;
+doc_id: any;
 
 
 
@@ -47,11 +48,13 @@ userAccountId: any;
       this.userAcountFiles = response;
       console.log(this.userAcountFiles);
     });
+    console.log(this.getUser);
 
     this.database.collection('accounts',  reference => {
       return reference.where('email','==',  this.getUser)
     }).get().toPromise().then((doc)=>  {
       this.userAccountId = doc.docs['0'].id;
+      console.log(doc);
     });
 
     this.getProfile.subscribe( response => {
@@ -69,14 +72,15 @@ userAccountId: any;
     const collectionRef =  this.database.collection('accounts');
     await collectionRef.doc(this.userAccountId).get().toPromise().then((doc)=> {
      console.log(doc.data());
+     this.doc_id = doc.id;
      const userAmount = doc.data().amount;
      const storeDate = doc.data().created.toDate();
      const nowDate = Date.now();
-     const days = 100568204436354;
-     console.log('STORE DATE',storeDate);
+     const days = 1005682044;
+     console.log('STORE DATE', storeDate);
      console.log('TODAY', nowDate);
      const diff =  nowDate - storeDate;
-     console.log('DIFF',diff);
+     console.log('DIFF', diff);
 
 
      if(userAmount > 0){
@@ -86,12 +90,14 @@ userAccountId: any;
         { cssClass: 'bg-danger text-white font-weight-bold text-center', timeout: 5000 });
 
       }
-      else{
-        this.database.doc(`accounts/${doc.id}`).update({cashout: userAmount});
-        this.database.doc(`accounts/${doc.id}`).update({amount: 0}).then(()=> {
-        this._flashMessagesService.show('Cashout successful',
-         { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
-        });
+      else {
+        console.log(this.doc_id);
+        // this.database.doc(`accounts/${this.doc_id}`).update({cashout: userAmount});
+        // this.database.doc(`accounts/${this.doc_id}`).update({amount: 0}).then(()=> {
+
+        // this._flashMessagesService.show('Cashout successful',
+        //  { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
+        // });
       }
 
     } else {

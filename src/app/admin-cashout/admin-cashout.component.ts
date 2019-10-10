@@ -70,8 +70,12 @@ allCashout: any;
         });
      }
 
-     payoutUser(id){
+    async payoutUser(id, email, amount){
        console.log(id);
+       await this.database.doc(`accounts/${id}`).update({cashout:0});
+       await this.database.collection('payout').add({amount:amount, email:email, id:id}).then((doc)=> {
+         console.log('payour successful...')
+       });
      }
 
 

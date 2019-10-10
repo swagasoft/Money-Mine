@@ -1,28 +1,6 @@
 /* Required for full background image */
 
-html,
-body,
-header,
-.view {
-height: 100%;
-}
 
-@media (max-width: 740px) {
-html,
-body,
-header,
-.view {
-height: 1000px;
-}
-}
-@media (min-width: 800px) and (max-width: 850px) {
-html,
-body,
-header,
-.view {
-height: 650px;
-}
-}
 
 .top-nav-collapse {
 background-color: #3f51b5 !important;

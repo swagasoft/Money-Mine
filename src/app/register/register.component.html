@@ -1,6 +1,6 @@
 
 
-<form action="" #regform="ngForm" (submit)="formSubmit(regform)">
+<form #regform="ngForm" (submit)="createNewUser(regform)">
   <div class="simple-login-container jumbotron  text-white">
     <h2> Create Account</h2>
 
@@ -45,7 +45,8 @@
 
     <div class="row">
         <div class="col-md-12 form-group">
-            <div *ngIf="password.value !== password_conf.value;" class="validation-error bg-danger text-white">password not match</div>
+            <small *ngIf="password.value !== password_conf.value;"
+            class="validation-error bg-danger text-white">password not match</small>
             <input type="password" id="defaultLoginFormPassword"  name="password_conf" value="" id="password_conf"
             class="form-control mb-4" placeholder="Confirm Password" (change)="confirmInputPassword()" #password_conf required>
         </div>
@@ -61,9 +62,15 @@
               </div>
         </div>
     </div>
+      <!-- flash msg -->
+      <div class="container row justify-centent-center">
+        <div class="flash">
+          <flash-messages></flash-messages>
+        </div>
+      </div>
     <div class="row">
         <div class="col-md-12 form-group">
-    <button class="btn btn-success btn-block "  [disabled]="(!regform.valid)"
+    <button class="btn btn-success btn-block "  [disabled]="(!regform.valid && password != password_conf)"
     id="submitBtn" type="submit"> <i class="fa fa-spinner  fa-spin" *ngIf=loading ></i>
     Create Account</button>
         </div>

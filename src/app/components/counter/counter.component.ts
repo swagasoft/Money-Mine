@@ -37,7 +37,7 @@ export class CounterComponent implements OnInit {
 $('#number1').jQuerySimpleCounter({end: 1,duration: 5000});
 $('#number2').jQuerySimpleCounter({end: 6.2,duration: 5000});
 $('#number3').jQuerySimpleCounter({end: 1,duration: 5000});
-$('#number4').jQuerySimpleCounter({end: 1200,duration: 15500});
+$('#number4').jQuerySimpleCounter({end: 1274,duration: 15500});
 
 
   }
