@@ -1,0 +1,27 @@
+{
+  "SMS": {
+   "auth": {
+   "username": "your_username_is_your_email_address",
+   "apikey": "your_api_key"
+   },
+   "message": {
+   "sender": "Sender Name",
+   "messagetext": "Your message goes here",
+   "flash": "0"
+   },
+   "recipients":
+   {
+   "gsm": [
+   {
+   "msidn": "23480...",
+   "msgid": "uniqueid1..."
+   },
+   {
+   "msidn": "23480...",
+   "msgid": "uniqueid2..."
+   }
+   ]
+   },
+   "dndsender": 1
+   }
+  }

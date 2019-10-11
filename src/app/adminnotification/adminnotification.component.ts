@@ -1,7 +1,11 @@
+import { map } from 'rxjs/operators';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { EmailService } from './../email.service';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { NgForm } from '@angular/forms';
 
 interface NOTIFY {
   email: string;
@@ -18,14 +22,27 @@ subject: string;
 })
 export class AdminnotificationComponent implements OnInit {
 allContact: any;
-showMessage: boolean;
+allUsersNumber: any = [];
+messageSection: boolean;
+smsSection: boolean;
+
 
   constructor(
     private database: AngularFirestore,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private _flashMessage: FlashMessagesService,
+    private messageService: EmailService) { }
+
+
+  smsModel = {
+    messages: ''
+  };
+
 
   ngOnInit() {
-    this.showMessage = false;
+    this.getAllUers();
+    this.messageSection = true;
+    this.smsSection = false;
     this.getCashout();
     this.loadScript('../../assets/dash/vendor/bootstrap-4.1/popper.min.js');
     this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
@@ -45,6 +62,14 @@ showMessage: boolean;
 
    });
 }
+getAllUers(){
+  this.database.collection('users').snapshotChanges().subscribe((res : any) => {
+  res.map(item => {
+       this.allUsersNumber.push(item.payload.doc.data().number) ;
+    });
+  });
+}
+
 logout(){
   this.authService.logout();
   }
@@ -61,5 +86,40 @@ logout(){
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+  }
+
+  smsClick(){
+    this.smsSection = true;
+    this.messageSection = false;
+  }
+  messageClick(){
+    this.smsSection = false;
+    this.messageSection = true;
+  }
+
+ async sendBulkSms(){
+   let AdminSms =  this.smsModel.messages;
+   const dailCode = '+234';
+
+   await this.allUsersNumber.forEach( number => {
+      console.log(dailCode+number);
+      this.messageService.sendSms(dailCode+number, AdminSms).subscribe(
+        val => {
+          console.log(val);
+        },
+        response => {
+          if (response.status === 200){
+                    this._flashMessage.show(`Message sent!`,
+              { cssClass: 'text-center bg-success text-white ', timeout: 2000 });
+
+                  } else {
+                    this._flashMessage.show(`${response.statusText}`,
+                    { cssClass: 'text-center bg-white text-white ', timeout: 4000 });
+                  }
+        }
+      );
+   });
+
+   this.smsModel.messages = '';
   }
 }

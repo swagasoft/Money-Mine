@@ -13,6 +13,7 @@ import { NgbModal, NgbModalConfig, NgbProgressbarConfig } from '@ng-bootstrap/ng
 import * as firebase from 'firebase';
 import { first, map } from 'rxjs/operators';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { EmailService } from '../email.service';
 
 
 @Component({
@@ -35,6 +36,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
    lastUserId: any;
     checkEmail: any;
     loading: boolean;
+    dailCode: any ='+234';
+    newUserSms: any = 'Thank you for joining us, think investment yhink money mine.';
 
 
 
@@ -42,6 +45,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
               public modalService: NgbModal, private router: Router,
               private userService: UsersService, config: NgbProgressbarConfig,
               private flashMessage: FlashMessagesService,
+              private messageService: EmailService,
               private angularFireAuth: AngularFireAuth) {
                 this.checkUserId = db.collection('users').valueChanges();
                }
@@ -100,6 +104,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authService.sendEmailVerification();
       form.value.password = '';
       form.value.email.toLowerCase();
+      this.messageService.sendSms(this.dailCode+this.phoneNumber, this.newUserSms);
       this.authService.storeUserDetails(form.value);
       this.userService.createAccountBalance(newAccount);
       localStorage.setItem('currentUserEmail', regEmail.toLocaleLowerCase());
@@ -139,11 +144,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
    const result = document.getElementById('inputGroupSelect') as HTMLInputElement;
    if (result.value === 'investor') {
      this.role = result.value;
-     console.log(this.role);
      this.showREfId = true;
    } else {
      this.role = 'marketer';
-     console.log(this.role);
      this.showREfId = false;
    }
   }

@@ -134,6 +134,7 @@ import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
     FormsModule,
     NgbModule,
     FormsModule ,
+    HttpClientModule,
     MatIconModule,
     MatDialogModule,
     MaterialModule,

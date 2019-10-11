@@ -222,13 +222,13 @@
                       <!-- Tabs Titles -->
 
                       <div class="fadeIn first">
-                        <h1>update account</h1>
+                        <h3>update account</h3>
                       </div>
                       <form #updateForm="ngForm" (submit)="updateUser(updateForm)">
                         <input type="number"  class="fadeIn second" [(ngModel)]="updateAccount.account"
                         name="account" placeholder="amount in ₦" value="" >
 
-                        <input type="search" class="fadeIn fourth" value="update">
+                        <input type="submit" class="fadeIn fourth" value="update">
                       </form>
                     </div>
                   </div>
@@ -237,7 +237,7 @@
       <ol>
         <div *ngFor="let item of  customerAccount">
             <li  class="bg-info"> ACCOUNT DETAILS
-                  <button (click)="clickEdit()" class="btn btn-outline-danger m-3 btn-sm" > edit</button></li>
+                  <button (click)="clickEdit()" class="btn btn-outline-danger ml-2 mr-2 btn-sm"> EDIT </button></li>
             <li>Email   :  {{item.email}} </li>
           <li>Account   :  ₦ {{item.amount | number}} </li>
             <li> Cashout : ₦ {{item.cashout | number}} </li>

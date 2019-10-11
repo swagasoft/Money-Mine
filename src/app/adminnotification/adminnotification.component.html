@@ -72,7 +72,7 @@
                     <div class="header-wrap2">
                         <div class="logo d-block d-lg-none">
                             <a href="#">
-                                <img src="../../assets/dash/images/icon/logo-white.png" alt="CoolAdmin" />
+                                <img src="../../assets/dash/images/icon/logo-white.png" alt="logo" />
                             </a>
                         </div>
                         <div class="header-button2">
@@ -168,10 +168,10 @@
                                         <li class="list-inline-item seprate">
 
                                         </li>
-                                        <li class="list-inline-item">Manage-user</li>
+                                        <li class="list-inline-item">Notification</li>
+                                        <i class="fa fa-bell fa-1x"></i>
                                     </ul>
                                 </div>
-                                <flash-messages></flash-messages>
 
                             </div>
                         </div>
@@ -182,8 +182,20 @@
         <!-- END BREADCRUMB-->
 
 
-        <h1> messages from customers</h1>
-<table class="rwd-table">
+        <!-- select button -->
+        <div class="text-center">
+            <a mdbBtn   type="button" class=" btn-indigo m-2 text-white" (click)="smsClick()"  mdbWavesEffect>  Sms</a>
+            <a mdbBtn   type="button" class=" text-white btn-indigo m-2" (click)="messageClick()"  mdbWavesEffect> Messages</a>
+            <a mdbBtn   type="button " class="text-white btn-indigo m-2"   mdbWavesEffect> Others</a>
+          </div>
+
+          <div class="flash  font-weight-bold">
+              <flash-messages></flash-messages>
+            </div>
+
+      <section id="message_section" *ngIf="messageSection">
+    <h4 class="text-center"> messages</h4>
+    <table class="rwd-table">
   <tr>
     <th>Name</th>
     <th> Subject</th>
@@ -198,10 +210,24 @@
     <td data-th="Delete"> <button (click)="delete(item.id)"><i class="fa fa-trash text-danger"></i></button></td>
      <td data-th="message"> <p>{{item.message}} </p></td>
   </tr> <br>
-
-
-
 </table>
+</section>
+<!-- end message section -->
+
+<section id="sms_section" *ngIf="smsSection">
+  <h3 class="text-center text-info"> sms section</h3>
+
+  <form #smsForm="ngForm" (submit)="sendBulkSms()">
+      <div class="form-group shadow-textarea">
+          <label for="exampleFormControlTextarea6"> Sms Money Mine users</label>
+          <textarea value="" class="form-control z-depth-1" [(ngModel)]="smsModel.messages"
+          id="exampleFormControlTextarea6" rows="3" name="messages"
+           placeholder="Write something here..." required></textarea>
+        </div>
+        <a mdbBtn type="button" class="btn-success text-white"
+         (click)="sendBulkSms();"><i class="fa fa-paper-plane" aria-hidden="true"></i> send sms</a>
+  </form>
+</section>
 
     <app-footer></app-footer>
 

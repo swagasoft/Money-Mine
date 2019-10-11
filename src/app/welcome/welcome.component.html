@@ -181,7 +181,12 @@
 <h2 class="h1-responsive font-weight-bold text-center my-5"  *ngIf="user$ | async as user;"
 > {{user.email}}</h2>
 <a mdbBtn [routerLink]="['/user/dashboard']"  type="button "
-class="btn btn-lg btn-info btn-indigo" mdbWavesEffect> continue to dashboard</a>
+class="btn btn-lg  btn-indigo p-3"
+ mdbWavesEffect>
+ <i class="fa fa-chevron-right text-white"></i>
+ <i class="fa fa-chevron-right text-white"></i>
+ <i class="fa fa-chevron-right text-white"></i>
+ Take me to dashboard</a>
 <!-- Section description -->
 <p class="text-center w-responsive mx-auto mb-5">We trade your profit</p>
 
@@ -209,7 +214,7 @@ class="btn btn-lg btn-info btn-indigo" mdbWavesEffect> continue to dashboard</a>
         <!--Price -->
         <h2 class="font-weight-bold my-4">₦ 100,000</h2>
         <p class="grey-text"> ₦ 100,000 gives you up to ₦ 130,000 in just one month  </p>
-        <a class="btn btn-indigo text-white btn-rounded" [routerLink]="['/user/payment']"   >Invest now</a>
+        <a mdbBtn class="btn btn-indigo text-white btn-rounded m-1" [routerLink]="['/user/payment']"   >Invest now</a>
 
       </div>
       <!-- Content -->
@@ -240,7 +245,7 @@ class="btn btn-lg btn-info btn-indigo" mdbWavesEffect> continue to dashboard</a>
         <!--Price -->
         <h2 class="font-weight-bold my-4">₦ 500,000</h2>
         <p>₦ 500,000 in six months can give you a whooping ₦ 1,850,000 </p>
-        <a class="btn btn-outline-white btn-rounded" [routerLink]="['/user/payment']"
+        <a mdbBtn class="btn btn-outline-white btn-rounded m-1" [routerLink]="['/user/payment']"
         routerLinkActive="router-link-active" >Invest now </a>
 
       </div>
@@ -272,7 +277,7 @@ class="btn btn-lg btn-info btn-indigo" mdbWavesEffect> continue to dashboard</a>
         <!--Price -->
         <h2 class="font-weight-bold my-4">₦50,000</h2>
         <p class="grey-text">Earn up to ₦ 50,000 referring investors to money mine platform.</p>
-        <a class="btn btn-indigo text-white btn-rounded" [routerLink]="['/services']"  >learn more</a>
+        <a mdbBtn class="btn btn-indigo m-1 text-white btn-rounded" [routerLink]="['/services']"  >learn more</a>
 
       </div>
       <!-- Content -->

@@ -94,3 +94,26 @@ h1 {
     color: #dd5;
   }
 }
+
+// transaitions
+#sms_section{
+ transition-delay:0.5 ;
+}
+#message_section{
+  transition-delay:0.5 ;
+}
+
+// sms form
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+.flash {
+  // position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

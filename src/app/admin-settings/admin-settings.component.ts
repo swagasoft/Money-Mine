@@ -67,8 +67,8 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
     let trade = 0;
     this.database.collection('accounts', reff => {
       return reff.where('trading', '>', 0); }).valueChanges().subscribe((val) => {
-        val.map(res => trade  += res['trading']);
-        this.allTrade = trade;
+        val.map(res => this.allTrade = res['trading']);
+
       });
   }
 
@@ -133,7 +133,7 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
     this.setAdminCounterToZero();
     this.getTotalTrade();
     this.loader = false;
-
+      this.getTotalTrade();
       }
 
 
@@ -196,6 +196,7 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
           }
 
         }
+        this.getTotalTrade();
 
       }
       setAdminCounterToZero(){

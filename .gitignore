@@ -5,6 +5,14 @@
 /tmp
 /enviroments
 /out-tsc
+payment.componet.ts/
+environment.ts
+environment.prod.ts
+node_modules
+package.json
+/src/app/email.services.ts
+/src/app/enviroments
+/src/app/payment
 # Only exists if Bazel was run
 /bazel-out
 
