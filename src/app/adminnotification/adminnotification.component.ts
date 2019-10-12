@@ -108,11 +108,13 @@ logout(){
           console.log(val);
         },
         response => {
+          console.log(response);
           if (response.status === 200){
                     this._flashMessage.show(`Message sent!`,
               { cssClass: 'text-center bg-success text-white ', timeout: 2000 });
 
                   } else {
+                    console.log('error sending sms', response);
                     this._flashMessage.show(`${response.statusText}`,
                     { cssClass: 'text-center bg-white text-white ', timeout: 4000 });
                   }
