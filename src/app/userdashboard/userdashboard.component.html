@@ -171,11 +171,15 @@
         <!-- END BREADCRUMB-->
         <button (click)="cashOut()" class="au-btn au-btn-icon au-btn--green">
           cash out</button>
+          <div *ngFor="let item of userAcountFiles">
+            <h3 class="bg-dark text-white" >₦  {{item.balance | number}}</h3>
+          </div>
 
         <!-- ### loader -->
-        <div *ngIf="!userAcountFiles" class="row">
+        <div  class="row">
              <div class=" col d-flex justify-content-center">
-                <div  class="loader"></div>
+              <div *ngIf="loading" class="lds-roller "><div></div><div></div><div></div><div>
+              </div><div></div><div></div><div></div><div></div></div>
             </div>
 
         </div>
@@ -195,36 +199,75 @@
                           <!-- #### dash col #### -->
 <div class="jumbotron">
   <div class="row w-100">
-          <div class="col-md-6">
+          <!-- <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
-                  <div class=" border-info shadow text-info p-3"><span
-                    class="fa fa-refresh fa-spin fa-3x text-danger"></span></div>
+                  <div class=" border-info shadow text-info p-3">
+                    <span
+                    class="fa fa-refresh fa-spin fa-3x text-danger"></span>
+                    <div *ngIf="item.trading > 0" class="lds-facebook"><div></div><div></div><div></div></div>
+                  </div>
                   <div class="text-info text-center mt-3"><h6>Trading</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦  {{item.trading | number}}</h3></div>
               </div>
+          </div> -->
+          <div class="col-md-4">
+              <div class="card border-info mx-sm-1 p-3 m-3 ">
+                  <div class="card border-info shadow text-info p-3 " >
+                      <span *ngIf="item.trading === 0"
+                      class="fa fa-chevron-down fa-3x text-danger"></span>
+                      <div *ngIf="item.trading > 0" class="lds-facebook"><div></div><div></div><div></div></div>
+                  </div>
+                  <div *ngIf="item.trading === 0" class="text-danger text-center mt-3"><h6>No running trading...</h6></div>
+                  <div *ngIf="item.trading > 0" class="text-danger text-center mt-3"><h6> NOW RUNNING..</h6></div>
+                  <div class="text-info text-center mt-2 "><h3>₦  {{item.trading | number}}</h3></div>
+              </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-money fa-3x text-info"></span></div>
-                  <div class="text-info text-center mt-3"><h6>Balance</h6></div>
+                    class="fa fa-money fa-3x text-success"></span></div>
+                  <div class="text-info text-center mt-3"><h6>Amount</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦  {{item.amount | number}}</h3></div>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
                     class="fa fa-filter fa-3x text-secondary"></span></div>
-                  <div class="text-info text-center mt-3"><h6>Acrued</h6></div>
+                  <div class="text-info text-center mt-3"><h6>Accrued</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦ {{item.profit | number}}</h3></div>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
                     class="fa fa-download fa-3x text-success"></span></div>
                   <div class="text-info text-center mt-3"><h6>Cashout</h6></div>
-                  <div class="text-info text-center mt-2 "><h3>₦ {{item.cashout}} </h3></div>
+                  <div class="text-info text-center mt-2 "><h3>₦ {{item.cashout | number}} </h3></div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card border-info mx-sm-1 p-3 m-3 ">
+                  <div class="card border-info shadow text-info p-3 " ><span
+                    class="fa fa-download fa-3x text-success"></span></div>
+                  <div class="text-info text-center mt-3"><h6>Top-up</h6></div>
+                  <div class="text-info text-center mt-2 "><h3>₦ {{item.top_up | number}} </h3></div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card border-info mx-sm-1 p-3 m-3 ">
+                  <div class="card border-info shadow text-info p-3 " ><span
+                    class="fa fa-download fa-3x text-success"></span></div>
+                  <div class="text-info text-center mt-3"><h6>Earning(s)</h6></div>
+                  <div class="text-info text-center mt-2 "><h3>₦ {{item.balance | number}} </h3></div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card border-info mx-sm-1 p-3 m-3 ">
+                  <div class="card border-info shadow text-info p-3 " ><span
+                    class="fa fa-download fa-3x text-success"></span></div>
+                  <div class="text-info text-center mt-3"><h6>Roll Over</h6></div>
+                  <div class="text-info text-center mt-2 "><h3>₦ {{item.roll_over | number}} </h3></div>
               </div>
           </div>
        </div>

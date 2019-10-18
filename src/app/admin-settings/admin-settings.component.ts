@@ -24,7 +24,7 @@ userPercent = 20;
 marketerPercent = 1;
 tradeCount: any;
 loader: boolean;
-adminId = 'nLcos2JnrkuXt6nb9xOL';
+adminId = '0U5McTfXoSFArYsoe94m';
 
   constructor(
     private database: AngularFirestore,
@@ -38,17 +38,13 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
   ngOnInit() {
 
   console.log(this.adminId);
-  this.database.collection('admin').valueChanges().subscribe((val)=> {
-          console.log(val);
-          this.tradeCount = val['0']['trade_count'];
-    });
-
+  this.getTradeCount();
   this.loadScript('../../assets/dash/vendor/bootstrap-4.1/popper.min.js');
   this.loadScript('../../assets/dash/vendor/animsition/animsition.min.js');
   this.loadScript('../../assets/dash/vendor/select2/select2.min.js');
   this.loadScript('../../assets/dash/js/main.js');
   this.loader = false;
-    this.getTotalTrade();
+  this.getTotalTrade();
 
   this.alignWindow();
 
@@ -72,7 +68,7 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
       });
   }
 
-  async pushMoneyToTrade() {
+  async startTrade() {
     this.loader = true;
     this.database.collection('accounts', reff => {
       return reff.where('amount', '>', 0);
@@ -87,26 +83,50 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
         });
         });
 
+        // for balance
+    await this.database.collection('accounts', reff => {
+        return reff.where('balance', '>', 0);
+      }).get().toPromise().then(values => {
+        values.forEach(doc => {
+          const curTrading = doc.data().trading;
+          const curBalance = doc.data().balance;
+          const sum = curTrading + curBalance;
+
+          this.database.doc(`accounts/${doc.id}`).update({trading: sum, roll_over: curBalance});
+        });
+      });
+
     await  this.database.collection('accounts', reff => {
         return reff.where('amount', '>', 0);
       }).get().toPromise().then(  docs => {
         docs.forEach(doc => {
-          this.database.doc(`accounts/${doc.id}`).update({amount: 0}).finally(() => {
+        this.database.doc(`accounts/${doc.id}`).update({amount: 0, top_up: 0}).finally(() => {
             console.log('all account set to zero successfully..');
-            this.loader = false;
+
           });
         });
       });
 
-      this.getTotalTrade();
+      // for balance
+    await  this.database.collection('accounts', reff => {
+        return reff.where('balance', '>', 0);
+      }).get().toPromise().then(  docs => {
+        docs.forEach(doc => {
+        this.database.doc(`accounts/${doc.id}`).update({balance: 0, top_up: 0}).finally(() => {
+            console.log('  ALL BALANCE SET TO ZERO.');
 
+          });
+        });
+      });
+
+    this.getTotalTrade();
+    this.loader = false;
 
       }
 
 
   async closeAllTrade() {
     this.loader = true;
-    console.log('close all trade');
     this.database.collection('accounts', reff => {
       return reff.where('trading', '>', 0);
     }).get().toPromise().then(docs => {
@@ -115,7 +135,7 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
         const currprofit = doc.data().profit;
         const sum = currTrading + currprofit;
 
-        this.database.doc(`accounts/${doc.id}`).update({amount: sum});
+        this.database.doc(`accounts/${doc.id}`).update({balance: sum, roll_over: 0});
         console.log('user paid out successfully..');
         });
         });
@@ -124,7 +144,7 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
         return reff.where('trading', '>', 0);
       }).get().toPromise().then(  docs => {
         docs.forEach(doc => {
-          this.database.doc(`accounts/${doc.id}`).update({trading: 0, profit: 0}).then(() => {
+          this.database.doc(`accounts/${doc.id}`).update({trading: 0, profit: 0, top_up: 0}).then(() => {
             console.log('all trading set to zero successfully..');
           });
         });
@@ -133,7 +153,14 @@ adminId = 'nLcos2JnrkuXt6nb9xOL';
     this.setAdminCounterToZero();
     this.getTotalTrade();
     this.loader = false;
-      this.getTotalTrade();
+    this.getTotalTrade();
+      }
+
+      getTradeCount(){
+        this.database.collection('admin').valueChanges().subscribe((val)=> {
+          console.log(val);
+          this.tradeCount = val['0']['trade_count'];
+    });
       }
 
 

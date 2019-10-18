@@ -1,67 +1,92 @@
 h2{ margin-bottom: 10px;}
 
-.progress-outer{
-    background: #282828;
-    padding: 50px 30px;
-    margin: 30px 0;
-    box-shadow: 0 0  10px rgba(209, 219, 231,0.7);
+// loader
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
 }
-.progress{
-    position: relative;
-    height: 40px;
-    margin: 0;
-    margin-left: 120px;
-    overflow: visible;
-    background: #a0f587;
-
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 32px 32px;
 }
-.progress .progress-bar{
-    border-radius: 2px;
-
-
-}
-
-.progress-bar-striped {
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.973) 25%,
-    transparent 25%, transparent 50%,
-    rgba(255, 255, 255, 0.952) 50%,
-    rgba(255, 255, 255, 0.952) 75%,
-    transparent 75%, transparent);
-
-    background-size: 5rem 5rem;
-    background-color: #437abd;
-}
-.progress .progress-value{
-    left: 40%;
-    position: absolute;
-    font-size: 15px;
-    font-weight: bold;
-    color: #e5e5e5;
-    letter-spacing: 0px;
-}
-.progress-bar.active{
-    animation: reverse progress-bar-stripes 1s linear infinite, animate-positive 2s;
-}
-
-@-webkit-keyframes animate-positive{
-    0% { width: 0%; }
-}
-@keyframes animate-positive {
-    0% { width: 0%; }
-}
-
-.loader {
-  margin-left: 30px;
-  border: 16px solid #f3f3f3;
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border-top: 16px solid blue;
-  border-right: 16px solid #f3f3f3;
-  border-bottom: 16px solid blue;
-  width: 90px;
-  height: 90px;
-  -webkit-animation: spin 1s linear infinite;
-  animation: spin 1s linear infinite;
+  background: rgb(15, 68, 245);
+  margin: -3px 0 0 -3px;
 }
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 50px;
+  left: 50px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 54px;
+  left: 45px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 57px;
+  left: 39px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 58px;
+  left: 32px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 57px;
+  left: 25px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 54px;
+  left: 19px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 50px;
+  left: 14px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 45px;
+  left: 10px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// end loader
 
 
 /* Safari */
@@ -95,3 +120,52 @@ h2{ margin-bottom: 10px;}
     top:-20px;
     border-radius:50%;
 }
+
+
+.router-link-active{
+  background-color: rgb(252, 211, 162);
+
+}
+li{
+  font-weight: bold;
+}
+
+// trading....
+.lds-facebook {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-facebook div {
+  display: inline-block;
+  position: absolute;
+  left: 6px;
+  width: 13px;
+  background: rgb(248, 9, 9);
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.lds-facebook div:nth-child(1) {
+  left: 6px;
+  animation-delay: -0.24s;
+}
+.lds-facebook div:nth-child(2) {
+  left: 26px;
+  animation-delay: -0.12s;
+}
+.lds-facebook div:nth-child(3) {
+  left: 45px;
+  animation-delay: 0;
+}
+@keyframes lds-facebook {
+  0% {
+    top: 6px;
+    height: 51px;
+  }
+  50%, 100% {
+    top: 19px;
+    height: 26px;
+  }
+}
+
+// end trading....

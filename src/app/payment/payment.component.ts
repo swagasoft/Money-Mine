@@ -174,11 +174,11 @@ res.map(element => this.databaseAcount = element.payload.doc.data().amount);
         this.databaseId = id;
 
         return { id, ...data };
-      }))).pipe(first()).subscribe((_doc: any) => {
+      }))).pipe(first()).subscribe(( _doc : any) => {
         // update payment record
-        if(_doc){
-       this.db.doc(`accounts/${this.databaseId}`).update({amount: _value, created: new Date()});
-        }else{
+        if (_doc) {
+       this.db.doc(`accounts/${this.databaseId}`).update({amount: _value, top_up: _value , created: new Date()});
+        } else {
           return null;
         }
       });

@@ -20,7 +20,7 @@ bulkSmsSenderName: string;
 
 
   sendSms(number, sms){
-  return  this.http.get(`http://api.ebulksms.com:8080/sendsms? username=${this.bulkSmsUsername}&apikey=${this.bulkSmsApiKey}&sender=${this.bulkSmsSenderName}&messagetext=${sms}&flash=0&recipients=${number}`)
+  return  this.http.get(`http://api.ebulksms.com:8080/sendsms?username=${this.bulkSmsUsername}&apikey=${this.bulkSmsApiKey}&sender=${this.bulkSmsSenderName}&messagetext=${sms}&flash=0&recipients=${number}`)
   }
 
 

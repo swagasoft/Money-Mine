@@ -58,7 +58,7 @@
                 <input type="checkbox" name="moneyminePolicy"
                 [(ngModel)]="moneyminePolicy" aria-label="Checkbox for following text input">
                 <small>I agree to <strong>Money mine</strong>
-                 <a [routerLink]="['/policy']"  ><strong>  Privacy Policy.</strong></a> </small>
+                 <a [routerLink]="['/policy']"  ><strong>  Privacy Policy.</strong></a> by creating this account. </small>
               </div>
         </div>
     </div>
@@ -70,9 +70,10 @@
       </div>
     <div class="row">
         <div class="col-md-12 form-group">
-    <button class="btn btn-success btn-block "  [disabled]="(!regform.valid && password != password_conf)"
+    <button class="btn btn-success btn-block "  [disabled]="(!moneyminePolicy.checked && !regform.valid
+      && password != password_conf)"
     id="submitBtn" type="submit"> <i class="fa fa-spinner  fa-spin" *ngIf=loading ></i>
-    Create Account</button>
+   <p *ngIf="!loading" > Create Account</p> </button>
         </div>
     </div>
 

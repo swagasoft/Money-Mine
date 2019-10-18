@@ -77,6 +77,8 @@ import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetai
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MessageComponent } from '../message/message.component';
 import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
+import { ReportComponent } from './report/report.component';
+import { PayoutComponent } from './payout/payout.component';
 
 
 
@@ -122,6 +124,8 @@ import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
     BankdetailsComponent,
     MessageComponent,
     AdminCashoutComponent,
+    ReportComponent,
+    PayoutComponent,
 
 
 

@@ -14,6 +14,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class UserdashboardComponent implements OnInit, OnDestroy {
 myAccountDetails$: any ;
+loading: boolean;
 $userProfile: any;
 getProfile: any;
 userAcountFiles: any;
@@ -43,6 +44,7 @@ doc_id: any;
    }
 
   ngOnInit() {
+    this.loading = true;
     this.alignWindow();
     this.myAccountDetails$.subscribe(response => {
       this.userAcountFiles = response;
@@ -54,7 +56,7 @@ doc_id: any;
       return reference.where('email','==',  this.getUser)
     }).get().toPromise().then((doc)=>  {
       this.userAccountId = doc.docs['0'].id;
-      console.log(doc);
+      this.loading = false;
     });
 
     this.getProfile.subscribe( response => {
@@ -69,40 +71,34 @@ doc_id: any;
   }
 
    async cashOut() {
-    const collectionRef =  this.database.collection('accounts');
-    await collectionRef.doc(this.userAccountId).get().toPromise().then((doc)=> {
+     this.loading = true;
+     const collectionRef =  this.database.collection('accounts');
+     await collectionRef.doc(this.userAccountId).get().toPromise().then((doc)=> {
      console.log(doc.data());
      this.doc_id = doc.id;
-     const userAmount = doc.data().amount;
-     const storeDate = doc.data().created.toDate();
-     const nowDate = Date.now();
-     const days = 1005682044;
-     console.log('STORE DATE', storeDate);
-     console.log('TODAY', nowDate);
-     const diff =  nowDate - storeDate;
-     console.log('DIFF', diff);
+     const usrBalance = doc.data().balance;
 
+     if(usrBalance > 0){
+      this.database.doc(`accounts/${this.userAccountId}`).get().toPromise().then((values)=> {
+        console.log(values.data());
+        let newCashout = values.data().balance;
+        let newDate = Date.now();
+        let name = values.data().name;
+        let email = values.data().email;
 
-     if(userAmount > 0){
+        this.database.collection('cashouts').add({name: name, email: email, cashout: newCashout, date: newDate}).then(()=> {
+          this.database.doc(`accounts/${this.userAccountId}`).update({cashout: newCashout, balance: 0});
+        });
 
-      if(!(diff >= days)){
-        this._flashMessagesService.show('Cashout can be only be done after seven days',
-        { cssClass: 'bg-danger text-white font-weight-bold text-center', timeout: 5000 });
-
-      }
-      else {
-        console.log(this.doc_id);
-        // this.database.doc(`accounts/${this.doc_id}`).update({cashout: userAmount});
-        // this.database.doc(`accounts/${this.doc_id}`).update({amount: 0}).then(()=> {
-
-        // this._flashMessagesService.show('Cashout successful',
-        //  { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
-        // });
-      }
+      });
+      this.loading = false;
+      this._flashMessagesService.show(`Cashout of ${usrBalance} successful`,
+         { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
 
     } else {
       this._flashMessagesService.show('Your balance is too low!',
        { cssClass: 'text-center bg-danger text-white font-weight-bold z-index: 9999', timeout: 3000 });
+       this.loading = false;
     }
 
    });

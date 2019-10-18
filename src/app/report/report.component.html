@@ -1,10 +1,7 @@
-<!-- <div  role="group" aria-label="Basic example ">
-  <a [routerLink]="['/admin/dashboard']"  class="btn purple-gradient btn-rounded text-white">Accounts</a>
-  <a [routerLink]="['/admin/manage-users']" class="btn purple-gradient btn-rounded text-white">Manage Users</a>
-  <a [routerLink]="['/admin/settings']"  class="btn purple-gradient  btn-rounded text-white">Settings</a>
-  <a [routerLink]="['/admin/notification']"  class="btn  purple-gradient btn-rounded text-white">Notifications</a>
-  <a [routerLink]="['/admin/transaction']"  class="btn purple-gradient btn-rounded text-white">Transactions</a>
-</div> -->
+
+
+
+
 
 
 <!-- ------------- -->
@@ -34,38 +31,39 @@
             <nav class="navbar-sidebar2">
                 <ul class="list-unstyled navbar__list">
                     <li class="active has-sub">
-                        <a class="js-arrow" [routerLink]="['/admin/transaction']">
+                        <a class="js-arrow" [routerLink]="['/admin/transaction']"
+                         routerLinkActive="router-link-active">
                             <i class="fas fa-tachometer-alt"></i>Dashboard
                              </a>
                     </li>
 
                     <li>
-                        <a [routerLink]="['/admin/manage-users']">
-                            <i class="fas fa-chart-bar"></i>manage-user</a>
+                        <a [routerLink]="['/admin/manage-users']"  routerLinkActive="router-link-active">
+                            <i class="fas fa-chart-bar"></i>Manage user</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/admin/transaction']">
+                        <a [routerLink]="['/admin/transaction']" >
                             <i class="fas fa-shopping-basket"></i>Transactions</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/admin/report']">
+                        <a [routerLink]="['/admin/report']" routerLinkActive="router-link-active"  >
                             <i class="fas fa-signal"></i>Report</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/admin/cashouts']">
+                        <a [routerLink]="['/admin/notification']"  routerLinkActive="router-link-active">
+                            <i class="fas fa-shopping-basket"></i>Notifications</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/cashouts']"  routerLinkActive="router-link-active">
                             <i class="fas fa-shopping-basket"></i>Cashout</a>
                     </li>
                     <li>
-                        <a [routerLink]="['/admin/payout']">
-                            <i class="fa fa-share"></i>Payouts</a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/admin/notification']">
-                            <i class="fas fa-shopping-basket"></i>Notifications</a>
+                        <a [routerLink]="['/admin/payout']"  routerLinkActive="router-link-active">
+                            <i class="fa fa-paypal"></i>Payouts</a>
                     </li>
 
                     <li class="has-sub">
-                        <a class="js-arrow" [routerLink]="['/admin/settings']" routerLinkActive="router-link-active" >
+                        <a class="js-arrow" [routerLink]="['/admin/settings']"  routerLinkActive="router-link-active">
                             <i class="fa fa-cog"></i>Settings
                             </a>
                     </li> <br>
@@ -153,7 +151,7 @@
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/payout']" routerLinkActive="router-link-active">
-                                    <i class="fa fa-share"></i>Payouts</a>
+                                    <i class="fa fa-paypal"></i>Payouts</a>
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/notification']" routerLinkActive="router-link-active">
@@ -185,20 +183,20 @@
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
                     <div class="row">
-
-                        <div class="d-flex justify-centent-center">
-                            <div class="col">
-                                <flash-messages></flash-messages>
-                                <!-- loader -->
-                                <div *ngIf="loader">
-                                    <div class="loader"></div>
-                                    </div>
-                            </div>
-                          </div>
-
                         <div class="col-md-12">
                             <div class="au-breadcrumb-content">
+                                <div class="au-breadcrumb-left">
+                                    <ul class="list-unstyled list-inline au-breadcrumb__list">
+                                        <li class="list-inline-item active">
+                                            <a [routerLink]="['/user/dashboard']" routerLinkActive="router-link-active" >user</a>
+                                        </li>
+                                        <li class="list-inline-item seprate">
 
+                                        </li>
+                                        <li class="list-inline-item">Report</li>
+                                    </ul>
+                                </div>
+                                <flash-messages></flash-messages>
 
                             </div>
                         </div>
@@ -206,47 +204,53 @@
                 </div>
             </div>
         </section>
-        <!-- END BREADCRUMB-->
-
-        <!-- modal -->
-
-        <!-- end modal -->
-
-
-        <div class="container d-flex justify-centent-center">
 
 
 
-          <ol class="rounded-list row d-flex justify-centent-center">
-            <div class="col">
-                <button class="btn  btn-success btn-block  mt-1 mb-1" (click)="startTrade()" > START TRADE</button>
-                <button class="btn  btn-danger mt-1 nb-1 btn-block" (click)="closeAllTrade()" > END TRADE</button>
 
+<form>
+  <div class="form-group form-inline">
+      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <span class="ml-3" >Loading...</span>
+  </div>
 
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" sortable="name" >Country</th>
+      <th scope="col" sortable="area" >Area</th>
+      <th scope="col" sortable="population">Population</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries$ | async">
+      <th scope="row">{{ country.id }}</th>
+      <td>
+        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
+        <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+      </td>
+      <td><ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight></td>
+    </tr>
+    </tbody>
+  </table>
 
-            </div>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
 
-            <div class="col ">
-              <li><h6 class="font-weight-bold mb-1 mt-1"> Trading: ₦ {{allTrade | number}} </h6></li>
-              <li><h6 class="font-weight-bold mb-1 mt-1"> Count:{{ tradeCount | number}} % </h6></li>
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
 
-            </div>
-            <div class="col">
-              <p class="text-center  text-white">share trade profit to all users </p>
-              <form *ngIf="allTrade" #account_form="ngForm" (submit)="shareprofitToAll(account_form);">
-                  <input type="number" id="newField" placeholder="value in percentage"
-                   name="profit" [(ngModel)]="profit" />
-                  <input name="addFieldButton" type="button" value="%" />
-                  <input type="submit" class="btn-block mt-1 mb-1" value="SHARE PROFIT">
-              </form>
-            </div>
+</form>
 
-          </ol>
-
-          </div>
-
-
-
+        <!--end  report table -->
 
         <!-- END PAGE CONTAINER-->
     <app-footer></app-footer>
@@ -254,13 +258,5 @@
     </div>
 
 </div>
-
-
-<!-- ######## -->
-
-
-
-
-
 
 

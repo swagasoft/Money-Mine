@@ -21,7 +21,10 @@ loading: boolean;
 userEmail : string;
 databaseId: string;
 searchInput: string;
+storeEmail: string;
 accountSub: any;
+refNumber: any;
+
 emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
@@ -70,6 +73,7 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
   async searchUser(user){
     this.loading = true;
     const searchInput = user.value.email.toLowerCase();
+    this.storeEmail = searchInput;
 
     this.database.collection('accounts', ref => {
      return ref.where('email', '==', searchInput);
@@ -97,19 +101,19 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
     });
 
     this.setFormTNull();
-
+    await this.generateRef();
   }
 
   setFormTNull(){
     this.searchInput = '';
    }
 
-  updateUser(form){
+  async updateUser(form){
     this.loading = true;
-    const amoountUpdate = form.value.account;
+    const amountUpdate = form.value.account;
 
 
-    const doc = this.database.collection('accounts', ref => ref.where('email', '==', this.userEmail));
+    const doc = await this.database.collection('accounts', ref => ref.where('email', '==', this.userEmail));
     doc.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data();
@@ -119,19 +123,26 @@ emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[
         return { id, ...data };
       }))).pipe(first()).subscribe((_doc: any) => {
         if (_doc){
-       this.database.doc(`accounts/${this.databaseId}`).update({amount: amoountUpdate, created: new Date()});
+       this.database.doc(`accounts/${this.databaseId}`).update({amount: amountUpdate,
+        top_up: amountUpdate, created: new Date()});
         } else {
           return null;
         }
       });
+      await this.database.collection('transactions').add({amount:amountUpdate, created :new Date(),
+      email: this.storeEmail, traxRef: this.refNumber, message: 'accepted', status: true });
     this.loading = false;
     this.showAcountForm = false;
-
+    this.generateRef();
 
   }
 
   clickEdit(){
     this.showAcountForm = true ;
+  }
+  generateRef() {
+    const  ref = '' + Math.floor((Math.random() * 1000000000) + 1); // gene
+    this.refNumber = ref;
   }
 
 }

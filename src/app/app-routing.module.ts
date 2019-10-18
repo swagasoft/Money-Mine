@@ -1,3 +1,5 @@
+import { PayoutComponent } from './payout/payout.component';
+import { ReportComponent } from './report/report.component';
 import { AdminCashoutComponent } from './admin-cashout/admin-cashout.component';
 import { MessageComponent } from './../message/message.component';
 import { BankdetailsComponent } from './src/app/components/bankdetails/bankdetails.component';
@@ -72,6 +74,10 @@ const routes: Routes = [
   {path: 'admin/settings', component: AdminSettingsComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
   {path: 'admin/manage-users', component: AdminmanageUsersComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/report', component: ReportComponent
+   ,  canActivate: [AuthGuardService, AdminAuthGuard] },
+  {path: 'admin/payout', component: PayoutComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },
   {path: 'admin/cashout-users', component: UserCashoutComponent
    ,  canActivate: [AuthGuardService, AdminAuthGuard] },

@@ -44,6 +44,10 @@
                         <a [routerLink]="['/admin/cashouts']" routerLinkActive="router-link-active">
                             <i class="fa fa-bell"></i>Cashout</a>
                     </li>
+                    <li>
+                        <a [routerLink]="['/admin/payout']" routerLinkActive="router-link-active">
+                            <i class="fa fa-share"></i>Payouts</a>
+                    </li>
 
                     <li class="has-sub">
                         <a class="js-arrow" [routerLink]="['/admin/settings']" routerLinkActive="router-link-active">
@@ -121,8 +125,16 @@
                                     <i class="fa fa-user"></i>Manage user</a>
                             </li>
                             <li>
-                                <a [routerLink]="['/admin/transaction']" routerLinkActive="router-link-active">
+                                <a [routerLink]="['/admin/transaction']" >
                                     <i class="fa fa-exchange"></i>Transaction</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/report']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-signal"></i>Report</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/payout']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-share"></i>Payouts</a>
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/cashouts']" routerLinkActive="router-link-active">
@@ -130,14 +142,14 @@
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/notification']" routerLinkActive="router-link-active">
-                                    <i class="fa fa-exchange"></i>Notification</a>
+                                    <i class="fa fa-bell"></i>Notification</a>
                             </li>
 
                             <li class="has-sub">
                                 <a class="js-arrow" [routerLink]="['/admin/settings']" routerLinkActive="router-link-active">
                                     <i class="fas fa-cog"></i>Settings
                                 </a>
-                            </li> <br> <br>
+                            </li> <br>
                             <li class="has-sub">
                                 <a class="js-arrow" (click)="logout();">
                                     <i  class="fa fa-power-off" aria-hidden="true"></i>Log out

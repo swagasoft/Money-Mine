@@ -46,6 +46,14 @@
                             <i class="fas fa-shopping-basket"></i>Transactions</a>
                     </li>
                     <li>
+                        <a [routerLink]="['/admin/report']" routerLinkActive="router-link-active"  >
+                            <i class="fas fa-signal"></i>Report</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/payout']" routerLinkActive="router-link-active"  >
+                            <i class="fa fa-share"></i>Payouts</a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/admin/notification']"  routerLinkActive="router-link-active">
                             <i class="fas fa-shopping-basket"></i>Notifications</a>
                     </li>
@@ -134,8 +142,16 @@
                                     <i class="fa fa-tint"></i>Transaction</a>
                             </li>
                             <li>
+                                <a [routerLink]="['/admin/report']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-tint"></i>Report</a>
+                            </li>
+                            <li>
                                 <a [routerLink]="['/admin/cashouts']" routerLinkActive="router-link-active">
                                     <i class="fa fa-money"></i>Cashouts</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/admin/payout']" routerLinkActive="router-link-active">
+                                    <i class="fa fa-share"></i>Payouts</a>
                             </li>
                             <li>
                                 <a [routerLink]="['/admin/notification']" routerLinkActive="router-link-active">

@@ -87,7 +87,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   async createNewUser(form: NgForm) {
     this.loading = true;
     this.phoneNumber = form.value.mobile;
-    const regEmail = form.value.email.toLowerCase();
+    let newEmailToLower = form.value.email;
+    const regEmail = newEmailToLower.toLowerCase();
     const password = form.value.password;
     form.value.role = this.role;
     form.value.created = new Date();
@@ -95,7 +96,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     // create new account for new user.
     const newAccount =  this.userService.accountBalance = {
       trading: 0.00, amount: 0.00, profit: 0.00, cashout: 0.00,
-       email: regEmail, created:  new Date(),
+      top_up:0, name:form.value.fullname,percent:0, roll_over:0, company:0,
+       email: regEmail, balance: 0,  created:  new Date(),
      };
 
     return await this.angularFireAuth.auth.createUserWithEmailAndPassword(regEmail, password).then( value => {
