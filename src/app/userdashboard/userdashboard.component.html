@@ -168,12 +168,19 @@
             </div>
 
         </section>
+
+
         <!-- END BREADCRUMB-->
-        <button (click)="cashOut()" class="au-btn au-btn-icon au-btn--green">
-          cash out</button>
-          <div *ngFor="let item of userAcountFiles">
-            <h3 class="bg-dark text-white" >₦  {{item.balance | number}}</h3>
-          </div>
+
+          <!-- cashout form -->
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputPassword2" class="sr-only">Password</label>
+              <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+          </form>
+          <!-- end cashout form -->
 
         <!-- ### loader -->
         <div  class="row">

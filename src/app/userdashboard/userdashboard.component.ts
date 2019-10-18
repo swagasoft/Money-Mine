@@ -80,7 +80,6 @@ doc_id: any;
 
      if(usrBalance > 0){
       this.database.doc(`accounts/${this.userAccountId}`).get().toPromise().then((values)=> {
-        console.log(values.data());
         let newCashout = values.data().balance;
         let newDate = Date.now();
         let name = values.data().name;
@@ -92,7 +91,7 @@ doc_id: any;
 
       });
       this.loading = false;
-      this._flashMessagesService.show(`Cashout of ${usrBalance} successful`,
+      this._flashMessagesService.show(`Cashout of ₦ ${usrBalance} was successful`,
          { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
 
     } else {
