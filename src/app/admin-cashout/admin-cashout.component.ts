@@ -57,7 +57,7 @@ allCashout: any;
 
      getCashout(){
          // read all cashout
-         this.database.collection('accounts' , reff => {
+         this.database.collection('cashouts' , reff => {
           return reff.where('cashout', '>', 0);
         }).snapshotChanges().subscribe((response: any) =>  {
         this.allCashout = response.map(item => {
@@ -66,7 +66,9 @@ allCashout: any;
             ...item.payload.doc.data(),
           } as CASHOUT;
         });
-
+        setTimeout(()=> {
+          console.log(this.allCashout);
+        }, 3000);
         });
      }
 
@@ -76,6 +78,7 @@ allCashout: any;
        await this.database.collection('payout').add({amount:amount, email:email, id:id}).then((doc)=> {
          console.log('payour successful...')
        });
+      await this.getCashout();
      }
 
 

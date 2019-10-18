@@ -210,7 +210,7 @@
 
 <form>
   <div class="form-group form-inline">
-      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      Full text search: <input class="form-control ml-2" type="text" />
       <span class="ml-3" >Loading...</span>
   </div>
 
@@ -218,30 +218,41 @@
     <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col" sortable="name" >Country</th>
-      <th scope="col" sortable="area" >Area</th>
-      <th scope="col" sortable="population">Population</th>
+      <th scope="col" sortable="name" >Name</th>
+      <th scope="col" sortable="area" >Email</th>
+      <th scope="col" sortable="area" >Trading</th>
+      <th scope="col" sortable="population">Acrued</th>
+      <th scope="col" sortable="population">cashout</th>
+      <th scope="col" sortable="population">Balance</th>
+      <th scope="col" sortable="population">Roll-over</th>
+      <th scope="col" sortable="population">Top-up</th>
+      <th scope="col" sortable="population">%</th>
+      <th scope="col" sortable="population">Rofit </th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let country of countries$ | async">
-      <th scope="row">{{ country.id }}</th>
-      <td>
-        <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
-        <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
-      </td>
-      <td><ngb-highlight [result]="country.area | number" [term]="service.searchTerm"></ngb-highlight></td>
-      <td><ngb-highlight [result]="country.population | number" [term]="service.searchTerm"></ngb-highlight></td>
+    <tr  *ngFor="let item of allReport; index as i">
+      <td> {{i + 1}}</td>
+      <td> {{ item.name}}</td>
+      <td> {{ item.email}}</td>
+      <td> {{ item.trading | number}}</td>
+      <td> {{ item.profit | number}}</td>
+      <td> {{ item.cashout | number}}</td>
+      <td> {{ item.balance | number}}</td>
+      <td> {{ item.roll_over | number}}</td>
+      <td> {{ item.top_up | number}}</td>
+      <td> % </td>
+      <td> profits </td>
+
     </tr>
     </tbody>
   </table>
 
   <div class="d-flex justify-content-between p-2">
-    <ngb-pagination
-      [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+    <ngb-pagination>
     </ngb-pagination>
 
-    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+    <select class="custom-select" style="width: auto" name="pageSize" >
       <option [ngValue]="2">2 items per page</option>
       <option [ngValue]="4">4 items per page</option>
       <option [ngValue]="6">6 items per page</option>

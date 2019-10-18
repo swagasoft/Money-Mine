@@ -73,7 +73,7 @@
     <button class="btn btn-success btn-block "  [disabled]="(!moneyminePolicy.checked && !regform.valid
       && password != password_conf)"
     id="submitBtn" type="submit"> <i class="fa fa-spinner  fa-spin" *ngIf=loading ></i>
-   <p *ngIf="!loading" > Create Account</p> </button>
+   <small *ngIf="!loading" > Create Account</small> </button>
         </div>
     </div>
 

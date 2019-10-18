@@ -173,13 +173,23 @@
         <!-- END BREADCRUMB-->
 
           <!-- cashout form -->
-          <form class="form-inline">
+          <form class="form-inline" #cashoutForm >
             <div class="form-group mx-sm-3 mb-2">
-              <label for="inputPassword2" class="sr-only">Password</label>
-              <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+              <label for="inputPassword2" class="sr-only">CASHOUT</label>
+              <input type="number" #cashout name="cashout" class="form-control" id="cashout"
+               placeholder="Enter cashout" [(ngModel)]="model.cashout" required cashout="ngModel">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+            <button type="submit" [disabled]="cashout.value < 1000"
+            (click)="cashOut()" class="btn btn-primary mb-2 "> <small *ngIf="!loading"
+             >confirm cashout</small> <small *ngIf="loading">... <i class="fa fa-spinner  fa-spin" ></i></small></button>
           </form>
+
+          <div  class="btn btn-primary"  *ngFor="let item of userAcountFiles">
+            <i class="fas fa-wallet mr-3"></i> <span class="badge badge-light">₦ {{item.balance | number}} </span>
+          </div>
+
+
+
           <!-- end cashout form -->
 
         <!-- ### loader -->
@@ -217,7 +227,7 @@
                   <div class="text-info text-center mt-2 "><h3>₦  {{item.trading | number}}</h3></div>
               </div>
           </div> -->
-          <div class="col-md-4">
+          <div class="col-md-4  col-sm-3">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " >
                       <span *ngIf="item.trading === 0"
@@ -229,10 +239,10 @@
                   <div class="text-info text-center mt-2 "><h3>₦  {{item.trading | number}}</h3></div>
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 col-sm-3">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-money fa-3x text-success"></span></div>
+                    class="fas fa-coins fa-3x text-success"></span></div>
                   <div class="text-info text-center mt-3"><h6>Amount</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦  {{item.amount | number}}</h3></div>
               </div>
@@ -240,7 +250,7 @@
           <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-filter fa-3x text-secondary"></span></div>
+                    class="far fa-gem fa-3x text-secondary"></span></div>
                   <div class="text-info text-center mt-3"><h6>Accrued</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦ {{item.profit | number}}</h3></div>
               </div>
@@ -256,7 +266,7 @@
           <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-download fa-3x text-success"></span></div>
+                    class="fas fa-hand-holding-usd fa-3x text-success"></span></div>
                   <div class="text-info text-center mt-3"><h6>Top-up</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦ {{item.top_up | number}} </h3></div>
               </div>
@@ -264,7 +274,7 @@
           <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-download fa-3x text-success"></span></div>
+                    class="fas fa-wallet fa-3x text-success"></span></div>
                   <div class="text-info text-center mt-3"><h6>Earning(s)</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦ {{item.balance | number}} </h3></div>
               </div>
@@ -272,7 +282,7 @@
           <div class="col-md-4">
               <div class="card border-info mx-sm-1 p-3 m-3 ">
                   <div class="card border-info shadow text-info p-3 " ><span
-                    class="fa fa-download fa-3x text-success"></span></div>
+                    class="fas fa-receipt fa-3x text-success"></span></div>
                   <div class="text-info text-center mt-3"><h6>Roll Over</h6></div>
                   <div class="text-info text-center mt-2 "><h3>₦ {{item.roll_over | number}} </h3></div>
               </div>

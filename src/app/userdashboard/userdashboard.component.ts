@@ -20,10 +20,8 @@ getProfile: any;
 userAcountFiles: any;
 getUser: string;
 userAccountId: any;
+userBalance: any;
 doc_id: any;
-
-
-
 
   constructor(
     public userService: UsersService,
@@ -40,24 +38,18 @@ doc_id: any;
     this.getProfile = database.collection('users', ref => {
         return ref.where('email', '==', this.getUser); }).valueChanges();
 
+   }
 
+   model = {
+     cashout: 0,
    }
 
   ngOnInit() {
+    this.loadEverything();
     this.loading = true;
     this.alignWindow();
-    this.myAccountDetails$.subscribe(response => {
-      this.userAcountFiles = response;
-      console.log(this.userAcountFiles);
-    });
-    console.log(this.getUser);
 
-    this.database.collection('accounts',  reference => {
-      return reference.where('email','==',  this.getUser)
-    }).get().toPromise().then((doc)=>  {
-      this.userAccountId = doc.docs['0'].id;
-      this.loading = false;
-    });
+    console.log(this.getUser);
 
     this.getProfile.subscribe( response => {
       this.$userProfile = response;
@@ -71,33 +63,40 @@ doc_id: any;
   }
 
    async cashOut() {
+     console.log(this.model.cashout);
+     let userCashout = this.model.cashout;
+     console.log('BALANCE', this.userBalance);
      this.loading = true;
      const collectionRef =  this.database.collection('accounts');
      await collectionRef.doc(this.userAccountId).get().toPromise().then((doc)=> {
      console.log(doc.data());
      this.doc_id = doc.id;
-     const usrBalance = doc.data().balance;
+     const databaseBalance = doc.data().balance;
 
-     if(usrBalance > 0){
+     if(databaseBalance >=  userCashout ){
       this.database.doc(`accounts/${this.userAccountId}`).get().toPromise().then((values)=> {
-        let newCashout = values.data().balance;
+        let curBalance = values.data().balance;
+        let newCashout =   userCashout;
         let newDate = Date.now();
         let name = values.data().name;
         let email = values.data().email;
+        let newBalance =  databaseBalance - userCashout;
 
-        this.database.collection('cashouts').add({name: name, email: email, cashout: newCashout, date: newDate}).then(()=> {
-          this.database.doc(`accounts/${this.userAccountId}`).update({cashout: newCashout, balance: 0});
+        this.database.collection('cashouts').add({name: name, email: email, cashout: newCashout, date: new Date}).then(()=> {
+          this.database.doc(`accounts/${this.userAccountId}`).update({cashout: newCashout, balance:  newBalance});
         });
 
       });
       this.loading = false;
-      this._flashMessagesService.show(`Cashout of ₦ ${usrBalance} was successful`,
+      this.model.cashout = 0;
+      this._flashMessagesService.show(`Cashout of ₦ ${userCashout} was successful`,
          { cssClass: 'bg-success text-white font-weight-bold text-center', timeout: 3000 });
 
     } else {
       this._flashMessagesService.show('Your balance is too low!',
-       { cssClass: 'text-center bg-danger text-white font-weight-bold z-index: 9999', timeout: 3000 });
-       this.loading = false;
+       { cssClass: 'text-center bg-danger text-xs text-white font-weight-bold z-index: 9999', timeout: 3000 });
+      this.loading = false;
+      this.model.cashout = 0;
     }
 
    });
@@ -127,6 +126,22 @@ doc_id: any;
         return ;
       }
       window.scrollTo(0, 0);
+    });
+  }
+
+
+
+ async loadEverything(){
+    this.database.collection('accounts',  reference => {
+      return reference.where('email','==',  this.getUser)
+    }).get().toPromise().then((doc)=>  {
+      this.userAccountId = doc.docs['0'].id;
+      this.loading = false;
+    });
+
+    await this.myAccountDetails$.subscribe(response => {
+      this.userAcountFiles = response;
+      this.userService =  this.userAcountFiles['0']['balance'];
     });
   }
 
